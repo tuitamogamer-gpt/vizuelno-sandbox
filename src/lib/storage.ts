@@ -1,5 +1,6 @@
 import { get, set, del, keys } from "idb-keyval";
 import { Project, projectSchema, backupSchema } from "./project";
+import { cleanVisuals } from "./generation";
 const prefix = "forma:project:";
 export async function loadProjects(): Promise<Project[]> {
   const all = await keys();
@@ -11,13 +12,13 @@ export async function loadProjects(): Promise<Project[]> {
 export async function saveProject(project: Project) { await set(prefix + project.id, projectSchema.parse(project)); }
 export async function removeProject(id: string) { await del(prefix + id); }
 export async function importProject(file: File): Promise<Project> {
-  if (file.size > 8_000_000) throw new Error("Datoteka je prevelika. Maksimalna veličina je 8 MB.");
+  if (file.size > 32_000_000) throw new Error("Datoteka je prevelika. Maksimalna veličina je 32 MB.");
   let input: unknown;
   try { input = JSON.parse(await file.text()); } catch { throw new Error("Datoteka nije ispravan JSON projekat."); }
   const parsed = backupSchema.safeParse(input);
   if (!parsed.success) throw new Error("Ovo nije ispravan Forma projekat. Izaberi .forma.json datoteku izvezenu iz aplikacije.");
   // Imported copies keep the image, but not session-bound job/quote capabilities.
-  return { ...parsed.data.project, id: crypto.randomUUID(), aiJob: null, aiRequest: null, updatedAt: new Date().toISOString() };
+  return { ...parsed.data.project, id: crypto.randomUUID(), visuals: cleanVisuals(parsed.data.project.visuals), aiJob: null, aiRequest: null, updatedAt: new Date().toISOString() };
 }
 export function downloadBlob(content: BlobPart, filename: string, type: string) {
   const url = URL.createObjectURL(new Blob([content], { type }));
@@ -26,7 +27,7 @@ export function downloadBlob(content: BlobPart, filename: string, type: string) 
   setTimeout(() => URL.revokeObjectURL(url), 5000);
 }
 export function slug(name: string) { return name.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "moj-identitet"; }
-export function exportProject(project: Project) { downloadBlob(JSON.stringify({ format: "forma-project", version: 1, project: { ...project, aiJob: null, aiRequest: null } }, null, 2), `${slug(project.name)}.forma.json`, "application/json"); }
+export function exportProject(project: Project) { downloadBlob(JSON.stringify({ format: "forma-project", version: 1, project: { ...project, visuals: cleanVisuals(project.visuals), aiJob: null, aiRequest: null } }, null, 2), `${slug(project.name)}.forma.json`, "application/json"); }
 export async function readImage(file: File): Promise<string> {
   if (!["image/png", "image/jpeg", "image/webp"].includes(file.type)) throw new Error("Izaberi PNG, JPG ili WebP sliku.");
   if (file.size > 8_000_000) throw new Error("Slika može imati najviše 8 MB.");

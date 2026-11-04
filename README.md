@@ -6,11 +6,14 @@ Studentski web studio za prvi kolokvijum: od radne ideje do obrazloženog vizuel
 
 - Pristup zajedničkim kodom, provjerenim isključivo na serveru; potpisana HttpOnly sesija traje sedam dana.
 - Individualni projekti: ideja, publika, vizija, misija, strategija, 3–5 ciljeva i slogan.
-- Paleta 2–4 boje, WCAG provjera kontrasta, vlastiti logotip ili početni geometrijski oblik, tipografske probe, memorandum i društvena objava.
+- Paleta 2–4 boje, WCAG provjera kontrasta, generisani logotip ili početni geometrijski oblik, tipografske probe, memorandum i društvena objava.
 - Obrazloženja, izvori, AI deklaracija, kontrolna lista popunjenosti (nije automatska ocjena).
 - Automatsko lokalno čuvanje, JSON izvoz/uvoz, kopiranje i brisanje projekata.
 - Dokument za štampu/PDF, SVG logotip i samostalni HTML predložak za drugi kolokvijum.
-- AI atelje: priprema briefa, cijena prije generisanja, jedna Pika skica po potvrdi, praćenje zadatka i preuzimanje rezultata.
+- Generisanje unutar koraka: vizuelni smjer, studija palete, logotip, tipografski plakat, memorandum i društvena objava. Brief se sastavlja iz projekta i može se uređivati.
+- Playground bez obaveznog projekta: slobodan prompt, četiri modela, pet formata, posljednjih 12 rezultata, poređenje dvije slike, preuzimanje i dodavanje projektu.
+- Procjena cijene prije generisanja, jedna slika po potvrdi, praćenje zadatka i preuzimanje rezultata.
+- API postavke s direktnim ulazom u vlasnikove Vercel environment variables i besplatnom provjerom veze.
 
 ## Pokretanje
 
@@ -38,14 +41,25 @@ Radovi su u **IndexedDB-u ovog preglednika**, uključujući kompresovane slike. 
 
 Student preuzima `.forma.json` za rezervnu kopiju ili drugi računar. Uvoz kreira novu kopiju, nikada ne prepisuje postojeći projekat. Na zajedničkom računaru student treba izvesti i obrisati svoj projekat; odjava ne briše podatke. PDF se predaje kroz kanal dogovoren na nastavi. „Izvezi dokument / PDF“ otvara dijalog štampe; odabrati „Save as PDF / Sačuvaj kao PDF“ i po potrebi isključiti zaglavlja i podnožja preglednika.
 
-Projekti nisu poslati na server. Samo brief koji student potvrdi za AI ide kroz zaštićenu serversku rutu do Pike. API ključ se nikada ne šalje pregledniku. Napravljene skice su lokalno sačuvane uz projekat. Pika job i quote tokeni su vezani za sesiju i nisu u JSON izvozu.
+Projekti nisu poslati na server. Samo brief koji student potvrdi za AI ide kroz zaštićenu serversku rutu do Pike. API ključ se nikada ne šalje pregledniku. Napravljene skice su lokalno sačuvane uz odgovarajući korak projekta. Playground čuva do 12 eksperimenata, uključujući prompt, model, format i dostupnu konačnu cijenu; stariji se zamjenjuju. JSON arhiva Playgrounda služi za preuzimanje, a pojedinačni rezultat može se dodati projektu za nastavak rada. Uvoz arhive Playgrounda nije implementiran. Pika job i quote tokeni su vezani za sesiju i nisu u JSON izvozu.
 
 ## Pika integracija
 
-Izabrana operacija: `google/gemini-3.1-flash-image/text-to-image` (Nano Banana 2), jedna PNG slika, 1K, 1:1, minimal thinking. Server ne prihvata proizvoljan model, URL ili rezoluciju iz preglednika.
+Podržane operacije (tačni ID-jevi iz zvaničnog kataloga):
+
+| Model u interfejsu | Pika operacija | Postavke |
+| --- | --- | --- |
+| GPT Image 2.5 | `openai/gpt-image-2.5-sunburst/text-to-image` | Sunburst, 1K, medium, PNG |
+| Nano Banana 2.1 | `google/gemini-nano-banana-2.1/text-to-image` | 1K, minimal thinking, PNG |
+| Seedream 5 Pro | `bytedance/seedream-5.0-pro/text-to-image` | 5.0 Pro, size 1K |
+| Ideogram 4.5 | `ideogram/ideogram-4.5/text-to-image` | medium, magic prompt off, eksplicitne dimenzije |
+
+Formati: 1:1, 3:4, 4:3, 16:9 i 9:16. Jedna slika po zahtjevu. Server prihvata samo navedene modele i formate; svaki adapter koristi vlastitu dokumentovanu šemu. GPT i Nano koriste obračun po tokenima pa je prikazana cijena procjena. Dostupan konačni trošak prikazuje se uz rezultat.
+
+Generisanje koristi tekstualni opis projekta. Nema image-to-image slanja logotipa: za tačan znak i fontove memorandum i društvena objava imaju precizne HTML/CSS predloške. AI slika služi za istraživanje kompozicije. Slike palete ne mijenjaju stvarne HEX vrijednosti, a generisana slova ne mijenjaju izbor fontova. Generisani logo student eksplicitno postavlja kao aktivni znak. Vizuali drugih koraka automatski se čuvaju u odgovarajućem koraku i ulaze u PDF/JSON.
 
 1. `GET /api/ai/status` javlja da li je ključ konfigurisan.
-2. `POST /api/ai/quote` provjerava aktuelnu cijenu, dostupni kredit i limit po slici. Vraća potpisanu ponudu vezanu za brief i sesiju, važeću 10 minuta.
+2. `POST /api/ai/quote` provjerava aktuelnu cijenu, dostupni kredit i limit po slici. Vraća potpisanu ponudu vezanu za model, format, brief, ID zahtjeva i sesiju, važeću 10 minuta.
 3. Student potvrđuje jednu skicu i prikazanu cijenu. `POST /api/ai/generate` ponovo provjerava ponudu, koristi stabilan idempotency key i vraća potpisanu potvrdu zadatka.
 4. `POST /api/ai/job` provjerava zadatak iz iste sesije. `POST /api/ai/result` preuzima sliku samo s dozvoljenih Pika domena, ograničenu na 8 MB. Ključ ide samo na Pika API domen, nikada na CDN.
 
@@ -55,9 +69,13 @@ Login i AI imaju dodatna ograničenja pokušaja **po serverskoj instanci**; ona 
 
 Zvanične specifikacije provjerene 4. novembra 2026:
 - https://dev.pika.art/llms.txt
-- https://dev.pika.art/llms/google/gemini-3.1-flash-image/text-to-image
-- https://api.dev.pika.art/catalog/apis/google/gemini-3.1-flash-image/text-to-image?expand=inputs
+- https://dev.pika.art/llms/google/gemini-nano-banana-2.1/text-to-image
+- https://api.dev.pika.art/catalog/apis/google/gemini-nano-banana-2.1/text-to-image?expand=inputs
 - https://dev.pika.art/openapi.json
+
+## Unos ključa
+
+U aplikaciji otvori **API postavke** ili `/postavke`. Dugme vodi direktno na [Environment Variables ovog projekta](https://vercel.com/tuitamogamer-7851s-projects/vizuelno-komuniciranje/settings/environment-variables). Vlasnik kroz svoj Vercel nalog dodaje `PIKA_API_KEY` za Production i Preview, zatim radi Redeploy posljednje produkcijske objave. Nakon statusa Ready osvježiti aplikaciju i kliknuti „Provjeri Pika vezu“. Provjera poziva samo billing balance, ne generiše sliku i ne otkriva ključ ili saldo pregledniku. Isti postupak služi za zamjenu ključa.
 
 ## Vercel
 
@@ -78,7 +96,7 @@ npm run dev -- --port 3001
 npm run test:e2e
 ```
 
-Playwright čita pristupni kod iz lokalnog okruženja. `TEST_BASE_URL` može promijeniti adresu testa. Testovi pokrivaju pristup, CSRF, čuvanje nakon reload-a, uvoz/izvoz, brisanje, štampu, mobilni raspored i nedostupan AI bez ključa. Provider testovi koriste lažne odgovore i ne troše Pika kredit.
+Playwright čita pristupni kod iz lokalnog okruženja. `TEST_BASE_URL` može promijeniti adresu testa. Testovi pokrivaju pristup, CSRF, čuvanje nakon reload-a, uvoz/izvoz, brisanje, štampu, mobilni raspored i nedostupan AI bez ključa. Provider testovi koriste lažne odgovore i ne troše Pika kredit. Adapteri se provjeravaju protiv snimka zvaničnih šema sva četiri modela (`tests/fixtures/pika-catalog-2026-11-04.json`). Browser testovi provjeravaju odvojene vizuale po koracima, promjenu modela i cijene, galeriju i poređenje, obnovu nakon reload-a, prenos u projekat i uklanjanje session tokena iz izvoza.
 
 ## Nastavni izvori
 

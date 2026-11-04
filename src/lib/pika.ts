@@ -1,11 +1,21 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
+import { GenerationInput, models } from "./generation";
 export const PIKA_API = "https://api.dev.pika.art";
-export const PIKA_MODEL = "google/gemini-3.1-flash-image/text-to-image";
-export const PIKA_LABEL = "Nano Banana 2 · 1K · 1:1";
-export const promptSchema = z.string().trim().min(20).max(6000);
-export function imageInput(prompt: string) { return { prompt, num_images: 1, aspect_ratio: "1:1", output_format: "png", resolution: "1K", thinking_level: "minimal" }; }
-export function promptHash(prompt: string) { return createHash("sha256").update(prompt).digest("hex"); }
+export function imageInput(input: GenerationInput) {
+  const base = { prompt: input.prompt.trim(), num_images: 1 };
+  switch (input.model) {
+    case "gpt-image-2.5": return { ...base, aspect_ratio: input.aspect, resolution: "1K", output_format: "png", quality: "medium" };
+    case "nano-banana-2.1": return { ...base, aspect_ratio: input.aspect, resolution: "1K", output_format: "png", thinking_level: "minimal" };
+    case "seedream-5-pro": return { ...base, aspect_ratio: input.aspect, size: "1K" };
+    case "ideogram-4.5": {
+      const sizes = { "1:1": "1024x1024", "3:4": "864x1152", "4:3": "1152x864", "16:9": "1280x720", "9:16": "720x1280" };
+      return { ...base, size: sizes[input.aspect], quality: "medium", magic_prompt: "off" };
+    }
+  }
+}
+export function promptHash(value: string) { return createHash("sha256").update(value).digest("hex"); }
+export function generationHash(input: GenerationInput) { return promptHash(JSON.stringify({ api: models[input.model].api, input: imageInput(input) })); }
 export function configured() { return Boolean(process.env.PIKA_API_KEY?.trim()); }
 export class PikaError extends Error {
   constructor(message: string, public status = 502) { super(message); }
@@ -38,8 +48,8 @@ export async function pikaRequest(path: string, options?: { method?: string; bod
 }
 const quoteSchema = z.object({ micro_usd: z.number().int().nonnegative(), sell_usd: z.string() });
 const balanceSchema = z.object({ balance_micro_usd: z.number(), postpaid: z.object({ active: z.boolean(), cycle: z.object({ remaining_micro_usd: z.number() }).nullable().optional() }).nullable().optional() });
-export async function quoteImage(prompt: string) {
-  const [quoteRaw, balanceRaw] = await Promise.all([pikaRequest(`/catalog/apis/${PIKA_MODEL}/quote`, { method: "POST", body: imageInput(prompt) }), pikaRequest("/billing/balance")]);
+export async function quoteImage(input: GenerationInput) {
+  const [quoteRaw, balanceRaw] = await Promise.all([pikaRequest(`/catalog/apis/${models[input.model].api}/quote`, { method: "POST", body: imageInput(input) }), pikaRequest("/billing/balance")]);
   const quote = quoteSchema.parse(quoteRaw), balance = balanceSchema.parse(balanceRaw);
   const ceiling = Number(process.env.PIKA_MAX_IMAGE_USD || "0.25");
   if (!Number.isFinite(ceiling) || ceiling <= 0 || quote.micro_usd > ceiling * 1_000_000) throw new PikaError("Cijena prelazi dozvoljeni iznos za jednu sliku. Obrati se nastavniku.", 422);
