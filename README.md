@@ -65,7 +65,7 @@ Generisanje koristi tekstualni opis projekta. Nema image-to-image slanja logotip
 
 Greška veze ne pokreće automatski novo generisanje. Nepotvrđeni submit ostaje sačuvan i može se ponoviti s istim idempotency key-em. Ako je potvrda cijene u međuvremenu istekla, provjeriti Pika dashboard prije novog pokušaja. Job token traje 7 dana i zahtijeva originalnu aktivnu sesiju. Lokalna skica ostaje dostupna nakon isteka sesije.
 
-Login i AI imaju dodatna ograničenja pokušaja **po serverskoj instanci**; ona nisu globalna potrošačka kvota. Za veće grupe postaviti ograničenje kredita/zahtjeva na Pika API ključu i po potrebi Vercel firewall pravila. Limit po slici nije ukupni budžet. Živa naplativa generacija nije testirana jer ključ još nije dodat.
+Login i AI imaju dodatna ograničenja pokušaja **po serverskoj instanci**; ona nisu globalna potrošačka kvota. Za veće grupe postaviti ograničenje kredita/zahtjeva na Pika API ključu i po potrebi Vercel firewall pravila. Limit po slici nije ukupni budžet. Produkcijska veza s Pika API Club i ponude za sva četiri modela provjerene su 4. novembra 2026. Ključ je sačuvan kao Sensitive varijabla u Vercel Production i Preview okruženju. Provjera veze i cijena nije pokretala plaćeno generisanje; tok generisanja, praćenja zadatka i preuzimanja dodatno je pokriven testovima sa simuliranim odgovorima.
 
 Zvanične specifikacije provjerene 4. novembra 2026:
 - https://dev.pika.art/llms.txt
