@@ -1,6 +1,8 @@
 import { test, expect, Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { unzipSync, strFromU8 } from "fflate";
+import { exampleProject } from "../../src/lib/project";
+import { newGeneration } from "../../src/lib/generation";
 // Isolate per-IP login limits across local browser tests; production headers are set by Vercel.
 test.beforeEach(async({context},testInfo)=>{await context.setExtraHTTPHeaders({"x-vercel-forwarded-for":`192.0.2.${testInfo.testId.split("").reduce((n,c)=>n+c.charCodeAt(0),0)%250+1}`});});
 async function login(page:Page){await page.goto("/pristup");await page.getByLabel("Pristupni kod",{exact:true}).fill(process.env.ACCESS_CODE!);await page.getByRole("button",{name:"Uđi u studio"}).click();await expect(page).toHaveURL(/\/studio$/,{timeout:15000});await expect(page.getByRole("heading",{name:"Tvoj prostor za dobre ideje."})).toBeVisible();}
@@ -24,13 +26,27 @@ test("student edits persist, export/import round trips and removal only affects 
   await page.getByRole("button",{name:"Nazad na projekte"}).click();await expect(page.locator(".project-card")).toHaveCount(2);
   await page.getByRole("button",{name:"Opcije projekta Studio List"}).first().click();await page.getByRole("button",{name:"Obriši projekat",exact:true}).click();await page.getByRole("dialog").getByRole("button",{name:"Obriši projekat",exact:true}).click();await expect(page.locator(".project-card")).toHaveCount(1);
 });
-test("invalid backups do not overwrite work; sample exports to printable document and layouts fit mobile",async({page})=>{
+test("invalid backups do not overwrite work; sample downloads a complete PDF and layouts fit mobile",async({page})=>{
   const errors:string[]=[];page.on("pageerror",error=>errors.push(error.message));
   await page.goto("/pristup");await page.evaluate(()=>document.fonts.ready);await page.screenshot({path:"artifacts/login-desktop.png",fullPage:true,animations:"disabled"});await login(page);await page.screenshot({path:"artifacts/dashboard-desktop.png",fullPage:true,animations:"disabled"});
   await page.getByLabel("Uvezi Forma projekat").setInputFiles({name:"bad.json",mimeType:"application/json",buffer:Buffer.from('{"format":"wrong"}')});await expect(page.getByRole("status")).toContainText("nije ispravan Forma projekat");
   await page.getByRole("button",{name:"Zatvori obavještenje"}).click();await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();await expect(page.getByRole("heading",{name:"Bora",exact:true})).toBeVisible();
   await page.getByRole("button",{name:/Tipografija/}).click();await page.screenshot({path:"artifacts/editor-desktop.png",fullPage:true,animations:"disabled"});
-  await page.getByRole("button",{name:/Pregled i izvoz/}).click();await page.evaluate(()=>{window.print=()=>document.body.setAttribute("data-printed","true");});await page.getByRole("button",{name:"Izvezi dokument / PDF"}).click();await expect(page.locator("body")).toHaveAttribute("data-printed","true");await expect(page.locator(".print-report")).toContainText("07 / Proces i izvori");await page.pdf({path:"artifacts/example-identity.pdf",format:"A4",printBackground:true,preferCSSPageSize:true});
+  await page.getByRole("button",{name:/Pregled i izvoz/}).click();
+  await page.getByRole("button",{name:"PDF za prvi kolokvijum",exact:true}).click();
+  const pdfDialog=page.getByRole("dialog",{name:"PDF za prvi kolokvijum"});
+  await pdfDialog.getByLabel("Autor / autorka").fill("Željka Đurić Čolić");
+  await pdfDialog.getByLabel("Broj indeksa").fill("24/2026");
+  await pdfDialog.getByRole("button",{name:"Pregled PDF-a",exact:true}).click();
+  await expect(pdfDialog.getByTitle("Pregled PDF-a za prvi kolokvijum")).toBeVisible({timeout:25000});
+  const pdfDownload=page.waitForEvent("download");await pdfDialog.getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
+  const pdf=await pdfDownload;expect(pdf.suggestedFilename()).toBe("bora-kolokvijum-01.pdf");
+  await pdf.saveAs("artifacts/example-identity.pdf");
+  const bytes=await readFile((await pdf.path())!);expect(bytes.subarray(0,5).toString()).toBe("%PDF-");expect(bytes.length).toBeGreaterThan(50_000);
+  await page.setViewportSize({width:390,height:844});await pdfDialog.getByRole("button",{name:"Sakrij pregled"}).click();
+  await page.screenshot({path:"artifacts/pdf-export-mobile.png",fullPage:true,animations:"disabled"});
+  expect(await pdfDialog.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
+  await pdfDialog.getByRole("button",{name:"Zatvori prozor"}).click();
   await page.setViewportSize({width:390,height:844});await page.getByRole("button",{name:/Polazište/}).click();await page.screenshot({path:"artifacts/editor-mobile.png",fullPage:true,animations:"disabled"});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole("button",{name:"Otvori navigaciju"}).click();await page.getByRole("button",{name:"Pregled",exact:true}).click();await page.screenshot({path:"artifacts/dashboard-mobile.png",fullPage:true,animations:"disabled"});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole("button",{name:"Otvori navigaciju"}).click();await page.getByRole("button",{name:"Playground",exact:true}).click();await expect(page.getByText("Modeli su pripremljeni. Generisanje se aktivira",{exact:false})).toBeVisible();expect(errors).toEqual([]);
@@ -46,6 +62,20 @@ async function mockImages(page:Page) {
   await page.route("**/api/ai/result",route=>route.fulfill({contentType:"image/png",body:Buffer.from(png,"base64")}));
   return {submissions,quotes};
 }
+test("PDF reports an unreadable visual and can export a draft without optional AI images",async({page})=>{
+  await login(page);
+  const project=exampleProject();
+  project.visuals.moodboard={...newGeneration(),result:{id:"broken-image",image:"data:image/png;base64,aW52YWxpZA==",input:{model:"ideogram-4.5",aspect:"4:3",prompt:"Testni vizuelni smjer za identitet."},createdAt:new Date().toISOString()}};
+  await page.getByLabel("Uvezi Forma projekat").setInputFiles({name:"visual.forma.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify({format:"forma-project",version:1,project}))});
+  await expect(page.getByRole("heading",{name:"Bora",exact:true})).toBeVisible();
+  await page.getByRole("button",{name:"Izvezi",exact:true}).click();await page.getByRole("button",{name:"Kolokvijum 01 (.pdf)",exact:true}).click();
+  const dialog=page.getByRole("dialog",{name:"PDF za prvi kolokvijum"});
+  await dialog.getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
+  await expect(dialog.getByRole("alert")).toContainText("nije čitljiva",{timeout:15000});
+  await dialog.getByRole("checkbox",{name:/Uključi AI vizuale/}).uncheck();
+  const downloaded=page.waitForEvent("download");await dialog.getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
+  const bytes=await readFile((await(await downloaded).path())!);expect(bytes.subarray(0,5).toString()).toBe("%PDF-");
+});
 test("visual steps quote the chosen model, preserve independent outputs and export without capabilities",async({page})=>{
   const {submissions,quotes}=await mockImages(page);
   await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();await page.getByRole("button",{name:/Logotip/}).click();
@@ -60,6 +90,10 @@ test("visual steps quote the chosen model, preserve independent outputs and expo
   expect(submissions[1].model).toBe("seedream-5-pro");expect(submissions[1].aspect).toBe("4:3");
   await expect(page.getByRole("status").filter({hasText:"Lokalno sačuvano"})).toBeVisible();
   await page.reload();await expect(page.getByLabel("HEX boje 1")).toHaveValue("#244D3E");await page.getByRole("button",{name:/Logotip/}).click();await expect(page.locator('.editor .generation-result img')).toBeVisible();expect(submissions).toHaveLength(2);
+  await page.getByRole("button",{name:"Izvezi",exact:true}).click();await page.getByRole("button",{name:"Kolokvijum 01 (.pdf)",exact:true}).click();
+  const visualPdf=page.waitForEvent("download");await page.getByRole("dialog").getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
+  await(await visualPdf).saveAs("artifacts/identity-with-webp-visuals.pdf");
+  await page.getByRole("dialog").getByRole("button",{name:"Zatvori prozor"}).click();expect(submissions).toHaveLength(2);
   await page.getByRole("button",{name:"Izvezi",exact:true}).click();const downloaded=page.waitForEvent("download");await page.getByRole("button",{name:"Projekat za nastavak (.json)"}).click();const path=await (await downloaded).path();const backup=JSON.parse(await readFile(path!,"utf8"));
   expect(backup.project.visuals.logo.result.input.model).toBe("ideogram-4.5");expect(backup.project.visuals.palette.result.input.model).toBe("seedream-5-pro");expect(backup.project.visuals.logo.job).toBeNull();expect(backup.project.visuals.logo.request).toBeNull();expect(JSON.stringify(backup)).not.toContain("mock-job");
   await page.getByRole("button",{name:/Primjena/}).click();await expect(page.locator(".editor").getByLabel("Opis vizuala",{exact:false})).toHaveValue(/poslovnog memoranduma/);await page.getByRole("tab",{name:"Društvena objava"}).click();await expect(page.locator(".editor").getByLabel("Opis vizuala",{exact:false})).toHaveValue(/društvene objave/);
