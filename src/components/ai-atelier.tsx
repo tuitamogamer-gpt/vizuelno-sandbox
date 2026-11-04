@@ -1,0 +1,22 @@
+"use client";
+import { useState } from "react";
+import { ArrowUpRight, Check, Copy, Download, Info, Sparkles } from "lucide-react";
+import { Project, creativeBrief } from "@/lib/project";
+import { downloadBlob, slug } from "@/lib/storage";
+import { BrandSymbol } from "./brand";
+import AiGeneration from "./ai-generation";
+
+function BriefEditor({ project, update, notify }: { project: Project; update: (p: Partial<Project>) => void; notify: (s: string) => void }) {
+  const [style, setStyle] = useState("Minimalistički, jednostavan geometrijski znak s jasnim značenjem.");
+  const [draft, setDraft] = useState(project.aiPrompt || creativeBrief(project, style));
+  const [copied, setCopied] = useState(false);
+  async function copy() {
+    try { await navigator.clipboard.writeText(draft); setCopied(true); setTimeout(()=>setCopied(false),2000); }
+    catch { notify("Kopiranje nije dostupno. Preuzmi brief kao tekstualnu datoteku."); }
+  }
+  return <div className="atelier-layout"><section className="atelier-form"><div className="step-heading"><span className="eyebrow">KREATIVNI BRIEF</span><h2>Dobar rezultat počinje<br/>dobrim pitanjem.</h2><p>Tvoja ideja, vizija i paleta postaju polazište za eksperiment.</p></div><label className="select-label">Vizuelni smjer<select value={style} onChange={e=>setStyle(e.target.value)}><option>Minimalistički, jednostavan geometrijski znak s jasnim značenjem.</option><option>Organski, topli oblici inspirisani prirodom i ručnim radom.</option><option>Odvažan tipografski identitet s jakim kontrastom i jasnom hijerarhijom.</option><option>Elegantan, miran identitet s preciznim proporcijama i dosta praznog prostora.</option></select></label><button className="button secondary" onClick={()=>setDraft(creativeBrief(project,style))}><Sparkles size={16}/>Sastavi brief iz projekta</button><div className="field"><label htmlFor="creative-prompt">Tvoj brief <span>slobodno doradi</span></label><textarea id="creative-prompt" value={draft} maxLength={6000} rows={16} onChange={e=>setDraft(e.target.value)}/></div><div className="atelier-actions"><button className="button primary" onClick={()=>{update({aiPrompt:draft});notify("Brief je sačuvan uz projekat.");}}><Check size={16}/>Sačuvaj brief</button><button className="button secondary" onClick={copy}>{copied?<Check size={16}/>:<Copy size={16}/>} {copied?"Kopirano":"Kopiraj"}</button><button className="icon-button outlined" aria-label="Preuzmi brief" onClick={()=>downloadBlob(draft,`${slug(project.name)}-brief.txt`,"text/plain")}><Download size={17}/></button></div><AiGeneration project={project} prompt={draft} update={update}/></section><aside className="atelier-aside"><div className="atelier-art"><BrandSymbol shape="spark"/><span>IDEJA × EKSPERIMENT</span></div><div className="atelier-status"><span className="small-tag"><span className="pending-dot"/> PIKA API CLUB</span><h3>Priprema je već<br/>dio kreativnog rada.</h3><p>Prvo pripremi brief, zatim istraži jednu skicu. Generisanje se aktivira kada nastavnik poveže Pika ključ.</p><div className="atelier-rule"/><Info size={18}/><p>Generisani vizual je skica za dalju doradu. Zabilježi korišteni alat, promjene i razlog za svaku odluku.</p><span className="text-link">Ti određuješ smjer. <ArrowUpRight size={16}/></span></div></aside></div>;
+}
+export default function AiAtelier({ projects, selectedId, select, update, notify, create }: { projects: Project[]; selectedId: string | null; select: (id: string) => void; update: (patch: Partial<Project>) => void; notify: (s: string) => void; create: () => void }) {
+  const project=projects.find(p=>p.id===selectedId)||projects[0];
+  return <div className="atelier-page page-enter"><div className="page-heading"><div><span className="eyebrow">PROSTOR ZA PROMIŠLJEN EKSPERIMENT</span><h1>AI atelje<span className="orange">.</span></h1><p>Alat predlaže. Ti biraš, mijenjaš i objašnjavaš.</p></div>{project&&<label className="atelier-project-select">Projekat<select value={project.id} onChange={e=>select(e.target.value)}>{projects.map(p=><option key={p.id} value={p.id}>{p.name||"Projekat bez naziva"}</option>)}</select></label>}</div>{project?<BriefEditor key={project.id} project={project} update={update} notify={notify}/>:<div className="empty-atelier"><Sparkles size={38}/><h2>Prvo ideja, onda eksperiment.</h2><p>Kreiraj projekat kako bi brief imao tvoju priču, publiku i viziju.</p><button className="button primary" onClick={create}>Kreiraj projekat<ArrowUpRight size={17}/></button></div>}</div>;
+}
