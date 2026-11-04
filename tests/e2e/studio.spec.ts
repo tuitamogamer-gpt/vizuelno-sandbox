@@ -76,6 +76,19 @@ test("PDF reports an unreadable visual and can export a draft without optional A
   const downloaded=page.waitForEvent("download");await dialog.getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
   const bytes=await readFile((await(await downloaded).path())!);expect(bytes.subarray(0,5).toString()).toBe("%PDF-");
 });
+test("PDF retries a failed font download without reloading or losing export details",async({page})=>{
+  await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();
+  let interrupt=true;
+  await page.route("**/fonts/pdf/*.ttf",route=>{if(interrupt){interrupt=false;return route.abort("failed");}return route.continue();});
+  await page.getByRole("button",{name:"Izvezi",exact:true}).click();await page.getByRole("button",{name:"Kolokvijum 01 (.pdf)",exact:true}).click();
+  const dialog=page.getByRole("dialog",{name:"PDF za prvi kolokvijum"});
+  await dialog.getByLabel("Broj indeksa").fill("2026/42");
+  await dialog.getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
+  await expect(dialog.getByRole("alert")).toContainText("PDF nije moguće pripremiti",{timeout:15000});
+  const downloaded=page.waitForEvent("download");await dialog.getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
+  expect((await downloaded).suggestedFilename()).toBe("bora-kolokvijum-01.pdf");
+  await expect(dialog.getByLabel("Broj indeksa")).toHaveValue("2026/42");
+});
 test("visual steps quote the chosen model, preserve independent outputs and export without capabilities",async({page})=>{
   const {submissions,quotes}=await mockImages(page);
   await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();await page.getByRole("button",{name:/Logotip/}).click();

@@ -211,7 +211,22 @@ export function IdentityPdf({ project: p, options: o, assets }: { project: Proje
   </Document>;
 }
 
-export async function renderIdentityPdf(project: Project, options: PdfOptions, assets: PdfAssets, fonts = "/fonts/pdf") {
-  registerFonts(fonts);
-  return pdf(<IdentityPdf project={project} options={options} assets={assets} />).toBlob();
+let renderQueue: Promise<void> = Promise.resolve();
+export function renderIdentityPdf(project: Project, options: PdfOptions, assets: PdfAssets, fonts = "/fonts/pdf") {
+  // The renderer shares its font store. Closing a dialog and immediately starting
+  // another export must not clear fonts while an earlier document is still using them.
+  const task = renderQueue.then(async () => {
+    registerFonts(fonts);
+    try {
+      return await pdf(<IdentityPdf project={project} options={options} assets={assets} />).toBlob();
+    } catch (error) {
+      // FontSource caches rejected loads too; discard them so reconnect + retry works.
+      // Preserve the renderer's built-in fallback fonts while replacing our sources.
+      delete Font.getRegisteredFonts()["Forma PDF"];
+      fontBase = undefined;
+      throw error;
+    }
+  });
+  renderQueue = task.then(() => undefined, () => undefined);
+  return task;
 }

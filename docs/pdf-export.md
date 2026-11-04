@@ -15,7 +15,7 @@ Pregled predate verzije ima zasebno dugme **PDF predate verzije**. Izvoz koristi
 - Noto Sans Regular/Bold ugrađeni su u dokument, uključujući Latin Extended i ćirilicu. Licenca i porijeklo nalaze se u `public/fonts/pdf/`.
 - Logotip i fontovski primjeri pripremaju se iz stvarnih izbora projekta. WebP vizuali konvertuju se u PNG, uz očuvan odnos stranica. Slike se obrađuju redom radi manjeg utroška memorije na telefonu.
 - PDF renderer se učitava tek na zahtjev. Obrada se odvija u pregledniku; privatni ključevi, job/quote tokeni i troškovi generisanja ne ulaze u PDF.
-- Za prvo učitavanje izvoznog alata i fontova potrebna je veza s aplikacijom. PDF zatim sadrži ugrađene resurse.
+- Za prvo učitavanje izvoznog alata i fontova potrebna je veza s aplikacijom. PDF zatim sadrži ugrađene resurse. Ako učitavanje fontova bude prekinuto, ponovni pokušaj radi bez osvježavanja stranice i zadržava unesene podatke.
 - `src/lib/pdf/package.json` označava izvozni modul kao ESM; PDF test koristi `.mts` zbog ESM zavisnosti renderera. Ostatak aplikacije zadržava postojeći modulni režim.
 
 ## Provjera
