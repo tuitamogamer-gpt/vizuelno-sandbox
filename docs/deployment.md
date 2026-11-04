@@ -4,14 +4,20 @@ Postojeći Vercel projekat: `vizuelno-komuniciranje`, tim `tuitamogamer-7851s-pr
 
 ## 1. GitHub
 
-Kreirati prazan privatni repozitorijum na nalogu s dozvolom za pisanje, bez početnog README-a. U direktorijumu projekta:
+Repozitorijum je [tuitamogamer-gpt/vizuelno-sandbox](https://github.com/tuitamogamer-gpt/vizuelno-sandbox), a glavna grana je `main`. Početni commit repozitorijuma spojen je s prethodnom istorijom aplikacije.
+
+Za novi računar:
 
 ```sh
-git remote add origin https://github.com/VLASNIK/REPOZITORIJUM.git
-git push -u origin main
+git clone https://github.com/tuitamogamer-gpt/vizuelno-sandbox.git
+cd vizuelno-sandbox
+npm ci
+cp .env.example .env.local
 ```
 
-U postojećem Vercel projektu otvoriti **Settings → Git → Connect Git Repository**, odabrati taj repozitorijum i `main` kao Production Branch. GitHub aplikaciji Vercel omogućiti pristup konkretnom repozitorijumu. Provjeriti prvi automatski deployment. Povezivanje samo lokalnog `origin` nije dovoljno za automatske objave na Vercelu.
+Nakon uređivanja i provjera, nove commitove poslati pomoću `git push origin main`. U lokalnom checkoutu `origin` pokazuje na ovaj repozitorijum.
+
+U postojećem Vercel projektu otvoriti [**Settings → Git → Connect Git Repository**](https://vercel.com/tuitamogamer-7851s-projects/vizuelno-komuniciranje/settings/git), odabrati taj repozitorijum i `main` kao Production Branch. GitHub aplikaciji Vercel omogućiti pristup konkretnom repozitorijumu. Provjeriti prvi automatski deployment. Povezivanje samo lokalnog `origin` nije dovoljno za automatske objave na Vercelu.
 
 `.env*`, `.vercel`, artefakti i browser tragovi su ignorisani. U Git ide samo `.env.example` bez vrijednosti tajni. GitHub Actions izvršava lint, TypeScript, unit testove, build i odvojene integracijske testove naloga. Vercel varijable se ne kopiraju u GitHub.
 

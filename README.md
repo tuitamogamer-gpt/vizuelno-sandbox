@@ -1,5 +1,7 @@
 # Forma — Vizuelno komuniciranje
 
+[Aplikacija](https://vizuelno-komuniciranje.vercel.app) · [GitHub repozitorijum](https://github.com/tuitamogamer-gpt/vizuelno-sandbox) · [Automatske provjere](https://github.com/tuitamogamer-gpt/vizuelno-sandbox/actions/workflows/ci.yml)
+
 Studentski web studio za prvi kolokvijum: od radne ideje do obrazloženog vizuelnog identiteta. Next.js App Router, React, TypeScript, IndexedDB, PostgreSQL, Google OAuth preko Better Auth i serverska Pika API Club integracija. Prilagođen računaru i telefonu.
 
 ## Šta radi
