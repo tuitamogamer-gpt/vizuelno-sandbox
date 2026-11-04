@@ -38,7 +38,8 @@ test("AI quote, explicit single submit, polling, result and adoption work withou
   await page.route("**/api/ai/quote",route=>route.fulfill({json:{token:"mock-quote",price:0.07,model:"Nano Banana 2"}}));
   await page.route("**/api/ai/generate",route=>{submissions++;return route.fulfill({json:{id:"media_mock",token:"mock-job",status:"queued"}});});
   await page.route("**/api/ai/job",route=>route.fulfill({json:{id:"media_mock",status:"completed"}}));
-  await page.route("**/api/ai/result",route=>route.fulfill({contentType:"image/png",body:Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=","base64")}));
+  const png=await page.evaluate(()=>{const c=document.createElement("canvas");c.width=16;c.height=16;const ctx=c.getContext("2d")!;ctx.fillStyle="#244D3E";ctx.fillRect(0,0,16,16);return c.toDataURL("image/png").split(",")[1];});
+  await page.route("**/api/ai/result",route=>route.fulfill({contentType:"image/png",body:Buffer.from(png,"base64")}));
   await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();await page.getByRole("button",{name:"AI atelje",exact:true}).click();
   await page.getByRole("button",{name:"Provjeri cijenu skice"}).click();await expect(page.getByText("$0.0700")).toBeVisible();expect(submissions).toBe(0);
   await page.getByRole("button",{name:"Generiši jednu skicu"}).click();await expect(page.getByAltText("AI skica za Bora")).toBeVisible();expect(submissions).toBe(1);

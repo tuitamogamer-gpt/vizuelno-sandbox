@@ -30,7 +30,7 @@ export function exportProject(project: Project) { downloadBlob(JSON.stringify({ 
 export async function readImage(file: File): Promise<string> {
   if (!["image/png", "image/jpeg", "image/webp"].includes(file.type)) throw new Error("Izaberi PNG, JPG ili WebP sliku.");
   if (file.size > 8_000_000) throw new Error("Slika može imati najviše 8 MB.");
-  const bitmap = await createImageBitmap(file);
+  const bitmap = await createImageBitmap(file).catch(() => { throw new Error("Sliku nije moguće otvoriti. Izaberi ispravan PNG, JPG ili WebP fajl."); });
   const canvas = document.createElement("canvas");
   const scale = Math.min(1, 1000 / Math.max(bitmap.width, bitmap.height));
   canvas.width = Math.max(1, Math.round(bitmap.width * scale)); canvas.height = Math.max(1, Math.round(bitmap.height * scale));
