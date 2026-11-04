@@ -8,6 +8,27 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: forma_test
+          POSTGRES_USER: forma
+          POSTGRES_PASSWORD: ci-local-database-only
+        ports: ['54329:5432']
+        options: >-
+          --health-cmd "pg_isready -U forma -d forma_test"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      DATABASE_URL: postgresql://forma:ci-local-database-only@localhost:54329/forma_test
+      BETTER_AUTH_URL: http://localhost:3002
+      BETTER_AUTH_SECRET: ci-only-account-secret-never-production-2026
+      SESSION_SECRET: ci-only-session-secret-never-production-2026
+      ACCESS_CODE: ci-course-code
+      GOOGLE_CLIENT_ID: test-client.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: ci-only-placeholder
+      INSTRUCTOR_EMAILS: teacher@example.test
+      TEST_BASE_URL: http://localhost:3002
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,3 +40,16 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Start application
+        run: |
+          npm run start -- --port 3002 > /tmp/forma-server.log 2>&1 &
+          node --input-type=module <<'JS'
+          for (let attempt = 0; attempt < 40; attempt++) {
+            try { if ((await fetch('http://localhost:3002/pristup')).ok) process.exit(0); } catch {}
+            await new Promise(resolve => setTimeout(resolve, 500));
+          }
+          process.exit(1);
+          JS
+      - run: npm run test:e2e
+      - run: npm run test:accounts

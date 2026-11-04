@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { get, set } from "idb-keyval";
+import { Workspace } from "@/lib/cloud/workspace";
 import { ArrowDownToLine, Check, Columns2, Copy, Download, FlaskConical, LoaderCircle, Sparkles, Trash2, Star, Search, Upload, FolderOpen } from "lucide-react";
 import { Generation, GenerationResult, PlaygroundData, VisualTarget, HISTORY_LIMIT, amendGeneration, isPending, mergeExperiments, modelIds, models, newGeneration, playgroundSchema, targetInfo, visualTargets } from "@/lib/generation";
 import { Project, visualBrief } from "@/lib/project";
@@ -9,7 +9,7 @@ import AiGeneration from "./ai-generation";
 import Dialog from "./dialog";
 import VisualDetail from "./visual-detail";
 
-const storageKey = "forma:playground:v1";
+
 const starters = [
   { label: "Znak", prompt: "Originalan minimalistički znak za mali arhitektonski studio LIN: dvije povezane geometrijske forme koje sugerišu prostor i ravnotežu. Tamnozelena #244D3E na toploj bijeloj pozadini. Precizne linije, ravni prikaz, bez mockupa i dodatnog teksta." },
   { label: "Plakat", prompt: "Tipografski plakat za izložbu naziva OBLIK. Velika izražajna slova, jasna hijerarhija, ritam i puno praznog prostora. Dvije boje: crna i terakota #DD6846 na toplom krem papiru. Eksperimentalni urednički dizajn, ravni prikaz plakata." },
@@ -17,8 +17,8 @@ const starters = [
   { label: "Ambalaža", prompt: "Koncept ambalaže za izmišljeni biljni čaj LIST. Krem papir s utisnutom teksturom, tamnozelena geometrijska ilustracija lista, naziv LIST u jasnoj tipografiji. Jedna kutija na neutralnoj studijskoj podlozi, meko svjetlo i pažljivo poravnati elementi." },
   { label: "Moodboard", prompt: "Moodboard za savremeni kulturni centar: izrezani papir, teksture betona, ritmični geometrijski oblici i detalji urbanog prostora. Topla krem, tamna plava i jarko narandžasta. Uredna kompozicija povezanih vizuelnih referenci, bez logotipa i teksta." },
 ];
-type Props = { projects: Project[]; apply: (projectId: string, target: VisualTarget, result: GenerationResult) => Promise<boolean>; notify: (message: string) => void };
-export default function Playground({ projects, apply, notify }: Props) {
+type Props = { workspace:Workspace; projects: Project[]; apply: (projectId: string, target: VisualTarget, result: GenerationResult) => Promise<boolean>; notify: (message: string) => void };
+export default function Playground({ projects, apply, notify, workspace }: Props) {
   const [data, setData] = useState<PlaygroundData | null>(null);
   const ref = useRef<PlaygroundData | null>(null);
   const queue = useRef<Promise<unknown>>(Promise.resolve());
@@ -41,19 +41,20 @@ export default function Playground({ projects, apply, notify }: Props) {
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   useEffect(() => {
     let cancelled = false;
-    get(storageKey).then(raw => {
+    Promise.resolve(workspace.playground()).then(raw => {
       const next = raw === undefined ? { generation: newGeneration(), history: [], starred: [] } : playgroundSchema.parse(raw);
       if (!cancelled) { ref.current = next; setData(next); }
     }).catch(() => { if (!cancelled) setError("Playground nije moguće otvoriti. Provjeri dozvole za lokalno čuvanje. Postojeći eksperimenti nisu obrisani."); });
-    return () => { cancelled = true; };
-  }, []);
+    const unsubscribe=workspace.subscribe(()=>{const next=workspace.playground();if(!cancelled&&next&&next!==ref.current){ref.current=next;setData(next);}});
+    return () => { cancelled = true;unsubscribe(); };
+  }, [workspace]);
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => { if (saving || failed.current) event.preventDefault(); };
     window.addEventListener("beforeunload", warn); return () => window.removeEventListener("beforeunload", warn);
   }, [saving]);
   function save(next: PlaygroundData): Promise<boolean> {
     ref.current = next; setData(next); setSaving(true); const current = ++version.current;
-    const result = queue.current.catch(() => {}).then(() => set(storageKey, playgroundSchema.parse(next))).then(() => { if (current === version.current) { setSaving(false); failed.current = false; setError(""); } return true; }).catch(() => { if (current === version.current) { setSaving(false); failed.current = true; setError("Čuvanje nije uspjelo. Preuzmi rezultate prije zatvaranja preglednika."); } return false; });
+    const result = workspace.savePlayground(playgroundSchema.parse(next)).then(() => { if (current === version.current) { setSaving(false); failed.current = false; setError(""); } return true; }).catch(() => { if (current === version.current) { setSaving(false); failed.current = true; setError("Čuvanje nije uspjelo. Preuzmi rezultate prije zatvaranja preglednika."); } return false; });
     queue.current=result;return result;
   }
   function change(patch: Partial<Generation>) {
@@ -79,7 +80,7 @@ export default function Playground({ projects, apply, notify }: Props) {
   const chosenProject=projects.find(project=>project.id===projectId)||projects[0];
   const visible=data.history.filter(item=>(filter==="all"||item.input.model===filter)&&(!favoritesOnly||data.starred.includes(item.id))&&`${item.input.prompt} ${models[item.input.model].label}`.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
   function reuse(result:GenerationResult){void change({...result.input});setInspect(null);notify("Opis je vraćen u editor. Izaberi model i doradi svoju ideju.");document.querySelector<HTMLTextAreaElement>(".playground-console textarea")?.focus();}
-  return <div className="playground-page page-enter"><div className="page-heading"><div><span className="eyebrow">PROSTOR ZA SLOBODAN EKSPERIMENT</span><h1>Playground<span className="orange">.</span></h1><p>Jedna ideja. Četiri modela. Istraži šta sve može da nastane.</p></div><span className="playground-save"><Check size={14} />{saving ? "Čuvanje..." : error ? "Nije sačuvano" : "Lokalni radni prostor"}</span></div>
+  return <div className="playground-page page-enter"><div className="page-heading"><div><span className="eyebrow">PROSTOR ZA SLOBODAN EKSPERIMENT</span><h1>Playground<span className="orange">.</span></h1><p>Jedna ideja. Četiri modela. Istraži šta sve može da nastane.</p></div><span className="playground-save"><Check size={14} />{saving ? "Čuvanje..." : error ? "Nije sačuvano" : workspace.owner?"Galerija uz tvoj nalog":"Lokalni radni prostor"}</span></div>
     {error && <p className="form-error" role="alert">{error}</p>}
     <div className="playground-layout"><div className="playground-console"><div className="playground-console-head"><FlaskConical size={20} /><span>TVOJA IDEJA, TVOJA PRAVILA.</span><span>01—04</span></div>
       {chosenProject&&<details className="project-brief-source"><summary><FolderOpen size={16}/>Kreni od svog projekta</summary><div><label>Projekat<select value={chosenProject.id} onChange={e=>setProjectId(e.target.value)}>{projects.map(project=><option key={project.id} value={project.id}>{project.name||"Bez naziva"}</option>)}</select></label><label>Vrsta vizuala<select value={target} onChange={e=>setTarget(e.target.value as VisualTarget)}>{visualTargets.map(key=><option key={key} value={key}>{targetInfo[key].label}</option>)}</select></label><button className="button secondary" disabled={locked} onClick={()=>{void change({prompt:visualBrief(chosenProject,target),aspect:targetInfo[target].aspect});notify("Opis je sastavljen iz ideje, strategije i palete projekta.");}}><Sparkles size={15}/>Sastavi opis iz projekta</button></div></details>}
@@ -90,7 +91,7 @@ export default function Playground({ projects, apply, notify }: Props) {
       <div className="gallery-actions"><button className="button secondary small" disabled={pair.length !== 2} onClick={() => setComparing(true)}><Columns2 size={15} />Uporedi {pair.length}/2</button><div><button className="button ghost small" disabled={importing} onClick={()=>importRef.current?.click()}>{importing?<LoaderCircle size={15} className="spin"/>:<Upload size={15}/>}Uvezi arhivu</button><button className="button ghost small" disabled={!data.history.length} onClick={() => exportPlayground(data)}><Download size={15} />Arhiva</button></div></div>
       {!!data.history.length&&<div className="gallery-filters"><label className="gallery-search"><Search size={16}/><input aria-label="Pretraži vizuale" placeholder="Pretraži opis ili model..." value={query} onChange={e=>setQuery(e.target.value)}/></label><div><select aria-label="Filtriraj po modelu" value={filter} onChange={e=>setFilter(e.target.value)}><option value="all">Svi modeli</option>{modelIds.map(id=><option key={id} value={id}>{models[id].label}</option>)}</select><button className={favoritesOnly?"selected":""} aria-pressed={favoritesOnly} onClick={()=>setFavoritesOnly(!favoritesOnly)}><Star size={15} fill={favoritesOnly?"currentColor":"none"}/>Favoriti <span>{data.starred.length}</span></button></div></div>}
       {data.history.length ? visible.length?<div className="experiment-grid">{visible.map(item => <article key={item.id} className={`experiment-card ${selected.includes(item.id) ? "selected" : ""}`}><div className="experiment-image-wrap"><button className="experiment-image" onClick={() => setInspect(item)} aria-label={`Pogledaj vizual: ${models[item.input.model].label}`}><img src={item.image} alt={`Eksperiment · ${models[item.input.model].label}`} loading="lazy"/></button><button className="experiment-star" aria-pressed={data.starred.includes(item.id)} aria-label={`${data.starred.includes(item.id)?"Ukloni iz":"Dodaj u"} favorite: ${models[item.input.model].label}`} onClick={()=>star(item.id)}><Star size={16} fill={data.starred.includes(item.id)?"currentColor":"none"}/></button><button className="experiment-choose" onClick={()=>toggle(item.id)} aria-pressed={selected.includes(item.id)} aria-label={`Izaberi za poređenje: ${models[item.input.model].label}`}>{selected.includes(item.id)?<Check size={15}/>:<Columns2 size={15}/>}</button></div><div className="experiment-meta"><strong>{models[item.input.model].label}</strong><span>{item.input.aspect} · {new Intl.DateTimeFormat("sr-Latn", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(item.createdAt))}</span><p>{item.input.prompt}</p><div><button className="icon-button" disabled={locked} aria-label={`Ponovi prompt: ${models[item.input.model].label}`} title="Vrati opis u editor" onClick={() => reuse(item)}><Copy size={15} /></button><button className="icon-button" aria-label="Dodaj ovaj vizual projektu" onClick={() => setApplyResult(item)}><ArrowDownToLine size={15} /></button><a className="icon-button" href={item.image} download={`forma-${item.input.model}-${item.id}.webp`} aria-label="Preuzmi eksperiment"><Download size={15} /></a><button className="icon-button danger-text" aria-label="Ukloni eksperiment" onClick={() => setRemoveId(item.id)}><Trash2 size={14} /></button></div></div></article>)}</div>:<div className="empty-filter"><Search size={26}/><h3>Nema vizuala za ovaj izbor.</h3><p>Probaj drugi opis, model ili prikaži cijelu galeriju.</p><button className="button secondary" onClick={()=>{setQuery("");setFilter("all");setFavoritesOnly(false);}}>Prikaži sve vizuale</button></div> : <div className="playground-empty"><div className="experiment-art"><span /><span /><span /></div><span className="eyebrow">OVDJE POČINJE NEŠTO NOVO</span><h3>Ostavi prostor<br />za iznenađenje.</h3><p>Opiši ideju, izaberi model i provjeri cijenu. Tvoj prvi vizual pojaviće se ovdje.</p><div className="empty-models">{Object.values(models).map(model => <span key={model.label}>{model.label}</span>)}</div></div>}
-      <p className="gallery-storage-note">Galerija čuva do {HISTORY_LIMIT} vizuala na ovom uređaju. Preuzmi arhivu za drugi računar ili rezervnu kopiju.</p>
+      <p className="gallery-storage-note">Galerija čuva do {HISTORY_LIMIT} vizuala {workspace.owner?"uz tvoj nalog":"na ovom uređaju"}. Preuzmi arhivu za rezervnu kopiju.</p>
     </section></div>
     <input ref={importRef} type="file" className="visually-hidden" accept=".json,application/json" aria-label="Uvezi Playground arhivu" onChange={e=>{void restore(e.target.files?.[0]);e.target.value="";}}/>
     {inspect&&<VisualDetail result={inspect} onClose={()=>setInspect(null)} onPrompt={!locked?()=>reuse(inspect):undefined}/>}

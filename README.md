@@ -1,10 +1,12 @@
 # Forma — Vizuelno komuniciranje
 
-Studentski web studio za prvi kolokvijum: od radne ideje do obrazloženog vizuelnog identiteta. Next.js App Router, React, TypeScript, IndexedDB i server-side Pika API Club integracija. Prilagođen računaru i telefonu.
+Studentski web studio za prvi kolokvijum: od radne ideje do obrazloženog vizuelnog identiteta. Next.js App Router, React, TypeScript, IndexedDB, PostgreSQL, Google OAuth preko Better Auth i serverska Pika API Club integracija. Prilagođen računaru i telefonu.
 
 ## Šta radi
 
 - Pristup zajedničkim kodom, provjerenim isključivo na serveru; potpisana HttpOnly sesija traje sedam dana.
+- Google nalog i upis kodom predmeta, privatni projekti i Playground na svim uređajima, profil s indeksom i grupom. Lokalni režim uz kod ostaje dostupan.
+- Predaja sačuvanih verzija, istorija komentara, nastavnički pregled napretka i obrazložene povratne informacije po pet kriterijuma.
 - Individualni projekti: ideja, publika, vizija, misija, strategija, 3–5 ciljeva i slogan.
 - Paleta 2–4 boje, WCAG provjera kontrasta, generisani logotip ili početni geometrijski oblik, tipografske probe, memorandum i društvena objava.
 - Obrazloženja, izvori, AI deklaracija, kontrolna lista popunjenosti (nije automatska ocjena).
@@ -37,13 +39,21 @@ Opcione varijable:
 | `PIKA_API_KEY` | Pika API Club ključ; bez njega je generisanje isključeno, ostatak aplikacije radi. |
 | `PIKA_MAX_IMAGE_USD` | Najviša dozvoljena ponuđena cijena jedne slike; podrazumijevano `0.25`. |
 
-## Podaci i predaja
+## Nalozi, podaci i predaja
 
-Radovi su u **IndexedDB-u ovog preglednika**, uključujući kompresovane slike. Nema centralne baze, studentskih naloga, automatske predaje ili sinhronizacije između uređaja. Zajednički kod zaključava aplikaciju, ali nije individualni studentski nalog.
+**Google nalog:** potvrđena Google prijava, zatim jednokratni upis kodom predmeta. Projekti i Playground pripadaju korisniku i sinhronizuju se u PostgreSQL bazu. Na uređaju ostaje odvojena IndexedDB kopija po nalogu. Student može uređivati već otvorenu aplikaciju bez interneta; promjene se šalju kada se veza vrati. Početno otvaranje aplikacije i Google prijava zahtijevaju internet.
 
-Student preuzima `.forma.json` za rezervnu kopiju ili drugi računar. Uvoz kreira novu kopiju, nikada ne prepisuje postojeći projekat. Na zajedničkom računaru student treba izvesti i obrisati svoj projekat; odjava ne briše podatke. PDF se predaje kroz kanal dogovoren na nastavi. „Izvezi dokument / PDF“ otvara dijalog štampe; odabrati „Save as PDF / Sačuvaj kao PDF“ i po potrebi isključiti zaglavlja i podnožja preglednika.
+Sinhronizacija koristi provjeru revizije i stabilni ID izmjene. Istovremena dorada na dva uređaja otvara izbor verzije. Projekat se može sačuvati kao zasebna lokalna kopija prije preuzimanja verzije s naloga; Playground arhivu treba prethodno izvesti. Slike se deduplikuju unutar naloga. Limit je 30 aktivnih projekata i 50 MB vizuala po nalogu. Brisanje projekta ne briše već predate verzije; neiskorištene slike uklanjaju se nakon 24 sata pri narednoj izmjeni ili unosu slike.
 
-Projekti nisu poslati na server. Samo brief koji student potvrdi za AI ide kroz zaštićenu serversku rutu do Pike. API ključ se nikada ne šalje pregledniku. Napravljene skice su lokalno sačuvane uz odgovarajući korak projekta. Playground čuva do 24 eksperimenata, uključujući prompt, model, format i dostupnu konačnu cijenu. Pri novom generisanju zamjenjuje se najstariji rezultat koji nije favorit. Ako je svih 24 sačuvano kao favorit, prvo je potrebno osloboditi mjesto. Uvoz JSON arhive dopunjava slobodna mjesta bez prepisivanja postojećih vizuala ili nacrta; duplikati se preskaču. Arhiva može imati do 96 MB, a projekat do 64 MB. Pojedinačni rezultat može se dodati projektu za nastavak rada. ZIP paket sadrži lokalno sačuvane kompresovane slike; original trenutnog rezultata može se posebno preuzeti dok je Pika zadatak dostupan. Pika job i quote tokeni su vezani za sesiju i nisu u JSON izvozu.
+**Predaja:** korak „Pregled i izvoz“ traži popunjenu kontrolnu listu i završene AI zahtjeve. Server zamrzava sačuvanu verziju. Dalje izmjene ne mijenjaju predaju; ponovna predaja nove revizije dobija novi broj verzije. Nastavnik vidi zbirni napredak i predate radove, komentariše koncept, identitet, tipografiju, primjenu i obrazloženje. Oznake su smjernice za doradu, ne automatske ocjene. Student dobija komentar u aplikaciji; nema automatskih email poruka.
+
+Nastavničku ulogu određuje isključivo serverski `INSTRUCTOR_EMAILS`. Student nema pristup tuđim dokumentima, slikama, predajama ili listi studenata. Nastavnik vidi sadržaj predatih verzija; privatni nacrti nisu dostupni nastavničkoj API ruti. Predaje ostaju dostupne u bazi nakon brisanja aktivnog projekta. Administrativno brisanje naloga i politika čuvanja baze nisu automatizovani; vlasnik upravlja bazom i njenim rezervnim kopijama.
+
+**Lokalni režim uz kod:** radovi ostaju samo u IndexedDB-u tog preglednika i nisu automatski predati ili preneseni na nalog. Nakon Google prijave student izričito bira lokalne projekte za kopiranje. Originali ostaju lokalno. Na zajedničkom računaru prenijeti ili izvesti svoje radove, zatim obrisati lokalne originale. Odjava Google naloga prvo provjerava sinhronizaciju, opoziva sesiju i uklanja lokalnu kopiju tog naloga. Radovi iz lokalnog režima ostaju na uređaju.
+
+JSON izvoz i uvoz ostaju dostupni u oba režima; uvoz pravi novu kopiju. ZIP paket sadrži projekat, knjigu identiteta, web predložak, paletu i vizuale. PDF se dobija kroz dijalog štampe. Playground čuva 24 rezultata i favoriti se ne uklanjaju automatski. Izvezeni projekti i arhive ne sadrže tokene za pokretanje ili praćenje AI zahtjeva.
+
+Upute za aktiviranje Google prijave i Git veze: [docs/deployment.md](docs/deployment.md).
 
 ## Pika integracija
 
@@ -65,7 +75,7 @@ Generisanje koristi tekstualni opis projekta. Nema image-to-image slanja logotip
 3. Student potvrđuje jednu skicu i prikazanu cijenu. `POST /api/ai/generate` ponovo provjerava ponudu, koristi stabilan idempotency key i vraća potpisanu potvrdu zadatka.
 4. `POST /api/ai/job` provjerava zadatak iz iste sesije. `POST /api/ai/result` preuzima sliku samo s dozvoljenih Pika domena, ograničenu na 8 MB. Ključ ide samo na Pika API domen, nikada na CDN.
 
-Zahtjev mora uspješno biti sačuvan u IndexedDB prije slanja modelu; greška lokalnog čuvanja blokira plaćeni poziv. Greška veze ne pokreće automatski novo generisanje. Nepotvrđeni submit ostaje sačuvan i može se ponoviti s istim idempotency key-em. Ako je potvrda cijene u međuvremenu istekla, provjeriti Pika dashboard prije novog pokušaja. Job token traje 7 dana i zahtijeva originalnu aktivnu sesiju. Lokalna skica ostaje dostupna nakon isteka sesije.
+Zahtjev mora uspješno biti sačuvan u IndexedDB prije slanja modelu; greška lokalnog čuvanja blokira plaćeni poziv. Greška veze ne pokreće automatski novo generisanje. Nepotvrđeni submit ostaje sačuvan i može se ponoviti s istim idempotency key-em. Ako je potvrda cijene u međuvremenu istekla, provjeriti Pika dashboard prije novog pokušaja. Job token traje 7 dana. U lokalnom režimu zahtijeva originalnu aktivnu sesiju; uz Google nalog vezan je za ID korisnika i može se nastaviti na drugom uređaju istog naloga. Lokalna skica ostaje dostupna nakon isteka sesije.
 
 Login i AI imaju dodatna ograničenja pokušaja **po serverskoj instanci**; ona nisu globalna potrošačka kvota. Za veće grupe postaviti ograničenje kredita/zahtjeva na Pika API ključu i po potrebi Vercel firewall pravila. Limit po slici nije ukupni budžet. Produkcijska veza s Pika API Club i ponude za sva četiri modela provjerene su 4. novembra 2026. Ključ je sačuvan kao Sensitive varijabla u Vercel Production i Preview okruženju. Provjera veze i cijena nije pokretala plaćeno generisanje; tok generisanja, praćenja zadatka i preuzimanja dodatno je pokriven testovima sa simuliranim odgovorima.
 
@@ -81,9 +91,9 @@ U aplikaciji otvori **API postavke** ili `/postavke`. Dugme vodi direktno na [En
 
 ## Vercel
 
-Uvezi privatni GitHub repozitorijum kao Next.js projekat. Build: `npm run build`, Node 24.x. U Environment Variables dodaj `ACCESS_CODE` i `SESSION_SECRET` za Production i Preview. Opcioni Pika ključ dodaj kada bude spreman, a zatim uradi redeploy.
+Poveži GitHub repozitorijum s postojećim Vercel projektom (Settings → Git). Build: `npm run build`, Node 24.x. U Environment Variables dodaj `ACCESS_CODE` i `SESSION_SECRET` za Production i Preview. Opcioni Pika ključ dodaj kada bude spreman, a zatim uradi redeploy.
 
-Produkcijska domena treba biti dostupna studentima bez Vercel naloga; aplikacija sama traži pristupni kod. Vercel zaštitu zadrži za preview deployment-e. Svaki push na povezanu `main` granu pokreće build.
+Produkcijska domena treba biti dostupna studentima bez Vercel naloga; aplikacija sama traži pristupni kod. Vercel zaštitu zadrži za preview deployment-e. Svaki push na povezanu `main` granu pokreće build. Build pokreće aditivne migracije kada postoji `DATABASE_URL`; bez baze ostaje lokalni režim. Google OAuth koristi stabilnu domenu iz `BETTER_AUTH_URL`. Za preview koristi zasebnu bazu i OAuth klijent; ne povezivati proizvoljne preview domene s produkcijskim studentskim podacima.
 
 ## Provjere
 
@@ -99,6 +109,8 @@ npm run test:e2e
 ```
 
 Playwright čita pristupni kod iz lokalnog okruženja. `TEST_BASE_URL` može promijeniti adresu testa. Testovi pokrivaju pristup, CSRF, čuvanje nakon reload-a, uvoz/izvoz, brisanje, štampu, mobilni raspored i nedostupan AI bez ključa. Provider testovi koriste lažne odgovore i ne troše Pika kredit. Adapteri se provjeravaju protiv snimka zvaničnih šema sva četiri modela (`tests/fixtures/pika-catalog-2026-11-04.json`). Browser testovi provjeravaju odvojene vizuale po koracima, promjenu modela i cijene, galeriju i poređenje, obnovu nakon reload-a, istoriju navigacije, prenos u projekat, tri varijante, ZIP paket, favorite, filtere i uvoz arhive, offline uređivanje i uklanjanje session tokena iz izvoza. Poseban test simulira punu lokalnu memoriju i potvrđuje da plaćeni poziv nije poslat. Testovi sa lokalnim serverom koriste različite testne IP adrese radi izolacije login limita.
+
+Testovi naloga koriste izdvojeni lokalni PostgreSQL, stvarne serverske rute i potpisane sesije testnih korisnika. Provjeravaju izolaciju podataka, upis kodom, OAuth state/PKCE parametre, opoziv sesije, revizije, dva uređaja, prekid veze, predaju i nastavnički komentar. Ne automatizuju stvarni Google login i ne koriste produkcijsku bazu. Pokretanje: [docs/deployment.md](docs/deployment.md).
 
 ## Nastavni izvori
 

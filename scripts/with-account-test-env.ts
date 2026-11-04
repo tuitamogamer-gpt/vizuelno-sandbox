@@ -1,0 +1,10 @@
+import { readFileSync } from "node:fs";
+import { parseEnv } from "node:util";
+import { spawn } from "node:child_process";
+const env=parseEnv(readFileSync(new URL("../.env.account-test",import.meta.url),"utf8"));
+const database=new URL(env.DATABASE_URL||"http://missing");
+if(!["localhost","127.0.0.1"].includes(database.hostname)||!database.pathname.endsWith("_test"))throw new Error("Use a dedicated local database ending in _test.");
+const [command,...args]=process.argv.slice(2);if(!command)throw new Error("Command required");
+const child=spawn(command,args,{stdio:"inherit",env:{...process.env,...env}});
+child.on("exit",code=>{process.exitCode=code??1;});
+for(const signal of ["SIGTERM","SIGINT"] as const)process.on(signal,()=>child.kill(signal));

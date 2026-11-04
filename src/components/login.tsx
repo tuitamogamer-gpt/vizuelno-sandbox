@@ -3,9 +3,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Eye, EyeOff, LockKeyhole, LoaderCircle, ArrowUpRight } from "lucide-react";
+import GoogleSignIn from "./google-sign-in";
 import { FormaMark, BrandSymbol } from "./brand";
 
-export default function Login() {
+export default function Login({googleReady=false,authError=false}:{googleReady?:boolean;authError?:boolean}) {
   const router = useRouter();
   const [code, setCode] = useState("");
   const [visible, setVisible] = useState(false);
@@ -31,7 +32,7 @@ export default function Login() {
     </section>
     <section className="login-form-side"><div className="login-course">VIZUELNO KOMUNICIRANJE <span>2026 / 27</span></div>
       <div className="login-form-wrap"><span className="small-tag"><span className="status-dot" /> TVOJ KREATIVNI PROSTOR</span><h2>Dobro došli<br />u studio.</h2><p>Mjesto gdje razvijaš svoju ideju, istražuješ vizuelni jezik i gradiš prepoznatljiv identitet.</p>
-        <form onSubmit={login}><label htmlFor="access-code">Pristupni kod</label><div className="password-field"><LockKeyhole size={18} /><input id="access-code" name="code" type={visible ? "text" : "password"} value={code} onChange={e => setCode(e.target.value)} placeholder="Unesi kod za predmet" autoComplete="current-password" required maxLength={128} aria-describedby={error ? "login-error" : "code-hint"} /><button type="button" onClick={() => setVisible(!visible)} aria-label={visible ? "Sakrij kod" : "Prikaži kod"}>{visible ? <EyeOff size={18} /> : <Eye size={18} />}</button></div>
+        <GoogleSignIn ready={googleReady} initialError={authError}/><div className="login-divider"><span>ILI NASTAVI LOKALNO UZ KOD</span></div><form onSubmit={login}><label htmlFor="access-code">Pristupni kod</label><div className="password-field"><LockKeyhole size={18} /><input id="access-code" name="code" type={visible ? "text" : "password"} value={code} onChange={e => setCode(e.target.value)} placeholder="Unesi kod za predmet" autoComplete="current-password" required maxLength={128} aria-describedby={error ? "login-error" : "code-hint"} /><button type="button" onClick={() => setVisible(!visible)} aria-label={visible ? "Sakrij kod" : "Prikaži kod"}>{visible ? <EyeOff size={18} /> : <Eye size={18} />}</button></div>
           {error ? <p className="form-error" id="login-error" role="alert">{error}</p> : <p className="field-hint" id="code-hint">Kod za pristup dobijaš od nastavnika.</p>}
           <button className="button primary login-submit" disabled={busy || !code}>{busy ? <>Otvaram studio <LoaderCircle className="spin" size={18} /></> : <>Uđi u studio <ArrowRight size={18} /></>}</button>
         </form>

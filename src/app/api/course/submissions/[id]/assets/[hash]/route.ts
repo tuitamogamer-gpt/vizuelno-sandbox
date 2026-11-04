@@ -1,0 +1,5 @@
+import { z } from "zod";
+import { member, failure, CloudError } from "@/lib/cloud/http";
+import { getDb } from "@/lib/db";
+import { hashSchema } from "@/lib/cloud/schema";
+export async function GET(request:Request,context:{params:Promise<{id:string;hash:string}>}){try{const account=await member(request),params=await context.params,id=z.string().uuid().parse(params.id),hash=hashSchema.parse(params.hash);const row=(await getDb().query(`SELECT s.owner_id,a.data,a.mime FROM forma_submissions s JOIN forma_submission_assets sa ON sa.submission_id=s.id AND sa.owner_id=s.owner_id JOIN forma_assets a ON a.owner_id=sa.owner_id AND a.hash=sa.hash WHERE s.id=$1 AND a.hash=$2`,[id,hash])).rows[0];if(!row||(row.owner_id!==account.id&&account.role!=="instructor"))throw new CloudError("Vizual nije pronađen.",404);return new Response(new Uint8Array(row.data),{headers:{"Content-Type":row.mime,"Cache-Control":"private, no-store","X-Content-Type-Options":"nosniff","Vary":"Cookie"}});}catch(e){return failure(e);}}

@@ -9,3 +9,4 @@ playwright-report/
 *.tsbuildinfo
 .DS_Store
 artifacts/
+account-test-results/

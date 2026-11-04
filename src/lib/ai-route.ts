@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
 import { sameOrigin, sessionIdentity } from "./auth";
+import { enrolledAccount } from "./accounts";
 import { PikaError } from "./pika";
 export async function aiUser(request: Request) {
   if (!sameOrigin(request)) throw new PikaError("Nedozvoljen zahtjev.", 403);
-  const user = await sessionIdentity();
-  if (!user) throw new PikaError("Prijava je istekla. Ponovo unesi pristupni kod.", 401);
+  const account = await enrolledAccount(request.headers);
+  const user = account ? `account:${account.id}` : await sessionIdentity();
+  if (!user) throw new PikaError("Prijava je istekla. Ponovo se prijavi u studio.", 401);
   return user;
 }
 export async function readBody(request: Request) {

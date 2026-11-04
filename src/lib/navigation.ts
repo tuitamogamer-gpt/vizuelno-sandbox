@@ -1,4 +1,4 @@
-export const views = ["home", "projects", "guide", "playground", "settings", "editor"] as const;
+export const views = ["home", "projects", "guide", "playground", "settings", "editor", "account", "submissions", "teacher"] as const;
 export type View = typeof views[number];
 export type StudioLocation = { view: View; projectId: string | null; step: number };
 export const defaultLocation: StudioLocation = { view: "home", projectId: null, step: 0 };
