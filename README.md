@@ -8,10 +8,12 @@ Studentski web studio za prvi kolokvijum: od radne ideje do obrazloženog vizuel
 - Individualni projekti: ideja, publika, vizija, misija, strategija, 3–5 ciljeva i slogan.
 - Paleta 2–4 boje, WCAG provjera kontrasta, generisani logotip ili početni geometrijski oblik, tipografske probe, memorandum i društvena objava.
 - Obrazloženja, izvori, AI deklaracija, kontrolna lista popunjenosti (nije automatska ocjena).
-- Automatsko lokalno čuvanje, JSON izvoz/uvoz, kopiranje i brisanje projekata.
-- Dokument za štampu/PDF, SVG logotip i samostalni HTML predložak za drugi kolokvijum.
-- Generisanje unutar koraka: vizuelni smjer, studija palete, logotip, tipografski plakat, memorandum i društvena objava. Brief se sastavlja iz projekta i može se uređivati.
-- Playground bez obaveznog projekta: slobodan prompt, četiri modela, pet formata, posljednjih 12 rezultata, poređenje dvije slike, preuzimanje i dodavanje projektu.
+- Automatsko lokalno čuvanje, JSON izvoz/uvoz, kopiranje i brisanje projekata; pretraga, status i sortiranje.
+- URL čuva projekat i korak: osvježavanje stranice i dugme Nazad vraćaju isti ekran. Početna stranica nastavlja posljednji uređivani projekat.
+- Čitljiviji interfejs, navigacija tastaturom i mobilni meni s kontrolom fokusa; obavještenje o prekidu interneta uz nastavak lokalnog uređivanja.
+- Dokument za štampu/PDF, SVG logotip i samostalni HTML predložak za drugi kolokvijum. Komplet identiteta u ZIP-u obuhvata projekat, samostalnu knjigu identiteta, paletu, dizajn tokene, logotip, sve sačuvane varijante s opisima i web predložak.
+- Generisanje unutar koraka: vizuelni smjer, studija palete, logotip, tipografski plakat, memorandum i društvena objava. Brief se sastavlja iz projekta i može se uređivati. Svaki korak čuva odabrani rezultat i dvije prethodne varijante; izbor ranijeg rezultata ne pokreće novo generisanje.
+- Playground bez obaveznog projekta: slobodan prompt, četiri modela, pet formata, do 24 rezultata, favoriti, pretraga i filter po modelu, poređenje dvije slike, veliki pregled, preuzimanje i dodavanje projektu. Arhiva se može izvesti i uvesti, a opis sastaviti iz postojećeg projekta.
 - Procjena cijene prije generisanja, jedna slika po potvrdi, praćenje zadatka i preuzimanje rezultata.
 - API postavke s direktnim ulazom u vlasnikove Vercel environment variables i besplatnom provjerom veze.
 
@@ -41,7 +43,7 @@ Radovi su u **IndexedDB-u ovog preglednika**, uključujući kompresovane slike. 
 
 Student preuzima `.forma.json` za rezervnu kopiju ili drugi računar. Uvoz kreira novu kopiju, nikada ne prepisuje postojeći projekat. Na zajedničkom računaru student treba izvesti i obrisati svoj projekat; odjava ne briše podatke. PDF se predaje kroz kanal dogovoren na nastavi. „Izvezi dokument / PDF“ otvara dijalog štampe; odabrati „Save as PDF / Sačuvaj kao PDF“ i po potrebi isključiti zaglavlja i podnožja preglednika.
 
-Projekti nisu poslati na server. Samo brief koji student potvrdi za AI ide kroz zaštićenu serversku rutu do Pike. API ključ se nikada ne šalje pregledniku. Napravljene skice su lokalno sačuvane uz odgovarajući korak projekta. Playground čuva do 12 eksperimenata, uključujući prompt, model, format i dostupnu konačnu cijenu; stariji se zamjenjuju. JSON arhiva Playgrounda služi za preuzimanje, a pojedinačni rezultat može se dodati projektu za nastavak rada. Uvoz arhive Playgrounda nije implementiran. Pika job i quote tokeni su vezani za sesiju i nisu u JSON izvozu.
+Projekti nisu poslati na server. Samo brief koji student potvrdi za AI ide kroz zaštićenu serversku rutu do Pike. API ključ se nikada ne šalje pregledniku. Napravljene skice su lokalno sačuvane uz odgovarajući korak projekta. Playground čuva do 24 eksperimenata, uključujući prompt, model, format i dostupnu konačnu cijenu. Pri novom generisanju zamjenjuje se najstariji rezultat koji nije favorit. Ako je svih 24 sačuvano kao favorit, prvo je potrebno osloboditi mjesto. Uvoz JSON arhive dopunjava slobodna mjesta bez prepisivanja postojećih vizuala ili nacrta; duplikati se preskaču. Arhiva može imati do 96 MB, a projekat do 64 MB. Pojedinačni rezultat može se dodati projektu za nastavak rada. ZIP paket sadrži lokalno sačuvane kompresovane slike; original trenutnog rezultata može se posebno preuzeti dok je Pika zadatak dostupan. Pika job i quote tokeni su vezani za sesiju i nisu u JSON izvozu.
 
 ## Pika integracija
 
@@ -63,7 +65,7 @@ Generisanje koristi tekstualni opis projekta. Nema image-to-image slanja logotip
 3. Student potvrđuje jednu skicu i prikazanu cijenu. `POST /api/ai/generate` ponovo provjerava ponudu, koristi stabilan idempotency key i vraća potpisanu potvrdu zadatka.
 4. `POST /api/ai/job` provjerava zadatak iz iste sesije. `POST /api/ai/result` preuzima sliku samo s dozvoljenih Pika domena, ograničenu na 8 MB. Ključ ide samo na Pika API domen, nikada na CDN.
 
-Greška veze ne pokreće automatski novo generisanje. Nepotvrđeni submit ostaje sačuvan i može se ponoviti s istim idempotency key-em. Ako je potvrda cijene u međuvremenu istekla, provjeriti Pika dashboard prije novog pokušaja. Job token traje 7 dana i zahtijeva originalnu aktivnu sesiju. Lokalna skica ostaje dostupna nakon isteka sesije.
+Zahtjev mora uspješno biti sačuvan u IndexedDB prije slanja modelu; greška lokalnog čuvanja blokira plaćeni poziv. Greška veze ne pokreće automatski novo generisanje. Nepotvrđeni submit ostaje sačuvan i može se ponoviti s istim idempotency key-em. Ako je potvrda cijene u međuvremenu istekla, provjeriti Pika dashboard prije novog pokušaja. Job token traje 7 dana i zahtijeva originalnu aktivnu sesiju. Lokalna skica ostaje dostupna nakon isteka sesije.
 
 Login i AI imaju dodatna ograničenja pokušaja **po serverskoj instanci**; ona nisu globalna potrošačka kvota. Za veće grupe postaviti ograničenje kredita/zahtjeva na Pika API ključu i po potrebi Vercel firewall pravila. Limit po slici nije ukupni budžet. Produkcijska veza s Pika API Club i ponude za sva četiri modela provjerene su 4. novembra 2026. Ključ je sačuvan kao Sensitive varijabla u Vercel Production i Preview okruženju. Provjera veze i cijena nije pokretala plaćeno generisanje; tok generisanja, praćenja zadatka i preuzimanja dodatno je pokriven testovima sa simuliranim odgovorima.
 
@@ -96,7 +98,7 @@ npm run dev -- --port 3001
 npm run test:e2e
 ```
 
-Playwright čita pristupni kod iz lokalnog okruženja. `TEST_BASE_URL` može promijeniti adresu testa. Testovi pokrivaju pristup, CSRF, čuvanje nakon reload-a, uvoz/izvoz, brisanje, štampu, mobilni raspored i nedostupan AI bez ključa. Provider testovi koriste lažne odgovore i ne troše Pika kredit. Adapteri se provjeravaju protiv snimka zvaničnih šema sva četiri modela (`tests/fixtures/pika-catalog-2026-11-04.json`). Browser testovi provjeravaju odvojene vizuale po koracima, promjenu modela i cijene, galeriju i poređenje, obnovu nakon reload-a, prenos u projekat i uklanjanje session tokena iz izvoza.
+Playwright čita pristupni kod iz lokalnog okruženja. `TEST_BASE_URL` može promijeniti adresu testa. Testovi pokrivaju pristup, CSRF, čuvanje nakon reload-a, uvoz/izvoz, brisanje, štampu, mobilni raspored i nedostupan AI bez ključa. Provider testovi koriste lažne odgovore i ne troše Pika kredit. Adapteri se provjeravaju protiv snimka zvaničnih šema sva četiri modela (`tests/fixtures/pika-catalog-2026-11-04.json`). Browser testovi provjeravaju odvojene vizuale po koracima, promjenu modela i cijene, galeriju i poređenje, obnovu nakon reload-a, istoriju navigacije, prenos u projekat, tri varijante, ZIP paket, favorite, filtere i uvoz arhive, offline uređivanje i uklanjanje session tokena iz izvoza. Poseban test simulira punu lokalnu memoriju i potvrđuje da plaćeni poziv nije poslat. Testovi sa lokalnim serverom koriste različite testne IP adrese radi izolacije login limita.
 
 ## Nastavni izvori
 

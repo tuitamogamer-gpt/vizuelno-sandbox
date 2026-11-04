@@ -16,5 +16,5 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="sr-Latn"><body>{children}</body></html>;
+  return <html lang="sr-Latn" data-scroll-behavior="smooth"><body>{children}</body></html>;
 }

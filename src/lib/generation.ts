@@ -14,7 +14,7 @@ export const inputSchema = z.object({ model: z.enum(modelIds), aspect: z.enum(as
 export type GenerationInput = z.infer<typeof inputSchema>;
 export const imageData = z.string().max(3_000_000).refine(v => v === "" || /^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(v), "Podržane su PNG, JPG i WebP slike.");
 export const resultSchema = z.object({
-  id: z.string().max(100), image: imageData, input: inputSchema, createdAt: z.string().datetime(), charge: z.number().nonnegative().optional(),
+  id: z.string().min(1).max(100), image: imageData.refine(value => value.length > 0, "Vizual nema sliku."), input: inputSchema, createdAt: z.string().datetime(), charge: z.number().nonnegative().optional(),
 });
 export type GenerationResult = z.infer<typeof resultSchema>;
 export const requestSchema = inputSchema.extend({ quoteToken: z.string().max(2000), requestId: z.string().uuid() });
@@ -22,11 +22,12 @@ export type GenerationRequest = z.infer<typeof requestSchema>;
 export const generationSchema = z.object({
   model: z.enum(modelIds).default("nano-banana-2.1"), aspect: z.enum(aspects).default("1:1"), prompt: z.string().max(6000).default(""),
   result: resultSchema.nullable().default(null),
+  alternatives: z.array(resultSchema).max(2).default([]),
   job: z.object({ id: z.string().max(100), token: z.string().max(2000), status: z.enum(["queued", "running", "completed", "failed"]), input: inputSchema }).nullable().default(null),
   request: requestSchema.nullable().default(null),
 });
 export type Generation = z.infer<typeof generationSchema>;
-export function newGeneration(prompt = "", aspect: Aspect = "1:1"): Generation { return { model: "nano-banana-2.1", aspect, prompt, result: null, job: null, request: null }; }
+export function newGeneration(prompt = "", aspect: Aspect = "1:1"): Generation { return { model: "nano-banana-2.1", aspect, prompt, result: null, alternatives: [], job: null, request: null }; }
 export function inputKey(input: GenerationInput) { return JSON.stringify([input.model, input.aspect, input.prompt.trim()]); }
 export function isPending(state: Generation) { return !!state.request || !!state.job && state.job.status !== "failed" && state.result?.id !== state.job.id; }
 export const visualTargets = ["moodboard", "palette", "logo", "typography", "letterhead", "social"] as const;
@@ -42,5 +43,26 @@ export const targetInfo: Record<VisualTarget, { label: string; title: string; as
 };
 export function withoutCapabilities<T extends Generation>(state: T): T { return { ...state, job: null, request: null }; }
 export function cleanVisuals(visuals: z.infer<typeof visualsSchema>) { return Object.fromEntries(Object.entries(visuals).map(([key, value]) => [key, withoutCapabilities(value)])); }
-export const playgroundSchema = z.object({ generation: generationSchema, history: z.array(resultSchema).max(12) });
+export const HISTORY_LIMIT = 24;
+export const playgroundSchema = z.object({ generation: generationSchema, history: z.array(resultSchema).max(HISTORY_LIMIT), starred: z.array(z.string().max(100)).max(HISTORY_LIMIT).default([]) });
+export const playgroundBackupSchema = playgroundSchema.extend({ format: z.literal("forma-playground"), version: z.literal(1) });
 export type PlaygroundData = z.infer<typeof playgroundSchema>;
+
+/** Keep the selected visual plus its two most recent alternatives, without duplicates. */
+export function amendGeneration(current: Generation, patch: Partial<Generation>, retainAlternatives = true): Generation {
+  let alternatives = patch.alternatives ?? current.alternatives;
+  if (retainAlternatives && patch.result && current.result && patch.result.id !== current.result.id) {
+    alternatives = [current.result, ...alternatives].filter((item, index, all) => item.id !== patch.result!.id && all.findIndex(other => other.id === item.id) === index).slice(0, 2);
+  }
+  return { ...current, ...patch, alternatives: retainAlternatives ? alternatives : [] };
+}
+/** Favorited results never leave the gallery during an automatic history rotation. */
+export function mergeExperiments(current: GenerationResult[], incoming: GenerationResult[], starred: string[]) {
+  const unique = [...incoming, ...current].filter((item, index, all) => all.findIndex(other => other.id === item.id) === index);
+  const favorite = new Set(starred);
+  const pinned = unique.filter(item => favorite.has(item.id));
+  const rest = unique.filter(item => !favorite.has(item.id));
+  const kept = new Set([...pinned, ...rest.slice(0, Math.max(0, HISTORY_LIMIT - pinned.length))].slice(0, HISTORY_LIMIT).map(item => item.id));
+  return unique.filter(item => kept.has(item.id));
+}
+export function cleanPlayground(data: PlaygroundData) { return { ...data, generation: withoutCapabilities(data.generation) }; }
