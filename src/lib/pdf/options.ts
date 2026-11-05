@@ -2,7 +2,9 @@ import { createTranslator, formatLocales, type Locale } from "../i18n/core";
 import type { Project } from "../project";
 import {
   models,
+  generationHistory,
   targetInfo,
+  visualKey,
   visualTargets,
   type VisualTarget,
 } from "../generation";
@@ -13,8 +15,7 @@ export type PdfOptions = {
   studentNumber: string;
   group: string;
   date: string;
-  includeVisuals: boolean;
-  includeVariants: boolean;
+  selectedVisualIds?: string[];
   includePrompts: boolean;
   submission?: { version: number; createdAt: string };
 };
@@ -25,6 +26,7 @@ export type PdfVisual = {
   image: string;
   caption: string;
   prompt: string;
+  createdAt?: string;
 };
 
 export const pdfChapters = [
@@ -51,46 +53,58 @@ export function pdfDate(value: string, locale: Locale = "sr") {
   }).format(date);
 }
 
-// Only public, chosen results enter the document. Never copy jobs, quote tokens or API keys.
-export function pdfVisuals(project: Project, options: PdfOptions): PdfVisual[] {
-  const t = createTranslator(options.locale || "sr");
-  if (!options.includeVisuals) return [];
+// Legacy images have no provider ID. Bind their selection to their content so
+// replacing a logo never automatically selects a different image for export.
+function legacyKey(source: string) {
+  let a = 2166136261, b = 5381;
+  for (let i = 0; i < source.length; i++) {
+    a = Math.imul(a ^ source.charCodeAt(i), 16777619);
+    b = Math.imul(b, 33) ^ source.charCodeAt(i);
+  }
+  return `image-${source.length}-${(a >>> 0).toString(16)}-${(b >>> 0).toString(16)}`;
+}
+
+// The chooser may show all history; this function never authorizes PDF inclusion.
+export function pdfCandidates(project: Project, locale: Locale = "sr"): PdfVisual[] {
+  const t = createTranslator(locale);
   const output: PdfVisual[] = [];
   for (const target of visualTargets) {
-    const generation = project.visuals[target];
-    if (!generation?.result) continue;
-    const results = [
-      generation.result,
-      ...(options.includeVariants ? generation.alternatives : []),
-    ];
-    const seen = new Set<string>();
+    const results = generationHistory(project.visuals[target]);
     results.forEach((result, index) => {
-      if (seen.has(result.id)) return;
-      seen.add(result.id);
       output.push({
-        key: `${target}-${result.id}`,
+        key: visualKey(target, result.id),
         target,
         image: result.image,
         caption: t("{0} · {1} · AI skica · {2} · {3}", {
           0: t(targetInfo[target].label),
-          1: index
-            ? t("Ranija varijanta {0}", { 0: index })
-            : t("Odabrani vizual"),
+          1: t("Slika {0}", { 0: results.length - index }),
           2: models[result.input.model].label,
           3: result.input.aspect,
         }),
         prompt: result.input.prompt,
+        createdAt: result.createdAt,
       });
     });
   }
-  if (project.aiImage && !project.visuals.logo?.result) {
+  if (project.aiImage && !output.some(v => v.target === "logo" && v.image === project.aiImage)) {
     output.push({
-      key: "legacy-logo",
+      key: legacyKey(project.aiImage),
       target: "logo",
       image: project.aiImage,
       caption: t("Logotip · Ranija AI skica"),
       prompt: project.aiPrompt,
     });
   }
+  if (project.logoImage && !output.some(v => v.target === "logo" && v.image === project.logoImage)) {
+    output.push({ key: legacyKey(project.logoImage), target: "logo", image: project.logoImage,
+      caption: t("Logotip projekta"), prompt: "" });
+  }
   return output;
+}
+
+// Empty means empty, including for older projects. Only explicit selections
+// enter figures, the prompt appendix, the cover and the letterhead.
+export function pdfVisuals(project: Project, options: PdfOptions): PdfVisual[] {
+  const selected = new Set(options.selectedVisualIds ?? project.pdfVisualIds);
+  return pdfCandidates(project, options.locale).filter(visual => selected.has(visual.key));
 }

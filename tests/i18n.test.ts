@@ -38,7 +38,7 @@ test("Serbian is the default; both additional languages have complete, valid pla
   assert.equal(en("Boja {0}", { 0: 3 }), "Colour 3");
   assert.match(
     ru(
-      "Slika „Studentov vizual“ nije čitljiva. Izaberi drugu varijantu ili isključi AI vizuale i pokušaj ponovo.",
+      "Slika „Studentov vizual“ nije čitljiva. Ukloni je iz izbora za PDF i pokušaj ponovo.",
     ),
     /изображение «Studentov vizual»/,
   );

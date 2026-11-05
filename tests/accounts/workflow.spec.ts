@@ -1,5 +1,35 @@
 import {test,expect,api,signIn} from "./fixtures";
-import {newGeneration} from "../../src/lib/generation";
+import {amendGeneration,newGeneration} from "../../src/lib/generation";
+import {exampleProject} from "../../src/lib/project";
+
+test("full project history and PDF choices sync across devices and remain frozen in submissions",async({page,context,browser,persona,request})=>{
+ test.setTimeout(60000);
+ const who=await persona("Student Istorija"),teacher=await persona("Nastavnik Istorija",{teacher:true});await signIn(context,who);await page.goto("/studio");
+ const project=exampleProject(),image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZWQAAAAASUVORK5CYII=";
+ let value=newGeneration();for(let n=1;n<=5;n++)value=amendGeneration(value,{result:{id:`account-history-${n}`,image,createdAt:`2026-11-0${n}T12:00:00Z`,input:{model:"ideogram-4.5",aspect:"1:1",prompt:`Sačuvani autorski opis za vizual broj ${n}.`}}});
+ project.visuals.moodboard=value;
+ await page.getByLabel("Uvezi Forma projekat").setInputFiles({name:"history.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify({format:"forma-project",version:1,project}))});
+ const history=page.locator(".project-history");await expect(history.locator(".history-card")).toHaveCount(5);
+ await history.getByRole("checkbox").last().check();await history.getByRole("checkbox").nth(2).check();
+ const url=page.url(),id=new URL(url).searchParams.get("project")!;
+ const remote=async()=> (await(await api(request,who,`/api/workspace/documents/${id}`)).json());
+ await expect.poll(async()=>(await remote()).document?.data.pdfVisualIds.length).toBe(2);
+ const stored=(await remote()).document.data;expect(stored.visuals.moodboard.alternatives).toHaveLength(4);expect(stored.visuals.moodboard.alternatives.every((v:{image:string})=>v.image.startsWith("asset:"))).toBe(true);
+ const second=await browser.newContext();
+ try{
+  await signIn(second,who);const device=await second.newPage();await device.goto(url);
+  await expect(device.locator(".history-card")).toHaveCount(5);await expect(device.locator(".project-history input:checked")).toHaveCount(2);
+  await device.getByRole("button",{name:"Izvezi",exact:true}).click();await device.getByRole("button",{name:"Kolokvijum 01 (.pdf)",exact:true}).click();
+  const dialog=device.getByRole("dialog");await expect(dialog.locator(".pdf-image-picker input:checked")).toHaveCount(2);
+  await dialog.locator(".pdf-image-picker input").last().uncheck();
+  await expect.poll(async()=>(await remote()).document?.data.pdfVisualIds).toEqual(["moodboard-account-history-3"]);
+  const current=await remote();const response=await api(request,who,"/api/course/submissions","POST",{projectId:id,revision:current.revision});expect(response.ok()).toBe(true);const submission=(await response.json()).submission;
+  await dialog.locator(".pdf-image-picker input").first().check();
+  await expect.poll(async()=>(await remote()).document?.data.pdfVisualIds.length).toBe(2);
+  const frozen=(await(await api(request,teacher,`/api/course/submissions/${submission.id}`)).json()).project;
+  expect(frozen.pdfVisualIds).toEqual(["moodboard-account-history-3"]);expect(frozen.visuals.moodboard.alternatives).toHaveLength(4);expect(frozen.visuals.moodboard.job).toBeNull();
+ }finally{await second.close();}
+});
 
 test("projects follow a Google account across devices; offline conflicts preserve both versions",async({page,context,browser,persona,request})=>{
  const who=await persona("Ana Petrović");await signIn(context,who);await page.goto("/studio");

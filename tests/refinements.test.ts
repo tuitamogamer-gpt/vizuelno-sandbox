@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { strFromU8, unzipSync, zipSync } from "fflate";
 import { exampleProject } from "../src/lib/project";
-import { amendGeneration, GenerationResult, HISTORY_LIMIT, mergeExperiments, newGeneration, playgroundSchema, resultSchema } from "../src/lib/generation";
+import { amendGeneration, GenerationResult, generationHistory, generationSchema, mergeExperiments, newGeneration, playgroundSchema, resultSchema } from "../src/lib/generation";
 import { parseLocation, resolveLocation, studioUrl } from "../src/lib/navigation";
 import { importPlayground } from "../src/lib/storage";
 import { identityKitFiles, identityBookHtml } from "../src/lib/identity-kit";
@@ -16,20 +16,21 @@ test("deep links restore the chosen project and step, with safe fallbacks",()=>{
   for(const step of ["-1","0","8","NaN","2.5"])assert.equal(parseLocation(`view=editor&step=${step}&project=not-an-id`).step,0);
   assert.equal(parseLocation("view=unknown").view,"home");
 });
-test("three visual variants rotate and can be restored without losing the current choice",()=>{
-  let value=newGeneration();for(const id of ["a","b","c","d"])value=amendGeneration(value,{result:result(id)});
-  assert.deepEqual([value.result?.id,...value.alternatives.map(item=>item.id)],["d","c","b"]);
-  value=amendGeneration(value,{result:value.alternatives[1],job:null,request:null});
-  assert.deepEqual([value.result?.id,...value.alternatives.map(item=>item.id)],["b","d","c"]);
-  value=amendGeneration(value,{result:value.result});assert.equal(value.alternatives.length,2);
-  assert.equal(amendGeneration(value,{result:result("e")},false).alternatives.length,0);
+test("all project images survive generation, restores, repeated callbacks and schema parsing",()=>{
+  let value=newGeneration();for(const id of ["a","b","c","d","e"])value=amendGeneration(value,{result:result(id)});
+  assert.deepEqual([value.result?.id,...value.alternatives.map(item=>item.id)],["e","d","c","b","a"]);
+  value=amendGeneration(value,{result:value.alternatives[3],job:null,request:null});
+  assert.deepEqual([value.result?.id,...value.alternatives.map(item=>item.id)],["a","e","d","c","b"]);
+  value=amendGeneration(value,{result:value.result});assert.equal(value.alternatives.length,4);
+  assert.equal(generationHistory(generationSchema.parse(value)).length,5);
+  assert.equal(amendGeneration(value,{result:result("f")},false).alternatives.length,0);
 });
-test("automatic gallery rotation retains favorites and deduplicates repeated provider results",()=>{
-  const history=Array.from({length:HISTORY_LIMIT},(_,i)=>result(String(i)));
-  const next=mergeExperiments(history,[result("new"),result("new")],["23"]);
-  assert.equal(next.length,HISTORY_LIMIT);assert.equal(next[0].id,"new");assert.ok(next.some(item=>item.id==="23"));assert.ok(!next.some(item=>item.id==="22"));
-  assert.deepEqual(mergeExperiments(history,[result("new")],history.map(item=>item.id)),history);
-  assert.equal(playgroundSchema.parse({generation:newGeneration(),history}).starred.length,0);
+test("Playground retains history beyond 24 images and deduplicates provider retries",()=>{
+  const history=Array.from({length:30},(_,i)=>result(String(i)));
+  const next=mergeExperiments(history,[result("new"),result("new")]);
+  assert.equal(next.length,31);assert.equal(next[0].id,"new");
+  for(const old of history)assert.ok(next.some(item=>item.id===old.id));
+  assert.equal(playgroundSchema.parse({generation:newGeneration(),history:next}).history.length,31);
   assert.equal(resultSchema.safeParse({...result("bad"),image:""}).success,false);
 });
 test("Playground archive import merges safely, strips foreign capabilities and keeps an in-flight draft",async()=>{
@@ -47,9 +48,11 @@ test("identity ZIP includes portable work, visual variants and safe HTML without
   const p=exampleProject(),visual=result("active"),previous=result("previous");
   p.visuals.logo={...newGeneration(),result:visual,alternatives:[previous],job:{id:visual.id,token:"private-job-capability",status:"completed",input:visual.input},request:{...visual.input,quoteToken:"private-quote-capability",requestId:crypto.randomUUID()}};
   p.logoImage=visual.image;
+  p.pdfVisualIds=["logo-previous"];
   const packed=zipSync(identityKitFiles(p)),files=unzipSync(packed),paths=Object.keys(files);
   for(const filename of ["projekat.forma.json","knjiga-identiteta.html","web-stranica.html","logotip.svg","logotip.png","paleta.svg","dizajn-tokeni.json","vizuali/logo-1.png","vizuali/logo-2.png","vizuali/logo-2-brief.txt","PROCITAJ-ME.txt"])assert.ok(paths.some(path=>path.endsWith('/'+filename)),filename);
   const backup=JSON.parse(strFromU8(files[paths.find(path=>path.endsWith("projekat.forma.json"))!]));
+  assert.deepEqual(backup.project.pdfVisualIds,["logo-previous"]);
   assert.equal(backup.project.visuals.logo.job,null);assert.equal(backup.project.visuals.logo.request,null);assert.equal(backup.project.visuals.logo.alternatives[0].id,"previous");
   const all=Object.values(files).map(file=>strFromU8(file)).join("\n");assert.ok(!all.includes("private-job-capability"));assert.ok(!all.includes("private-quote-capability"));
   const html=identityBookHtml({...p,name:'<script>alert("x")</script>',sources:'<img src=x onerror="x">'});assert.ok(!html.includes("<script>"));assert.ok(!html.includes("<img src=x"));assert.ok(html.includes("&lt;script&gt;"));

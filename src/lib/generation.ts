@@ -22,7 +22,7 @@ export type GenerationRequest = z.infer<typeof requestSchema>;
 export const generationSchema = z.object({
   model: z.enum(modelIds).default("nano-banana-2.1"), aspect: z.enum(aspects).default("1:1"), prompt: z.string().max(6000).default(""),
   result: resultSchema.nullable().default(null),
-  alternatives: z.array(resultSchema).max(2).default([]),
+  alternatives: z.array(resultSchema).default([]),
   job: z.object({ id: z.string().max(100), token: z.string().max(2000), status: z.enum(["queued", "running", "completed", "failed"]), input: inputSchema }).nullable().default(null),
   request: requestSchema.nullable().default(null),
 });
@@ -43,26 +43,30 @@ export const targetInfo: Record<VisualTarget, { label: string; title: string; as
 };
 export function withoutCapabilities<T extends Generation>(state: T): T { return { ...state, job: null, request: null }; }
 export function cleanVisuals(visuals: z.infer<typeof visualsSchema>) { return Object.fromEntries(Object.entries(visuals).map(([key, value]) => [key, withoutCapabilities(value)])); }
-export const HISTORY_LIMIT = 24;
-export const playgroundSchema = z.object({ generation: generationSchema, history: z.array(resultSchema).max(HISTORY_LIMIT), starred: z.array(z.string().max(100)).max(HISTORY_LIMIT).default([]) });
+export const playgroundSchema = z.object({ generation: generationSchema, history: z.array(resultSchema), starred: z.array(z.string().max(100)).default([]) });
 export const playgroundBackupSchema = playgroundSchema.extend({ format: z.literal("forma-playground"), version: z.literal(1) });
 export type PlaygroundData = z.infer<typeof playgroundSchema>;
 
-/** Keep the selected visual plus its two most recent alternatives, without duplicates. */
+/** The active result and every earlier result remain in the project. */
 export function amendGeneration(current: Generation, patch: Partial<Generation>, retainAlternatives = true): Generation {
   let alternatives = patch.alternatives ?? current.alternatives;
   if (retainAlternatives && patch.result && current.result && patch.result.id !== current.result.id) {
-    alternatives = [current.result, ...alternatives].filter((item, index, all) => item.id !== patch.result!.id && all.findIndex(other => other.id === item.id) === index).slice(0, 2);
+    alternatives = [current.result, ...alternatives].filter((item, index, all) => item.id !== patch.result!.id && all.findIndex(other => other.id === item.id) === index);
   }
   return { ...current, ...patch, alternatives: retainAlternatives ? alternatives : [] };
 }
-/** Favorited results never leave the gallery during an automatic history rotation. */
-export function mergeExperiments(current: GenerationResult[], incoming: GenerationResult[], starred: string[]) {
-  const unique = [...incoming, ...current].filter((item, index, all) => all.findIndex(other => other.id === item.id) === index);
-  const favorite = new Set(starred);
-  const pinned = unique.filter(item => favorite.has(item.id));
-  const rest = unique.filter(item => !favorite.has(item.id));
-  const kept = new Set([...pinned, ...rest.slice(0, Math.max(0, HISTORY_LIMIT - pinned.length))].slice(0, HISTORY_LIMIT).map(item => item.id));
-  return unique.filter(item => kept.has(item.id));
+/** Importing or generating never silently evicts an older experiment. */
+export function mergeExperiments(current: GenerationResult[], incoming: GenerationResult[]) {
+  const seen = new Set<string>();
+  return [...incoming, ...current].filter(item => {
+    if (seen.has(item.id)) return false;
+    seen.add(item.id); return true;
+  });
 }
+export function generationHistory(value: Generation | undefined): GenerationResult[] {
+  if (!value) return [];
+  return mergeExperiments(value.alternatives, value.result ? [value.result] : [])
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id.localeCompare(a.id));
+}
+export function visualKey(target: VisualTarget, id: string) { return `${target}-${id}`; }
 export function cleanPlayground(data: PlaygroundData) { return { ...data, generation: withoutCapabilities(data.generation) }; }

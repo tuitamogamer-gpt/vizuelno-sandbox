@@ -4210,5 +4210,113 @@
   "lokalna kopija": {
     "en": "local copy",
     "ru": "локальная копия"
+  },
+  "Istorija generisanih slika": {
+    "en": "Generated image history",
+    "ru": "История сгенерированных изображений"
+  },
+  "Sačuvano: {0} · Za PDF: {1}": {
+    "en": "Saved: {0} · For PDF: {1}",
+    "ru": "Сохранено: {0} · Для PDF: {1}"
+  },
+  "Sve prethodne slike ostaju sačuvane. Označi samo slike koje želiš u finalnom PDF-u. Nove slike nisu automatski označene.": {
+    "en": "All previous images stay in your history. Check only the images you want in the final PDF. New images are not selected automatically.",
+    "ru": "Все предыдущие изображения остаются в истории. Отметьте только те, которые хотите включить в итоговый PDF. Новые изображения не выбираются автоматически."
+  },
+  "Generisane slike će se pojaviti ovdje, zajedno sa opisom, modelom i datumom.": {
+    "en": "Generated images will appear here with their prompt, model and date.",
+    "ru": "Здесь появятся сгенерированные изображения с запросом, моделью и датой."
+  },
+  "Slika {0}": {
+    "en": "Image {0}",
+    "ru": "Изображение {0}"
+  },
+  "Pogledaj detalje: {0}": {
+    "en": "View details: {0}",
+    "ru": "Подробнее: {0}"
+  },
+  "Uključi u PDF: {0}": {
+    "en": "Include in PDF: {0}",
+    "ru": "Включить в PDF: {0}"
+  },
+  "Uključi u PDF": {
+    "en": "Include in PDF",
+    "ru": "Включить в PDF"
+  },
+  "Prikaži još slika": {
+    "en": "Show more images",
+    "ru": "Показать ещё изображения"
+  },
+  "Pregled i vraćanje slike ne pokreću novo generisanje. Izbor za PDF možeš promijeniti i u prozoru za izvoz.": {
+    "en": "Viewing or restoring an image does not generate a new one. You can also change your PDF selection in the export window.",
+    "ru": "Просмотр или восстановление изображения не запускает новую генерацию. Изменить выбор для PDF можно и в окне экспорта."
+  },
+  "Slike za finalni PDF": {
+    "en": "Images for the final PDF",
+    "ru": "Изображения для итогового PDF"
+  },
+  "Označeno: {0} od {1}": {
+    "en": "Selected: {0} of {1}",
+    "ru": "Выбрано: {0} из {1}"
+  },
+  "U PDF ulaze samo označene slike. Ovo važi i za logotip na naslovnici i memorandumu.": {
+    "en": "Only checked images go into the PDF. This also applies to the logo on the cover and letterhead.",
+    "ru": "В PDF попадут только отмеченные изображения. Это касается и логотипа на обложке и фирменном бланке."
+  },
+  "Označi sve": {
+    "en": "Select all",
+    "ru": "Выбрать все"
+  },
+  "Poništi izbor": {
+    "en": "Clear selection",
+    "ru": "Снять выделение"
+  },
+  "Prikaži sve slike ({0})": {
+    "en": "Show all images ({0})",
+    "ru": "Показать все изображения ({0})"
+  },
+  "Nijedna slika nije označena. PDF će sadržati tekst, paletu i tipografske primjere, bez generisanih slika.": {
+    "en": "No images are selected. The PDF will contain text, the colour palette and type samples, without generated images.",
+    "ru": "Изображения не выбраны. PDF будет содержать текст, палитру и образцы шрифтов, без сгенерированных изображений."
+  },
+  "Izbor slika nije sačuvan uz projekat. Preuzmi PDF ili JSON kopiju prije zatvaranja.": {
+    "en": "The image selection could not be saved to the project. Download the PDF or a JSON backup before closing.",
+    "ru": "Не удалось сохранить выбор изображений в проекте. Перед закрытием скачайте PDF или резервную копию в JSON."
+  },
+  "Izbor slika čuva se uz projekat. Podaci o autoru, grupi i datumu uneseni ovdje važe samo za ovaj PDF.": {
+    "en": "Your image selection is saved with the project. Author, group and date details entered here apply only to this PDF.",
+    "ru": "Выбор изображений сохраняется в проекте. Данные об авторе, группе и дате, указанные здесь, действуют только для этого PDF."
+  },
+  "Slike u PDF-u: {0}.": {
+    "en": "Images in the PDF: {0}.",
+    "ru": "Изображений в PDF: {0}."
+  },
+  "Logotip projekta": {
+    "en": "Project logo",
+    "ru": "Логотип проекта"
+  },
+  "Logotip nije označen za PDF.": {
+    "en": "The logo is not selected for the PDF.",
+    "ru": "Логотип не выбран для PDF."
+  },
+  "Slika „{0}“ nije čitljiva. Ukloni je iz izbora za PDF i pokušaj ponovo.": {
+    "en": "The image “{0}” could not be read. Remove it from your PDF selection and try again.",
+    "ru": "Не удалось прочитать изображение «{0}». Уберите его из выбранных для PDF и попробуйте снова."
+  },
+  "Sve generisane slike ostaju u istoriji. Zvjezdicom označi favorite, a dvije slike možeš izabrati za poređenje. Za PDF dodaj sliku projektu i označi je za izvoz.": {
+    "en": "All generated images stay in your history. Star your favourites or select two images to compare. To include an image in a PDF, add it to a project and check it for export.",
+    "ru": "Все сгенерированные изображения остаются в истории. Отмечайте избранное звёздочкой или выберите два изображения для сравнения. Чтобы включить изображение в PDF, добавьте его в проект и отметьте для экспорта."
+  },
+  "Istorija se čuva": {
+    "en": "History is saved",
+    "ru": "История сохраняется"
+  },
+  "Arhiva je pročitana. Svi vizuali su već u galeriji.": {
+    "en": "The archive has been read. All images are already in the gallery.",
+    "ru": "Архив прочитан. Все изображения уже есть в галерее."
+  },
+  "vizuala · dodaje se u istoriju naloga": {
+    "en": "images · added to your account history",
+    "ru": "изображений · будут добавлены в историю аккаунта"
   }
 }

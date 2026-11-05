@@ -65,6 +65,7 @@ async function mockImages(page:Page) {
 test("PDF reports an unreadable visual and can export a draft without optional AI images",async({page})=>{
   await login(page);
   const project=exampleProject();
+  project.pdfVisualIds=["moodboard-broken-image"];
   project.visuals.moodboard={...newGeneration(),result:{id:"broken-image",image:"data:image/png;base64,aW52YWxpZA==",input:{model:"ideogram-4.5",aspect:"4:3",prompt:"Testni vizuelni smjer za identitet."},createdAt:new Date().toISOString()}};
   await page.getByLabel("Uvezi Forma projekat").setInputFiles({name:"visual.forma.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify({format:"forma-project",version:1,project}))});
   await expect(page.getByRole("heading",{name:"Bora",exact:true})).toBeVisible();
@@ -72,7 +73,7 @@ test("PDF reports an unreadable visual and can export a draft without optional A
   const dialog=page.getByRole("dialog",{name:"PDF za prvi kolokvijum"});
   await dialog.getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
   await expect(dialog.getByRole("alert")).toContainText("nije čitljiva",{timeout:15000});
-  await dialog.getByRole("checkbox",{name:/Uključi AI vizuale/}).uncheck();
+  await dialog.getByRole("checkbox",{name:/Uključi u PDF:/}).uncheck();
   const downloaded=page.waitForEvent("download");await dialog.getByRole("button",{name:"Preuzmi PDF",exact:true}).click();
   const bytes=await readFile((await(await downloaded).path())!);expect(bytes.subarray(0,5).toString()).toBe("%PDF-");
 });
@@ -162,13 +163,13 @@ test("navigation remembers steps, browser Back works, mobile menu traps focus, a
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 
-test("visual variants restore without generating and the complete identity kit is downloadable",async({page})=>{
+test("five generated images survive restores and complete identity kit export",async({page})=>{
   const {submissions}=await mockImages(page);await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();await page.getByRole("button",{name:/Logotip/}).click();
-  for(const model of ["Nano Banana 2.1 Google","GPT Image 2.5 OpenAI · Sunburst","Ideogram 4.5 Ideogram"]){await page.getByRole("button",{name:model,exact:true}).click();await page.getByRole("button",{name:"Provjeri cijenu",exact:true}).click();await page.getByRole("button",{name:"Generiši vizual",exact:true}).click();await expect(page.locator(".editor .generation-result>.eyebrow")).toContainText(model.split(" ").slice(0,2).join(" "));await expect(page.getByRole("status").filter({hasText:"Lokalno sačuvano"})).toBeVisible();}
-  await expect(page.locator(".variant-history button")).toHaveCount(3);const original=page.waitForEvent("download");await page.getByRole("button",{name:"Original",exact:true}).click();expect((await original).suggestedFilename()).toMatch(/original\.png$/);
-  await page.locator(".variant-history button").last().click();await expect(page.locator(".editor .generation-result>.eyebrow")).toContainText("Nano Banana 2.1");expect(submissions).toHaveLength(3);await page.getByRole("button",{name:"Postavi kao logotip"}).click();
+  for(const model of ["Nano Banana 2.1 Google","GPT Image 2.5 OpenAI · Sunburst","Ideogram 4.5 Ideogram","Seedream 5 Pro ByteDance · 5.0 Pro","GPT Image 2.5 OpenAI · Sunburst"]){await page.getByRole("button",{name:model,exact:true}).click();await page.getByRole("button",{name:"Provjeri cijenu",exact:true}).click();await page.getByRole("button",{name:"Generiši vizual",exact:true}).click();await expect(page.locator(".editor .generation-result>.eyebrow")).toContainText(model.split(" ").slice(0,2).join(" "));await expect(page.getByRole("status").filter({hasText:"Lokalno sačuvano"})).toBeVisible();}
+  await expect(page.locator(".history-restore")).toHaveCount(5);const original=page.waitForEvent("download");await page.getByRole("button",{name:"Original",exact:true}).click();expect((await original).suggestedFilename()).toMatch(/original\.png$/);
+  await page.locator(".history-restore").last().click();await expect(page.locator(".editor .generation-result>.eyebrow")).toContainText("Nano Banana 2.1");expect(submissions).toHaveLength(5);await page.getByRole("button",{name:"Postavi kao logotip"}).click();
   await page.evaluate(()=>window.scrollTo({top:0,behavior:"instant"}));await page.screenshot({path:"artifacts/refinement/02-logo-after.png",fullPage:true,animations:"disabled"});await page.getByRole("button",{name:/Pregled i izvoz/}).click();
-  const archive=page.waitForEvent("download");await page.getByRole("button",{name:"Preuzmi komplet identiteta",exact:false}).click();const download=await archive;expect(download.suggestedFilename()).toMatch(/identitet\.zip$/);const files=unzipSync(await readFile((await download.path())!));const backup=JSON.parse(strFromU8(files["bora/projekat.forma.json"]));expect(backup.project.visuals.logo.result.input.model).toBe("nano-banana-2.1");expect(backup.project.visuals.logo.alternatives).toHaveLength(2);expect(backup.project.visuals.logo.job).toBeNull();expect(Object.keys(files).filter(name=>/^bora\/vizuali\/logo-\d.webp$/.test(name))).toHaveLength(3);expect(submissions).toHaveLength(3);
+  const archive=page.waitForEvent("download");await page.getByRole("button",{name:"Preuzmi komplet identiteta",exact:false}).click();const download=await archive;expect(download.suggestedFilename()).toMatch(/identitet\.zip$/);const files=unzipSync(await readFile((await download.path())!));const backup=JSON.parse(strFromU8(files["bora/projekat.forma.json"]));expect(backup.project.visuals.logo.result.input.model).toBe("nano-banana-2.1");expect(backup.project.visuals.logo.alternatives).toHaveLength(4);expect(backup.project.visuals.logo.job).toBeNull();expect(Object.keys(files).filter(name=>/^bora\/vizuali\/logo-\d.webp$/.test(name))).toHaveLength(5);expect(submissions).toHaveLength(5);
 });
 
 test("Playground favorites, filters, detail view and archive restore preserve work",async({page})=>{

@@ -4,6 +4,7 @@ import { pdfVisuals, type PdfOptions, type PdfVisual } from "./options";
 
 export type PdfAssets = {
   logo: string;
+  logoKey?: string;
   headingSample: string;
   bodySample: string;
   visuals: (PdfVisual & { width: number; height: number })[];
@@ -43,7 +44,7 @@ async function imageAsset(source: string, label: string) {
     return { image: element.toDataURL("image/png"), width, height };
   } catch {
     throw new Error(
-      `Slika „${label}“ nije čitljiva. Izaberi drugu varijantu ili isključi AI vizuale i pokušaj ponovo.`,
+      `Slika „${label}“ nije čitljiva. Ukloni je iz izbora za PDF i pokušaj ponovo.`,
     );
   }
 }
@@ -168,19 +169,21 @@ export async function preparePdfAssets(
       .filter(([family]) => family !== "Noto Sans")
       .map(([family, weight]) => document.fonts.load(`${weight} 24px "${family}"`, probe)),
   ]);
-  const logo = project.logoImage
-    ? (await imageAsset(project.logoImage, "Logotip")).image
-    : drawLogo(project, locale);
+  const selected = pdfVisuals(project, options);
+  const selectedLogo = selected.find(v => v.target === "logo" && v.image === project.logoImage);
   const visuals: PdfAssets["visuals"] = [];
   // Bound peak memory on phones by decoding one image at a time.
-  for (const visual of pdfVisuals(project, options)) {
+  for (const visual of selected) {
     visuals.push({
       ...visual,
       ...(await imageAsset(visual.image, visual.caption)),
     });
   }
   return {
-    logo,
+    logo: project.logoImage
+      ? visuals.find(v => v.key === selectedLogo?.key)?.image || ""
+      : drawLogo(project, locale),
+    logoKey: selectedLogo?.key,
     headingSample: typeSample(project.headingFont, true, locale),
     bodySample: typeSample(project.bodyFont, false, locale),
     visuals,

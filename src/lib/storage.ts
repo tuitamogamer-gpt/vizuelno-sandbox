@@ -53,7 +53,7 @@ export async function importPlayground(file: File, currentData: PlaygroundData |
   const imported = cleanPlayground(result.data);
   const current=typeof currentData==="function"?currentData():currentData;
   // The current draft and any pending provider request must survive an import.
-  const history = mergeExperiments(imported.history, current.history, current.starred);
+  const history = mergeExperiments(imported.history, current.history);
   const starred = [...new Set([...current.starred, ...imported.starred])].filter(id => history.some(item => item.id === id));
   const fresh = !current.generation.prompt && !current.generation.job && !current.generation.request && !current.generation.result;
   return { generation: fresh ? { ...imported.generation, alternatives: [] } : current.generation, history, starred };

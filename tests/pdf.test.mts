@@ -2,16 +2,29 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
 import { getDocument, OPS } from "pdfjs-dist/legacy/build/pdf.mjs";
-import { exampleProject, newProject } from "../src/lib/project";
+import { exampleProject, newProject, projectSchema } from "../src/lib/project";
 import { newGeneration } from "../src/lib/generation";
 import { renderIdentityPdf } from "../src/lib/pdf/document";
-import { pdfVisuals, type PdfOptions } from "../src/lib/pdf/options";
+import { pdfCandidates, pdfVisuals, type PdfOptions } from "../src/lib/pdf/options";
 import type { PdfAssets } from "../src/lib/pdf/assets";
 
 const pixel = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aZ1sAAAAASUVORK5CYII=";
 const assets: PdfAssets = { logo: pixel, headingSample: pixel, bodySample: pixel, visuals: [] };
-const options: PdfOptions = { author: "Željka Đurić Čolić Ćosić Šarić", studentNumber: "24/2026", group: "Vizuelno komuniciranje", date: "2026-11-04", includeVisuals: true, includeVariants: false, includePrompts: false };
+const options: PdfOptions = { author: "Željka Đurić Čolić Ćosić Šarić", studentNumber: "24/2026", group: "Vizuelno komuniciranje", date: "2026-11-04", includePrompts: false };
 const fonts = path.resolve("public/fonts/pdf");
+
+test("older projects default to no PDF images and a replaced legacy logo is not implicitly selected", () => {
+  const old = { ...exampleProject(), pdfVisualIds: undefined, logoImage: pixel, aiImage: pixel };
+  const project = projectSchema.parse(old);
+  assert.deepEqual(project.pdfVisualIds, []);
+  assert.equal(pdfCandidates(project).length, 1);
+  assert.deepEqual(pdfVisuals(project, options), []);
+  project.pdfVisualIds = pdfCandidates(project).map(v => v.key);
+  assert.equal(pdfVisuals(project, options).length, 1);
+  project.logoImage = "data:image/png;base64,aW52YWxpZA==";
+  project.aiImage = "";
+  assert.deepEqual(pdfVisuals(project, options), []);
+});
 
 async function inspect(blob: Blob) {
   const data = new Uint8Array(await blob.arrayBuffer());
@@ -96,24 +109,27 @@ test("PDF keeps a single cover for maximum-length project and student details", 
   assert.ok(output.pages[1].includes("Polazište"));
 });
 
-test("PDF includes selected visuals and optional variants/prompts, without generation capabilities", async () => {
+test("PDF includes only checked images and their prompts, without generation capabilities", async () => {
   const project = exampleProject();
   const input = { model: "ideogram-4.5" as const, aspect: "3:4" as const, prompt: "Jedinstveni prompt za vizuelni identitet." };
   const result = { id: "visual-one", image: pixel, input, createdAt: "2026-11-04T12:00:00Z" };
   project.visuals.moodboard = { ...newGeneration(), result, alternatives: [{ ...result, id: "visual-two", input: { ...input, prompt: "Ranija varijanta za istraživanje." } }], job: { id: "job", token: "NE-IZVOZI-JOB-TOKEN", status: "completed", input } };
-  assert.equal(pdfVisuals(project, { ...options, includeVisuals: false }).length, 0);
-  assert.equal(pdfVisuals(project, options).length, 1);
-  const withPrompts = { ...options, includeVariants: true, includePrompts: true, submission: { version: 3, createdAt: "2026-11-03T10:00:00Z" } };
+  assert.equal(pdfCandidates(project).length, 2);
+  assert.equal(pdfVisuals(project, options).length, 0);
+  project.pdfVisualIds = ["moodboard-visual-two"];
+  assert.deepEqual(pdfVisuals(project, options).map(v=>v.key), ["moodboard-visual-two"]);
+  assert.equal(pdfVisuals(project, { ...options, selectedVisualIds: [] }).length, 0);
+  const withPrompts = { ...options, includePrompts: true, submission: { version: 3, createdAt: "2026-11-03T10:00:00Z" } };
   const visuals = pdfVisuals(project, withPrompts);
-  assert.equal(visuals.length, 2);
+  assert.equal(visuals.length, 1);
   assert.ok(!JSON.stringify(visuals).includes("NE-IZVOZI"));
   const output = await inspect(await renderIdentityPdf(project, withPrompts, { ...assets, visuals: visuals.map(v => ({ ...v, width: 300, height: 400 })) }, fonts));
   assert.ok(output.text.includes("Sačuvana predaja · verzija 3"));
   assert.ok(output.text.includes("Ideogram 4.5"));
-  assert.ok(output.text.includes(input.prompt));
+  assert.ok(!output.text.includes(input.prompt));
   assert.ok(output.text.includes("Ranija varijanta za istraživanje."));
   assert.ok(!output.text.includes("NE-IZVOZI-JOB-TOKEN"));
-  assert.ok(output.imageCount >= 7);
+  assert.equal(output.imageCount, 6);
 });
 
 test("English and Russian PDFs localize every chapter and metadata while preserving student prose", async () => {

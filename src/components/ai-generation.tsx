@@ -20,8 +20,8 @@ async function api(path: string, body: unknown) {
   return data;
 }
 type Quote = { token: string; requestId: string; price: number; expiresAt: number; input: GenerationInput };
-export default function AiGeneration({ value, onChange, title = "Od ideje do vizuala.", filename = "forma-vizual", onUse, showVariants = false, blockedReason = "" }: {
-  value: Generation; onChange: (patch: Partial<Generation>) => void | Promise<boolean>; title?: string; filename?: string; onUse?: (result: GenerationResult) => void; showVariants?:boolean; blockedReason?:string;
+export default function AiGeneration({ value, onChange, title = "Od ideje do vizuala.", filename = "forma-vizual", onUse, blockedReason = "" }: {
+  value: Generation; onChange: (patch: Partial<Generation>) => void | Promise<boolean>; title?: string; filename?: string; onUse?: (result: GenerationResult) => void; blockedReason?:string;
 }) {
   const { t } = useI18n();
 
@@ -113,7 +113,6 @@ export default function AiGeneration({ value, onChange, title = "Od ideje do viz
     {!online&&<p className="generation-network" role="status"><WifiOff size={16}/>{t("Za generisanje je potrebna internet veza.")}</p>}{blockedReason&&<p className="generation-network">{t(blockedReason)}</p>}
     {error && <p className="form-error" role="alert">{error.split("\n").map(line => t(line)).join(" ")}</p>}
     {result && <div className="generation-result"><button className="result-image-button" onClick={()=>setInspect(result)} aria-label={t("Otvori veliki pregled vizuala")}><img src={result.image} alt={t("Generisani vizual · {0}", {0: models[result.input.model].label})} /><span><Maximize2 size={17}/>{t("Pogledaj detalje")}</span></button><span className="eyebrow">{t(models[result.input.model].label)} · {result.input.aspect}{result.charge !== undefined ? ` · $${result.charge.toFixed(4)}` : ""}{pending ? t(" · PRETHODNI REZULTAT") : t(" · SAČUVANO U PREGLEDNIKU")}</span><div>{onUse && <button className="button dark" onClick={() => onUse(result)}><Check size={15} />{t("Postavi kao logotip")}</button>}<a className="button secondary" href={result.image} download={`${filename}.webp`}><Download size={15} />{t("Preuzmi vizual")}</a>{job?.id===result.id&&job.status==="completed"&&<button className="button secondary" disabled={downloading||!online} onClick={()=>{void original();}}>{downloading?<LoaderCircle className="spin" size={15}/>:<Download size={15}/>}{t("Original")}</button>}</div></div>}
-    {showVariants&&result&&value.alternatives.length>0&&<div className="variant-history"><div className="mini-heading"><span>{t("SAČUVANE VARIJANTE")}</span><span>{value.alternatives.length+1} / 3</span></div><p>{t("Uporedi prethodne pokušaje. Izbor varijante ne pokreće novo generisanje.")}</p><div>{[result,...value.alternatives].map((item,i)=><button key={item.id} disabled={locked} aria-pressed={i===0} onClick={()=>{void onChange({...item.input,result:item,job:null,request:null});}}><img src={item.image} alt={t("Varijanta {0} · {1}", {0: i+1, 1: models[item.input.model].label})}/><span>{i===0?<><Check size={12}/>{t("Odabrana")}</>:t("Vrati varijantu")}</span><small>{t(models[item.input.model].label)}</small></button>)}</div></div>}
     {inspect&&<VisualDetail result={inspect} onClose={()=>setInspect(null)} onPrompt={!locked?()=>{void onChange({...inspect.input});setInspect(null);}:undefined}/>}
   </section>;
 }

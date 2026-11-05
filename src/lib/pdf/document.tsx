@@ -270,7 +270,7 @@ function Figures({
   return assets.visuals
     .filter(
       (v) =>
-        v.target === target && !(target === "logo" && v.image === assets.logo),
+        v.target === target && v.key !== assets.logoKey,
     )
     .map((visual) => {
       // A single figure always fits inside the printable area; portrait and landscape remain uncropped.
@@ -351,14 +351,14 @@ function Cover({
         ]}
         wrap={false}
       >
-        <PdfImage
+        {!!assets.logo && <PdfImage
           src={assets.logo}
           style={{
             width: "100%",
             height: compact ? 50 : 98,
             objectFit: "contain",
           }}
-        />
+        />}
       </View>
       <View style={{ flexDirection: "row", height: 23 }}>
         {p.colors.map((color, i) => (
@@ -554,12 +554,12 @@ export function IdentityPdf({
             ]}
             wrap={false}
           >
-            <PdfImage
+            {!!assets.logo && <PdfImage
               src={assets.logo}
               style={{ width: "100%", height: 180, objectFit: "contain" }}
-            />
+            />}
           </View>
-          <Text style={styles.note}>{t("Odabrani logotip projekta")}</Text>
+          <Text style={styles.note}>{assets.logo ? t("Odabrani logotip projekta") : t("Logotip nije označen za PDF.")}</Text>
           <Heading>{t("Značenje i obrazloženje")}</Heading>
           <Paragraph>{p.logoReason}</Paragraph>
           <Figures assets={assets} target="logo" project={p} />
@@ -594,7 +594,7 @@ export function IdentityPdf({
             style={[styles.letter, { borderTopColor: primary }]}
             wrap={false}
           >
-            <PdfImage
+            {!!assets.logo && <PdfImage
               src={assets.logo}
               style={{
                 width: 170,
@@ -602,7 +602,7 @@ export function IdentityPdf({
                 objectFit: "contain",
                 objectPosition: "left",
               }}
-            />
+            />}
             <View style={{ marginTop: 32, marginBottom: 35, fontSize: 9 }}>
               <Text style={{ marginBottom: 15 }}>{t("Poštovani,")}</Text>
               <Text style={{ marginBottom: 15 }}>

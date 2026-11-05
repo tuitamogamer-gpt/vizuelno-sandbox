@@ -25,8 +25,11 @@ export async function packDocument(document:LocalDocument){
 }
 export async function uploadImages(images:Map<string,string>){
  if(!images.size)return;
- const {missing}=await cloudApi<{missing:string[]}>("/api/workspace/assets/check","POST",{hashes:[...images.keys()]});
- for(const hash of missing){const uploaded=await cloudApi<{hash:string}>("/api/workspace/assets","POST",{image:images.get(hash)});if(uploaded.hash!==hash)throw new SyncError("Vizual nije ispravno sačuvan.",422);}
+ const hashes=[...images.keys()];
+ for(let offset=0;offset<hashes.length;offset+=100){
+  const {missing}=await cloudApi<{missing:string[]}>("/api/workspace/assets/check","POST",{hashes:hashes.slice(offset,offset+100)});
+  for(const hash of missing){const uploaded=await cloudApi<{hash:string}>("/api/workspace/assets","POST",{image:images.get(hash)});if(uploaded.hash!==hash)throw new SyncError("Vizual nije ispravno sačuvan.",422);}
+ }
 }
 export async function unpackDocument(document:CloudDocument,base="/api/workspace/assets"):Promise<LocalDocument>{
  const images=new Map<string,Promise<string>>();

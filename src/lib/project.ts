@@ -16,6 +16,7 @@ export const projectSchema = z.object({
   contact: short, address: short, website: short, applicationNote: text,
   sources: text, reflection: text, aiPrompt: text, aiDisclosure: text,
   visuals: visualsSchema.default({}),
+  pdfVisualIds: z.array(z.string().min(1).max(160)).default([]),
   aiImage: imageData.default(""),
   aiJob: z.object({ id: z.string().max(100), token: z.string().max(2000), status: z.enum(["queued","running","completed","failed"]) }).nullable().default(null),
   aiRequest: z.object({ prompt: text, quoteToken: z.string().max(2000), requestId: z.string().uuid() }).nullable().default(null),
@@ -36,7 +37,7 @@ export const steps = [
 export function newProject(name = "", author = "", kind: Project["kind"] = "new", locale: Locale = "sr"): Project {
   const t = createTranslator(locale);
   const now = new Date().toISOString();
-  return { version: 1, id: crypto.randomUUID(), name, author, kind, description: "", audience: "", vision: "", mission: "", strategy: "", goals: ["", "", ""], slogan: "", colors: [{ hex: "#244D3E", name: t("Primarna") }, { hex: "#F2E9D8", name: t("Sekundarna") }, { hex: "#DD6846", name: t("Akcent") }], colorReason: "", logoShape: "spark", logoText: "", logoImage: "", logoReason: "", headingFont: locale === "ru" ? "Noto Sans" : "Space Grotesk", bodyFont: locale === "ru" ? "Noto Sans" : "DM Sans", typeReason: "", contact: "", address: "", website: "", applicationNote: "", sources: "", reflection: "", aiPrompt: "", aiDisclosure: "", visuals: {}, aiImage: "", aiJob: null, aiRequest: null, createdAt: now, updatedAt: now };
+  return { version: 1, id: crypto.randomUUID(), name, author, kind, description: "", audience: "", vision: "", mission: "", strategy: "", goals: ["", "", ""], slogan: "", colors: [{ hex: "#244D3E", name: t("Primarna") }, { hex: "#F2E9D8", name: t("Sekundarna") }, { hex: "#DD6846", name: t("Akcent") }], colorReason: "", logoShape: "spark", logoText: "", logoImage: "", logoReason: "", headingFont: locale === "ru" ? "Noto Sans" : "Space Grotesk", bodyFont: locale === "ru" ? "Noto Sans" : "DM Sans", typeReason: "", contact: "", address: "", website: "", applicationNote: "", sources: "", reflection: "", aiPrompt: "", aiDisclosure: "", visuals: {}, pdfVisualIds: [], aiImage: "", aiJob: null, aiRequest: null, createdAt: now, updatedAt: now };
 }
 export function exampleProject(locale: Locale = "sr"): Project {
   const t = createTranslator(locale);
