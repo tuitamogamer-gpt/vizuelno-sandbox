@@ -44,6 +44,15 @@ async function inspect(blob: Blob) {
   return { pages, text: pages.join("\n"), info: metadata.info as { Title: string; Author: string }, outline, destinations, imageCount };
 }
 
+test("switching PDF language from Russian to English preserves Latin glyphs in the next document", async () => {
+  const project = exampleProject("ru");
+  await renderIdentityPdf(project, { ...options, author: "Татьяна", locale: "ru" }, assets, fonts);
+  const result = await inspect(await renderIdentityPdf(project, { ...options, locale: "en" }, assets, fonts));
+  assert.ok(result.text.includes("Target audience"), "Latin T must remain visible after a Cyrillic export");
+  assert.ok(result.text.includes("Typography"));
+  assert.ok(result.text.replace(/\s/g, "").includes("FIRSTASSESSMENT"));
+});
+
 test("PDF embeds Unicode, A4 pages, every chapter, navigation, graphics and truthful metadata", async () => {
   const result = await inspect(await renderIdentityPdf(exampleProject(), options, assets, fonts));
   assert.equal(result.pages.length, 8);

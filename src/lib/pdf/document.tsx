@@ -144,9 +144,11 @@ const styles = StyleSheet.create({
   },
 });
 
-let fontBase: string | undefined;
 function registerFonts(base: string) {
-  if (fontBase === base) return;
+  // Fontkit retains glyph-to-Unicode mappings on a loaded face. Reusing that
+  // face after a Cyrillic PDF can drop Latin glyphs in the next document.
+  // The render queue makes replacing only our family safe for concurrent exports.
+  delete Font.getRegisteredFonts()["Forma PDF"];
   Font.register({
     family: "Forma PDF",
     fonts: [
@@ -158,7 +160,6 @@ function registerFonts(base: string) {
   Font.registerHyphenationCallback((word) =>
     word.length > 28 ? word.match(/.{1,20}/gu) || [word] : [word],
   );
-  fontBase = base;
 }
 
 function Paragraph({
@@ -736,7 +737,6 @@ export function renderIdentityPdf(
       // FontSource caches rejected loads too; discard them so reconnect + retry works.
       // Preserve the renderer's built-in fallback fonts while replacing our sources.
       delete Font.getRegisteredFonts()["Forma PDF"];
-      fontBase = undefined;
       throw error;
     }
   });
