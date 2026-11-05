@@ -1,0 +1,4214 @@
+{
+  "Nedozvoljen zahtjev.": {
+    "en": "Request not allowed.",
+    "ru": "Недопустимый запрос."
+  },
+  "Potrebna je prijava potvrđenim Google nalogom.": {
+    "en": "Please sign in with a verified Google account.",
+    "ru": "Войдите через подтверждённый аккаунт Google."
+  },
+  "Kod predmeta nije ispravan.": {
+    "en": "The course code is incorrect.",
+    "ru": "Неверный код курса."
+  },
+  "Prijava je potrebna.": {
+    "en": "Please sign in.",
+    "ru": "Необходимо войти в систему."
+  },
+  "Sačekaj prije nove provjere veze.": {
+    "en": "Wait before checking the connection again.",
+    "ru": "Подождите перед повторной проверкой соединения."
+  },
+  "PIKA_API_KEY još nije dodat u ovom deploymentu. Dodaj ključ i uradi redeploy.": {
+    "en": "PIKA_API_KEY has not been added to this deployment. Add the key and redeploy.",
+    "ru": "В этой версии ещё не задан PIKA_API_KEY. Добавьте ключ и выполните повторное развёртывание."
+  },
+  "Pika prihvata ključ. Veza je spremna; cijena i dostupni kredit provjeravaju se prije svake slike.": {
+    "en": "Pika accepts the key. The connection is ready; price and available credit are checked before each image.",
+    "ru": "Pika принимает ключ. Соединение готово; цена и доступный баланс проверяются перед созданием каждого изображения."
+  },
+  "Model, format ili brief je promijenjen. Ponovo provjeri cijenu.": {
+    "en": "The model, format or brief has changed. Check the price again.",
+    "ru": "Модель, формат или описание изменились. Проверьте цену ещё раз."
+  },
+  "Dostignut je limit pokušaja. Sačekaj 15 minuta.": {
+    "en": "The attempt limit has been reached. Wait 15 minutes.",
+    "ru": "Достигнут лимит попыток. Подождите 15 минут."
+  },
+  "Cijena se promijenila. Ponovo provjeri cijenu prije generisanja.": {
+    "en": "The price has changed. Check it again before generating.",
+    "ru": "Цена изменилась. Проверьте её ещё раз перед генерацией."
+  },
+  "Neispravan identifikator.": {
+    "en": "Invalid identifier.",
+    "ru": "Некорректный идентификатор."
+  },
+  "Sačekaj prije nove provjere cijene.": {
+    "en": "Wait before checking the price again.",
+    "ru": "Подождите перед повторной проверкой цены."
+  },
+  "Slika još nije spremna.": {
+    "en": "The image is not ready yet.",
+    "ru": "Изображение ещё не готово."
+  },
+  "Potreban je pristupni kod.": {
+    "en": "An access code is required.",
+    "ru": "Необходим код доступа."
+  },
+  "Google prijava još nije uključena. Lokalni studio je dostupan putem koda.": {
+    "en": "Google sign-in is not enabled yet. You can access the local studio with the course code.",
+    "ru": "Вход через Google ещё не включён. Локальная студия доступна по коду курса."
+  },
+  "Zahtjev nije dozvoljen.": {
+    "en": "This request is not allowed.",
+    "ru": "Этот запрос запрещён."
+  },
+  "Pristup još nije podešen. Obratite se nastavniku.": {
+    "en": "Access has not been configured yet. Contact your instructor.",
+    "ru": "Доступ ещё не настроен. Обратитесь к преподавателю."
+  },
+  "Previše pokušaja. Pokušaj ponovo za 15 minuta.": {
+    "en": "Too many attempts. Try again in 15 minutes.",
+    "ru": "Слишком много попыток. Попробуйте через 15 минут."
+  },
+  "Neispravan zahtjev.": {
+    "en": "Invalid request.",
+    "ru": "Некорректный запрос."
+  },
+  "Kod nije ispravan. Provjeri unos i pokušaj ponovo.": {
+    "en": "The code is incorrect. Check it and try again.",
+    "ru": "Неверный код. Проверьте его и попробуйте снова."
+  },
+  "Nije moguće prijaviti se. Pokušaj ponovo.": {
+    "en": "Unable to sign in. Please try again.",
+    "ru": "Не удалось войти. Попробуйте снова."
+  },
+  "Vizual nije pronađen.": {
+    "en": "Visual not found.",
+    "ru": "Изображение не найдено."
+  },
+  "Predaja nije pronađena.": {
+    "en": "Submission not found.",
+    "ru": "Сданная работа не найдена."
+  },
+  "Vizual je prevelik ili neispravan.": {
+    "en": "The visual is too large or invalid.",
+    "ru": "Изображение слишком большое или повреждено."
+  },
+  "Prostor na nalogu je popunjen. Preuzmi rezervnu kopiju i obrati se nastavniku.": {
+    "en": "Your account storage is full. Download a backup and contact your instructor.",
+    "ru": "Хранилище аккаунта заполнено. Скачайте резервную копию и обратитесь к преподавателю."
+  },
+  "NEŠTO JE ZAPINJALO": {
+    "en": "SOMETHING WENT WRONG",
+    "ru": "ЧТО-ТО ПОШЛО НЕ ТАК"
+  },
+  "Pokušajmo ponovo.": {
+    "en": "Let's try again.",
+    "ru": "Попробуем ещё раз."
+  },
+  "Tvoji sačuvani projekti ostaju u ovom pregledniku.": {
+    "en": "Your saved projects remain in this browser.",
+    "ru": "Сохранённые проекты остаются в этом браузере."
+  },
+  "Ponovo učitaj": {
+    "en": "Reload",
+    "ru": "Перезагрузить"
+  },
+  "Forma — Vizuelno komuniciranje": {
+    "en": "Forma — Visual Communication",
+    "ru": "Forma — Визуальные коммуникации"
+  },
+  "Od prve ideje do prepoznatljivog vizuelnog identiteta. Studentski studio za Vizuelno komuniciranje.": {
+    "en": "From your first idea to a distinctive visual identity. A student studio for Visual Communication.",
+    "ru": "От первой идеи до узнаваемого визуального стиля. Учебная студия по визуальным коммуникациям."
+  },
+  "404 / IZVAN FORMATA": {
+    "en": "404 / OUTSIDE THE FRAME",
+    "ru": "404 / ВНЕ ФОРМАТА"
+  },
+  "Ova stranica još nema formu.": {
+    "en": "This page hasn't taken shape yet.",
+    "ru": "Эта страница ещё не обрела форму."
+  },
+  "Nazad u studio →": {
+    "en": "Back to the studio →",
+    "ru": "Вернуться в студию →"
+  },
+  "← Nazad u Formu": {
+    "en": "← Back to Forma",
+    "ru": "← Назад в Forma"
+  },
+  "TVOJ IDENTITET, NA SVAKOM UREĐAJU": {
+    "en": "YOUR IDENTITY, ON EVERY DEVICE",
+    "ru": "ВАШ СТИЛЬ НА ЛЮБОМ УСТРОЙСТВЕ"
+  },
+  "Nastavi tamo gdje staneš.": {
+    "en": "Pick up where you left off.",
+    "ru": "Продолжайте с того места, где остановились."
+  },
+  "Poveži Google nalog da projekti i vizuali putuju s tobom.": {
+    "en": "Connect your Google account to take your projects and visuals with you.",
+    "ru": "Подключите аккаунт Google, чтобы проекты и изображения были доступны на разных устройствах."
+  },
+  "Jedan nalog. Sve tvoje ideje.": {
+    "en": "One account. All your ideas.",
+    "ru": "Один аккаунт. Все ваши идеи."
+  },
+  "Sačuvaj projekat na nalogu, nastavi na drugom računaru i predaj verziju rada nastavniku. Postojeće lokalne projekte možeš prenijeti nakon prijave.": {
+    "en": "Save your project to your account, continue on another computer and submit a version for instructor review. You can transfer existing local projects after signing in.",
+    "ru": "Сохраняйте проект в аккаунте, продолжайте на другом компьютере и отправляйте версию преподавателю. После входа можно перенести существующие локальные проекты."
+  },
+  "Do povezivanja naloga tvoj rad se čuva samo u ovom pregledniku. Izvoz projekta je rezervna kopija.": {
+    "en": "Until you connect an account, your work is saved only in this browser. Export your project to make a backup.",
+    "ru": "До подключения аккаунта работа сохраняется только в этом браузере. Экспортируйте проект для резервного копирования."
+  },
+  "TVOJ RADNI PROSTOR": {
+    "en": "YOUR WORKSPACE",
+    "ru": "ВАШЕ РАБОЧЕЕ ПРОСТРАНСТВО"
+  },
+  "Moj nalog": {
+    "en": "My account",
+    "ru": "Мой аккаунт"
+  },
+  "Podaci o predmetu, čuvanju i pristupu.": {
+    "en": "Course details, storage and access.",
+    "ru": "Данные курса, хранение и доступ."
+  },
+  "Nastavnički nalog": {
+    "en": "Instructor account",
+    "ru": "Аккаунт преподавателя"
+  },
+  "Studentski nalog": {
+    "en": "Student account",
+    "ru": "Аккаунт студента"
+  },
+  "Ime i email dolaze s potvrđenog Google naloga.": {
+    "en": "Your name and email come from your verified Google account.",
+    "ru": "Имя и электронная почта взяты из подтверждённого аккаунта Google."
+  },
+  "Podaci o predmetu su sačuvani.": {
+    "en": "Course details saved.",
+    "ru": "Данные курса сохранены."
+  },
+  "Čuvanje nije uspjelo.": {
+    "en": "Unable to save.",
+    "ru": "Не удалось сохранить."
+  },
+  "Broj indeksa": {
+    "en": "Student number",
+    "ru": "Номер студенческого билета"
+  },
+  "Grupa / studijski program": {
+    "en": "Group / study programme",
+    "ru": "Группа / учебная программа"
+  },
+  "Grupa ili studijski program": {
+    "en": "Group or study programme",
+    "ru": "Группа или учебная программа"
+  },
+  "Sačuvaj podatke": {
+    "en": "Save details",
+    "ru": "Сохранить данные"
+  },
+  "Sačuvano uz tvoj nalog.": {
+    "en": "Saved to your account.",
+    "ru": "Сохранено в вашем аккаунте."
+  },
+  "Projekti i Playground imaju privatnu kopiju na serveru. Izmjene s ovog uređaja šalju se automatski kada je internet dostupan.": {
+    "en": "Your projects and Playground have a private copy on the server. Changes from this device are sent automatically when you are online.",
+    "ru": "На сервере хранится личная копия проектов и песочницы. Изменения с этого устройства отправляются автоматически при подключении к интернету."
+  },
+  "Sve izmjene su sinhronizovane": {
+    "en": "All changes are synced",
+    "ru": "Все изменения синхронизированы"
+  },
+  "Postoje različite verzije rada": {
+    "en": "Different versions of your work exist",
+    "ru": "Есть разные версии работы"
+  },
+  "{0} radova čeka sinhronizaciju": {
+    "en": "Work awaiting sync: {0}",
+    "ru": "Ожидают синхронизации: {0}"
+  },
+  "Provjerava se veza s nalogom": {
+    "en": "Checking the account connection",
+    "ru": "Проверяем подключение аккаунта"
+  },
+  "Posljednja provjera:": {
+    "en": "Last checked:",
+    "ru": "Последняя проверка:"
+  },
+  "Vizuali na nalogu": {
+    "en": "Visuals in your account",
+    "ru": "Изображения в аккаунте"
+  },
+  "Slike u predatim verzijama ostaju uz predaju.": {
+    "en": "Images in submitted versions remain attached to the submission.",
+    "ru": "Изображения в сданных версиях остаются в составе работы."
+  },
+  "Provjeri sinhronizaciju": {
+    "en": "Check sync",
+    "ru": "Проверить синхронизацию"
+  },
+  "Odjava briše lokalnu kopiju naloga nakon uspješne sinhronizacije. Projekti ostaju na serveru. Lokalne vježbe bez naloga ostaju na ovom uređaju.": {
+    "en": "Signing out removes the local account copy after successful sync. Projects remain on the server. Local exercises without an account remain on this device.",
+    "ru": "При выходе локальная копия аккаунта удаляется после успешной синхронизации. Проекты остаются на сервере. Локальные упражнения без аккаунта остаются на этом устройстве."
+  },
+  "TVOJ RAD OSTAJE PRENOSIV": {
+    "en": "YOUR WORK STAYS PORTABLE",
+    "ru": "ВАША РАБОТА ВСЕГДА С ВАМИ"
+  },
+  "Rezervne kopije projekata": {
+    "en": "Project backups",
+    "ru": "Резервные копии проектов"
+  },
+  "Preuzmi rad i nezavisno od naloga. Komplet identiteta nalazi se u koraku „Pregled i izvoz“.": {
+    "en": "Download your work independently of your account. The identity kit is available in the “Review and export” step.",
+    "ru": "Скачайте работу независимо от аккаунта. Комплект фирменного стиля доступен на шаге «Проверка и экспорт»."
+  },
+  "Bez naziva": {
+    "en": "Untitled",
+    "ru": "Без названия"
+  },
+  "Projekat za nastavak rada · JSON": {
+    "en": "Editable project · JSON",
+    "ru": "Проект для продолжения работы · JSON"
+  },
+  "Prvi projekat pojaviće se ovdje kada ga napraviš.": {
+    "en": "Your first project will appear here once you create it.",
+    "ru": "Первый проект появится здесь после создания."
+  },
+  "Status povezivanja nije dostupan.": {
+    "en": "Connection status is unavailable.",
+    "ru": "Статус подключения недоступен."
+  },
+  "NALOG, NAPREDAK I PREDAJA": {
+    "en": "ACCOUNT, PROGRESS AND SUBMISSIONS",
+    "ru": "АККАУНТ, ПРОГРЕСС И СДАЧА РАБОТ"
+  },
+  "Google prijava i studentski radovi": {
+    "en": "Google sign-in and student work",
+    "ru": "Вход через Google и работы студентов"
+  },
+  "Za aktiviranje naloga vlasnik projekta povezuje Google OAuth i PostgreSQL bazu. Tajne se unose samo u Vercel postavkama.": {
+    "en": "To activate accounts, the project owner connects Google OAuth and a PostgreSQL database. Secrets are entered only in Vercel settings.",
+    "ru": "Для активации аккаунтов владелец проекта подключает Google OAuth и базу PostgreSQL. Секретные данные вводятся только в настройках Vercel."
+  },
+  "Baza i tabele za projekte": {
+    "en": "Database and project tables",
+    "ru": "База данных и таблицы проектов"
+  },
+  "Varijable dodate": {
+    "en": "Variables added",
+    "ru": "Переменные добавлены"
+  },
+  "Spremno": {
+    "en": "Ready",
+    "ru": "Готово"
+  },
+  "Potrebno podesiti": {
+    "en": "Setup required",
+    "ru": "Требуется настройка"
+  },
+  "Uputstvo za vlasnika aplikacije": {
+    "en": "Instructions for the application owner",
+    "ru": "Инструкция для владельца приложения"
+  },
+  "Poveži Neon Postgres s ovim projektom u Vercel Marketplace-u. Potrebna je serverska varijabla": {
+    "en": "Connect Neon Postgres to this project in Vercel Marketplace. The required server variable is",
+    "ru": "Подключите Neon Postgres к проекту через Vercel Marketplace. Необходимая серверная переменная:"
+  },
+  "U Google Auth Platform napravi OAuth klijent tipa": {
+    "en": "In Google Auth Platform, create an OAuth client of type",
+    "ru": "В Google Auth Platform создайте клиент OAuth типа"
+  },
+  ". Dodaj callback adresu ispod i u Vercel sačuvaj": {
+    "en": ". Add the callback address below and save these in Vercel:",
+    "ru": ". Добавьте указанный ниже адрес обратного вызова и сохраните в Vercel:"
+  },
+  "i": {
+    "en": "and",
+    "ru": "и"
+  },
+  "U": {
+    "en": "In",
+    "ru": "В"
+  },
+  "unesi Google email nastavnika. Više emailova može biti odvojeno zarezom.": {
+    "en": "enter the instructor's Google email. Separate multiple addresses with commas.",
+    "ru": "укажите адрес Google преподавателя. Несколько адресов разделяйте запятыми."
+  },
+  "Uradi Redeploy. Build priprema tabele baze, a zatim ovdje provjeri povezivanje. Google aplikacija mora dozvoljavati naloge studenata; u testnom režimu dodaj ih kao testne korisnike.": {
+    "en": "Redeploy. The build prepares database tables; then check the connection here. Your Google app must allow student accounts. In testing mode, add students as test users.",
+    "ru": "Выполните Redeploy. При сборке создаются таблицы базы данных; затем проверьте подключение здесь. Приложение Google должно разрешать вход студентам. В тестовом режиме добавьте их как тестовых пользователей."
+  },
+  "Vercel varijable": {
+    "en": "Vercel variables",
+    "ru": "Переменные Vercel"
+  },
+  "Google OAuth klijent": {
+    "en": "Google OAuth client",
+    "ru": "Клиент Google OAuth"
+  },
+  "Provjeri povezivanje naloga": {
+    "en": "Check account connection",
+    "ru": "Проверить подключение аккаунтов"
+  },
+  "Veza sa servisom je prekinuta. Provjeri internet i pokušaj ponovo.": {
+    "en": "The service connection was interrupted. Check your internet and try again.",
+    "ru": "Соединение с сервисом прервано. Проверьте интернет и попробуйте снова."
+  },
+  "Servis je vratio nečitljiv odgovor. Pokušaj ponovo.": {
+    "en": "The service returned an unreadable response. Try again.",
+    "ru": "Сервис вернул нечитаемый ответ. Попробуйте снова."
+  },
+  "Servis trenutno nije dostupan.": {
+    "en": "The service is currently unavailable.",
+    "ru": "Сервис временно недоступен."
+  },
+  "Od ideje do vizuala.": {
+    "en": "From idea to visual.",
+    "ru": "От идеи к изображению."
+  },
+  "Generisanje nije uspjelo.": {
+    "en": "Generation failed.",
+    "ru": "Не удалось создать изображение."
+  },
+  "Preuzimanje nije uspjelo.": {
+    "en": "Download failed.",
+    "ru": "Не удалось скачать файл."
+  },
+  "Generisanje još traje. Provjeri status ponovo; novi zahtjev nije potreban.": {
+    "en": "Generation is still in progress. Check the status again; there is no need for a new request.",
+    "ru": "Генерация ещё идёт. Проверьте статус повторно; новый запрос не требуется."
+  },
+  "Status nije dostupan. Provjeri ponovo.": {
+    "en": "Status is unavailable. Check again.",
+    "ru": "Статус недоступен. Проверьте ещё раз."
+  },
+  "Cijena nije dostupna.": {
+    "en": "Price is unavailable.",
+    "ru": "Цена недоступна."
+  },
+  "Zahtjev nije sačuvan u pregledniku. Oslobodi prostor ili preuzmi rezervnu kopiju prije generisanja.": {
+    "en": "The request was not saved in the browser. Free up space or download a backup before generating.",
+    "ru": "Запрос не сохранён в браузере. Освободите место или скачайте резервную копию перед генерацией."
+  },
+  "Veza je prekinuta.": {
+    "en": "The connection was interrupted.",
+    "ru": "Соединение прервано."
+  },
+  "Zahtjev nije poslat modelu.": {
+    "en": "The request was not sent to the model.",
+    "ru": "Запрос не отправлен модели."
+  },
+  "Nastavi isti zahtjev ispod da izbjegneš duplo generisanje.": {
+    "en": "Continue the same request below to avoid generating twice.",
+    "ru": "Продолжите тот же запрос ниже, чтобы избежать повторной генерации."
+  },
+  "Original trenutno nije dostupan. Sačuvani vizual možeš preuzeti kao WebP.": {
+    "en": "The original is currently unavailable. You can download the saved visual as WebP.",
+    "ru": "Оригинал временно недоступен. Сохранённое изображение можно скачать в формате WebP."
+  },
+  "Preuzimanje originala nije uspjelo.": {
+    "en": "Unable to download the original.",
+    "ru": "Не удалось скачать оригинал."
+  },
+  "PIKA API CLUB · IMAGE GENERATION": {
+    "en": "PIKA API CLUB · IMAGE GENERATION",
+    "ru": "PIKA API CLUB · ГЕНЕРАЦИЯ ИЗОБРАЖЕНИЙ"
+  },
+  "Izaberi model": {
+    "en": "Choose a model",
+    "ru": "Выберите модель"
+  },
+  "Format slike": {
+    "en": "Image format",
+    "ru": "Формат изображения"
+  },
+  "Opis vizuala": {
+    "en": "Visual description",
+    "ru": "Описание изображения"
+  },
+  "prompt ·": {
+    "en": "prompt ·",
+    "ru": "промпт ·"
+  },
+  "Opiši šta želiš da nastane: motiv, stil, kompoziciju, boje, svjetlo i tekst koji treba prikazati.": {
+    "en": "Describe what you want to create: subject, style, composition, colours, lighting and any text to include.",
+    "ru": "Опишите желаемый результат: сюжет, стиль, композицию, цвета, освещение и текст на изображении."
+  },
+  "Najmanje 20 znakova. Jedna slika po potvrdi; prompt se šalje izabranom modelu preko Pike.": {
+    "en": "At least 20 characters. One image per confirmation; the prompt is sent to the selected model through Pika.",
+    "ru": "Не менее 20 символов. Одно изображение за подтверждение; промпт отправляется выбранной модели через Pika."
+  },
+  "Provjera dostupnosti...": {
+    "en": "Checking availability...",
+    "ru": "Проверяем доступность..."
+  },
+  "Dostupnost servisa nije moguće provjeriti. Sačuvani vizuali i opis ostaju uz projekat.": {
+    "en": "Unable to check the service. Your saved visuals and description remain with the project.",
+    "ru": "Не удалось проверить сервис. Сохранённые изображения и описание остаются в проекте."
+  },
+  "Modeli su pripremljeni. Generisanje se aktivira kada nastavnik doda Pika API ključ.": {
+    "en": "The models are ready. Generation is enabled once the instructor adds a Pika API key.",
+    "ru": "Модели подготовлены. Генерация станет доступна, когда преподаватель добавит ключ Pika API."
+  },
+  "Provjeri dostupnost ponovo": {
+    "en": "Check availability again",
+    "ru": "Проверить доступность ещё раз"
+  },
+  "Unos ključa i provjera veze ↗": {
+    "en": "API key setup and connection check ↗",
+    "ru": "Настройка ключа API и проверка соединения ↗"
+  },
+  "Prethodni zahtjev nema potvrđen odgovor. Nastavi isti zahtjev da izbjegneš duplu naplatu.": {
+    "en": "The previous request has no confirmed response. Continue the same request to avoid duplicate charges.",
+    "ru": "На предыдущий запрос нет подтверждённого ответа. Продолжите тот же запрос, чтобы избежать повторного списания."
+  },
+  "Nastavi isti zahtjev": {
+    "en": "Continue the same request",
+    "ru": "Продолжить тот же запрос"
+  },
+  "Ako je potvrda cijene istekla, nastavnik treba provjeriti Pika istoriju. Sačuvani rezultat ostaje dostupan.": {
+    "en": "If the price quote has expired, the instructor should check Pika history. Your saved result remains available.",
+    "ru": "Если срок подтверждения цены истёк, преподавателю следует проверить историю Pika. Сохранённый результат остаётся доступным."
+  },
+  "Vizual nastaje. Možeš nastaviti rad u drugim koracima.": {
+    "en": "Your visual is being created. You can continue working on other steps.",
+    "ru": "Изображение создаётся. Вы можете продолжить работу над другими шагами."
+  },
+  "Zahtjev je sačuvan. Provjeri da li je vizual spreman.": {
+    "en": "Request saved. Check whether the visual is ready.",
+    "ru": "Запрос сохранён. Проверьте готовность изображения."
+  },
+  "Provjeri status": {
+    "en": "Check status",
+    "ru": "Проверить статус"
+  },
+  "Procjena za jednu sliku:": {
+    "en": "Estimated price for one image:",
+    "ru": "Ориентировочная цена за изображение:"
+  },
+  "Generiši vizual": {
+    "en": "Generate visual",
+    "ru": "Создать изображение"
+  },
+  "Provjeri cijenu": {
+    "en": "Check price",
+    "ru": "Проверить цену"
+  },
+  "Koristi se kredit nastavnika. Kod modela koji se obračunavaju po tokenima konačna potrošnja može se razlikovati od procjene.": {
+    "en": "The instructor's credit is used. For models billed by tokens, the final charge may differ from the estimate.",
+    "ru": "Используется баланс преподавателя. У моделей с оплатой по токенам итоговая стоимость может отличаться от оценки."
+  },
+  "Za generisanje je potrebna internet veza.": {
+    "en": "An internet connection is required to generate images.",
+    "ru": "Для генерации изображений нужен интернет."
+  },
+  "Otvori veliki pregled vizuala": {
+    "en": "Open large visual preview",
+    "ru": "Открыть большой просмотр изображения"
+  },
+  "Generisani vizual · {0}": {
+    "en": "Generated visual · {0}",
+    "ru": "Созданное изображение · {0}"
+  },
+  "Pogledaj detalje": {
+    "en": "View details",
+    "ru": "Посмотреть подробнее"
+  },
+  "· PRETHODNI REZULTAT": {
+    "en": "· PREVIOUS RESULT",
+    "ru": "· ПРЕДЫДУЩИЙ РЕЗУЛЬТАТ"
+  },
+  "· SAČUVANO U PREGLEDNIKU": {
+    "en": "· SAVED IN BROWSER",
+    "ru": "· СОХРАНЕНО В БРАУЗЕРЕ"
+  },
+  "Postavi kao logotip": {
+    "en": "Use as logo",
+    "ru": "Использовать как логотип"
+  },
+  "Preuzmi vizual": {
+    "en": "Download visual",
+    "ru": "Скачать изображение"
+  },
+  "Original": {
+    "en": "Original",
+    "ru": "Оригинал"
+  },
+  "SAČUVANE VARIJANTE": {
+    "en": "SAVED VARIANTS",
+    "ru": "СОХРАНЁННЫЕ ВАРИАНТЫ"
+  },
+  "Uporedi prethodne pokušaje. Izbor varijante ne pokreće novo generisanje.": {
+    "en": "Compare earlier attempts. Selecting a variant does not start a new generation.",
+    "ru": "Сравните предыдущие попытки. Выбор варианта не запускает новую генерацию."
+  },
+  "Varijanta {0} · {1}": {
+    "en": "Variant {0} · {1}",
+    "ru": "Вариант {0} · {1}"
+  },
+  "Odabrana": {
+    "en": "Selected",
+    "ru": "Выбран"
+  },
+  "Vrati varijantu": {
+    "en": "Restore variant",
+    "ru": "Восстановить вариант"
+  },
+  "Provjera trenutno nije dostupna. Pokušaj ponovo.": {
+    "en": "The check is currently unavailable. Try again.",
+    "ru": "Проверка временно недоступна. Попробуйте снова."
+  },
+  "NASTAVNIČKE POSTAVKE": {
+    "en": "INSTRUCTOR SETTINGS",
+    "ru": "НАСТРОЙКИ ПРЕПОДАВАТЕЛЯ"
+  },
+  "Poveži kreativni alat": {
+    "en": "Connect your creative tool",
+    "ru": "Подключите инструмент для творчества"
+  },
+  "Jedan Pika API Club ključ za sva četiri modela i sve studentske korake.": {
+    "en": "One Pika API Club key for all four models and every project step.",
+    "ru": "Один ключ Pika API Club для всех четырёх моделей и всех шагов проекта."
+  },
+  "UNOS API KLJUČA": {
+    "en": "API KEY SETUP",
+    "ru": "НАСТРОЙКА КЛЮЧА API"
+  },
+  "Ključ unosiš direktno na Vercelu.": {
+    "en": "Enter the key directly in Vercel.",
+    "ru": "Введите ключ непосредственно в Vercel."
+  },
+  "Otvori postavke projekta svojim Vercel nalogom. Tu se ključ čuva na serveru i ostaje dostupan nakon novih objava aplikacije.": {
+    "en": "Open the project settings with your Vercel account. The key is stored on the server and remains available after new deployments.",
+    "ru": "Откройте настройки проекта в своём аккаунте Vercel. Ключ хранится на сервере и сохраняется после обновлений приложения."
+  },
+  "Dodaj varijablu": {
+    "en": "Add a variable",
+    "ru": "Добавьте переменную"
+  },
+  "U Environment Variables izaberi Add Environment Variable. U polje Key unesi:": {
+    "en": "In Environment Variables, select Add Environment Variable. Enter this in the Key field:",
+    "ru": "В Environment Variables выберите Add Environment Variable. В поле Key введите:"
+  },
+  "Kopiraj naziv varijable": {
+    "en": "Copy variable name",
+    "ru": "Скопировать имя переменной"
+  },
+  "Ručno kopiraj naziv PIKA_API_KEY.": {
+    "en": "Manually copy the name PIKA_API_KEY.",
+    "ru": "Скопируйте имя PIKA_API_KEY вручную."
+  },
+  "U polje Value zalijepi svoj ključ. Izaberi Production i Preview, označi kao Sensitive ako je opcija dostupna, pa sačuvaj.": {
+    "en": "Paste your key into Value. Select Production and Preview, mark it Sensitive if available, then save.",
+    "ru": "Вставьте ключ в поле Value. Выберите Production и Preview, отметьте Sensitive, если эта опция доступна, и сохраните."
+  },
+  "Otvori unos ključa na Vercelu": {
+    "en": "Open API key setup in Vercel",
+    "ru": "Открыть настройку ключа в Vercel"
+  },
+  "Objavi novu verziju s ključem": {
+    "en": "Deploy a new version with the key",
+    "ru": "Опубликуйте новую версию с ключом"
+  },
+  "U Deployments otvori meni posljednje produkcijske objave, izaberi Redeploy i sačekaj status Ready.": {
+    "en": "In Deployments, open the menu of the latest production deployment, select Redeploy and wait for Ready.",
+    "ru": "В Deployments откройте меню последней рабочей версии, выберите Redeploy и дождитесь статуса Ready."
+  },
+  "Otvori Vercel objave": {
+    "en": "Open Vercel deployments",
+    "ru": "Открыть развёртывания Vercel"
+  },
+  "Provjeri vezu": {
+    "en": "Check connection",
+    "ru": "Проверить соединение"
+  },
+  "Osvježi aplikaciju i provjeri da li Pika prihvata ključ. Ova provjera ne generiše sliku i ne troši kredit za generisanje.": {
+    "en": "Refresh the app and check whether Pika accepts the key. This check does not generate an image or spend generation credit.",
+    "ru": "Обновите приложение и проверьте, принимает ли Pika ключ. Эта проверка не создаёт изображение и не расходует баланс генерации."
+  },
+  "Provjeri Pika vezu": {
+    "en": "Check Pika connection",
+    "ru": "Проверить соединение с Pika"
+  },
+  "SPREMNI MODELI": {
+    "en": "AVAILABLE MODELS",
+    "ru": "ДОСТУПНЫЕ МОДЕЛИ"
+  },
+  "Studentima je dovoljan pristupni kod aplikacije. Za dodavanje ili zamjenu ključa potreban je vlasnikov Vercel nalog.": {
+    "en": "Students only need the app's access code. Adding or replacing the key requires the owner's Vercel account.",
+    "ru": "Студентам достаточно кода доступа к приложению. Для добавления или замены ключа нужен аккаунт Vercel владельца."
+  },
+  "Cijena se provjerava prije svakog generisanja. Podrazumijevani limit ponuđene cijene jedne slike je $0.25; nastavnik ga može promijeniti kroz PIKA_MAX_IMAGE_USD.": {
+    "en": "The price is checked before each generation. The default quoted-price limit is $0.25 per image; the instructor can change it using PIKA_MAX_IMAGE_USD.",
+    "ru": "Цена проверяется перед каждой генерацией. По умолчанию предельная цена составляет $0.25 за изображение; преподаватель может изменить её через PIKA_MAX_IMAGE_USD."
+  },
+  "Pika API ključevi": {
+    "en": "Pika API keys",
+    "ru": "Ключи Pika API"
+  },
+  "Tvoja ideja": {
+    "en": "Your idea",
+    "ru": "Ваша идея"
+  },
+  "VIZUELNI IDENTITET / 01": {
+    "en": "VISUAL IDENTITY / 01",
+    "ru": "ВИЗУАЛЬНЫЙ СТИЛЬ / 01"
+  },
+  "Ovdje počinje tvoja priča.": {
+    "en": "Your story starts here.",
+    "ru": "Здесь начинается ваша история."
+  },
+  "TIPOGRAFIJA": {
+    "en": "TYPOGRAPHY",
+    "ru": "ТИПОГРАФИКА"
+  },
+  "Otvori projekat {0}": {
+    "en": "Open project {0}",
+    "ru": "Открыть проект {0}"
+  },
+  "VIZUELNI IDENTITET": {
+    "en": "VISUAL IDENTITY",
+    "ru": "ВИЗУАЛЬНЫЙ СТИЛЬ"
+  },
+  "Od ideje do identiteta.": {
+    "en": "From idea to identity.",
+    "ru": "От идеи к фирменному стилю."
+  },
+  "Projekat bez naziva": {
+    "en": "Untitled project",
+    "ru": "Проект без названия"
+  },
+  "Opcije projekta {0}": {
+    "en": "Options for project {0}",
+    "ru": "Действия с проектом {0}"
+  },
+  "Zatvori opcije": {
+    "en": "Close options",
+    "ru": "Закрыть меню"
+  },
+  "Preuzmi projekat": {
+    "en": "Download project",
+    "ru": "Скачать проект"
+  },
+  "Napravi kopiju": {
+    "en": "Duplicate",
+    "ru": "Создать копию"
+  },
+  "Obriši projekat": {
+    "en": "Delete project",
+    "ru": "Удалить проект"
+  },
+  "Autor nije unesen": {
+    "en": "Author not entered",
+    "ru": "Автор не указан"
+  },
+  "Svi koraci popunjeni": {
+    "en": "All steps completed",
+    "ru": "Все шаги заполнены"
+  },
+  "U razvoju": {
+    "en": "In progress",
+    "ru": "В работе"
+  },
+  "{0} {1}": {
+    "en": "{0} {1}",
+    "ru": "{0} {1}"
+  },
+  "VIZUELNO KOMUNICIRANJE / 2026–27": {
+    "en": "VISUAL COMMUNICATION / 2026–27",
+    "ru": "ВИЗУАЛЬНЫЕ КОММУНИКАЦИИ / 2026–27"
+  },
+  "Moji projekti": {
+    "en": "My projects",
+    "ru": "Мои проекты"
+  },
+  "Tvoj prostor za dobre ideje.": {
+    "en": "Your space for good ideas.",
+    "ru": "Ваше пространство для хороших идей."
+  },
+  "Sve tvoje ideje, na jednom mjestu.": {
+    "en": "All your ideas in one place.",
+    "ru": "Все ваши идеи в одном месте."
+  },
+  "Istraži. Oblikuj. Objasni svoj izbor.": {
+    "en": "Explore. Design. Explain your choices.",
+    "ru": "Исследуйте. Создавайте. Объясняйте свой выбор."
+  },
+  "Novi projekat": {
+    "en": "New project",
+    "ru": "Новый проект"
+  },
+  "KOLOKVIJUM 01": {
+    "en": "ASSESSMENT 01",
+    "ru": "КОЛЛОКВИУМ 01"
+  },
+  "priča se nastavlja.": {
+    "en": "the story continues.",
+    "ru": "история продолжается."
+  },
+  "Posljednji korak:": {
+    "en": "Last step:",
+    "ru": "Последний шаг:"
+  },
+  "Sljedeći zadatak: {0}.": {
+    "en": "Next task: {0}.",
+    "ru": "Следующая задача: {0}."
+  },
+  "Svi elementi su popunjeni. Pregledaj cjelinu i obrazloži svoje odluke.": {
+    "en": "All elements are complete. Review the whole identity and explain your decisions.",
+    "ru": "Все элементы заполнены. Проверьте стиль целиком и объясните свои решения."
+  },
+  "Ne počinji logotipom.": {
+    "en": "Don’t start with the logo.",
+    "ru": "Не начинайте с логотипа."
+  },
+  "Počni": {
+    "en": "Begin with",
+    "ru": "Начните с"
+  },
+  "idejom.": {
+    "en": "an idea.",
+    "ru": "идеи."
+  },
+  "Odredi šta tvoja robna marka predstavlja.": {
+    "en": "Define what your brand stands for.",
+    "ru": "Определите, что представляет ваш бренд."
+  },
+  "Zatim pronađi boje, znak i glas koji joj pripadaju.": {
+    "en": "Then find its colours, symbol and voice.",
+    "ru": "Затем найдите его цвета, знак и голос."
+  },
+  "Nastavi svoj projekat": {
+    "en": "Continue your project",
+    "ru": "Продолжить проект"
+  },
+  "Kreni od svoje ideje": {
+    "en": "Start with your idea",
+    "ru": "Начать с идеи"
+  },
+  "JEDNA POVEZANA PRIČA": {
+    "en": "ONE COHERENT STORY",
+    "ru": "ОДНА ЦЕЛЬНАЯ ИСТОРИЯ"
+  },
+  "Kompozicija oblika, tipografije i boja": {
+    "en": "Composition of shapes, typography and colours",
+    "ru": "Композиция форм, типографики и цветов"
+  },
+  "FORM FOLLOWS MEANING.": {
+    "en": "FORM FOLLOWS MEANING.",
+    "ru": "ФОРМА СЛЕДУЕТ ЗА СМЫСЛОМ."
+  },
+  "bora": {
+    "en": "bora",
+    "ru": "bora"
+  },
+  "TIPOGRAFSKA PROBA": {
+    "en": "TYPE STUDY",
+    "ru": "ТИПОГРАФИЧЕСКИЙ ЭТЮД"
+  },
+  "Karakter je u detaljima.": {
+    "en": "Character is in the details.",
+    "ru": "Характер — в деталях."
+  },
+  "PALETA / 01—04": {
+    "en": "PALETTE / 01—04",
+    "ru": "ПАЛИТРА / 01—04"
+  },
+  "mala ideja.": {
+    "en": "small idea.",
+    "ru": "маленькая идея."
+  },
+  "veliki potencijal.": {
+    "en": "great potential.",
+    "ru": "большой потенциал."
+  },
+  "OD IDEJE DO": {
+    "en": "FROM IDEA TO",
+    "ru": "ОТ ИДЕИ К"
+  },
+  "IDENTITETA": {
+    "en": "IDENTITY",
+    "ru": "ФИРМЕННОМУ СТИЛЮ"
+  },
+  "Polazište": {
+    "en": "Starting point",
+    "ru": "Отправная точка"
+  },
+  "Strategija": {
+    "en": "Strategy",
+    "ru": "Стратегия"
+  },
+  "Boje": {
+    "en": "Colours",
+    "ru": "Цвета"
+  },
+  "Logotip": {
+    "en": "Logo",
+    "ru": "Логотип"
+  },
+  "Tipografija": {
+    "en": "Typography",
+    "ru": "Типографика"
+  },
+  "Primjena": {
+    "en": "Applications",
+    "ru": "Применение"
+  },
+  "Projekti su povezani s tvojim nalogom. Izvoz ostaje tvoja rezervna kopija.": {
+    "en": "Projects are linked to your account. Exporting gives you a backup.",
+    "ru": "Проекты связаны с вашим аккаунтом. Экспорт позволяет создать резервную копию."
+  },
+  "Sačuvano u ovom pregledniku. Izvezi projekat da ga poneseš sa sobom.": {
+    "en": "Saved in this browser. Export your project to take it with you.",
+    "ru": "Сохранено в этом браузере. Экспортируйте проект, чтобы перенести его на другое устройство."
+  },
+  "Pretraži projekte": {
+    "en": "Search projects",
+    "ru": "Поиск проектов"
+  },
+  "Pretraži projekte...": {
+    "en": "Search projects...",
+    "ru": "Найти проект..."
+  },
+  "Uvezi projekat": {
+    "en": "Import project",
+    "ru": "Импортировать проект"
+  },
+  "Status": {
+    "en": "Status",
+    "ru": "Статус"
+  },
+  "Svi projekti": {
+    "en": "All projects",
+    "ru": "Все проекты"
+  },
+  "Popunjeni": {
+    "en": "Completed",
+    "ru": "Заполненные"
+  },
+  "Redoslijed": {
+    "en": "Sort by",
+    "ru": "Сортировка"
+  },
+  "Posljednja izmjena": {
+    "en": "Last updated",
+    "ru": "Последнее изменение"
+  },
+  "Naziv A–Z": {
+    "en": "Name A–Z",
+    "ru": "По названию"
+  },
+  "Prostor za novu ideju": {
+    "en": "Space for a new idea",
+    "ru": "Место для новой идеи"
+  },
+  "Tvoj prvi identitet počinje ovdje": {
+    "en": "Your first identity starts here",
+    "ru": "Здесь начинается ваш первый фирменный стиль"
+  },
+  "Nova priča. Novi vizuelni jezik.": {
+    "en": "New story. New visual language.",
+    "ru": "Новая история. Новый визуальный язык."
+  },
+  "Lični projekat, robna marka ili redizajn.": {
+    "en": "A personal project, a brand or a redesign.",
+    "ru": "Личный проект, бренд или редизайн."
+  },
+  "Kreiraj projekat": {
+    "en": "Create project",
+    "ru": "Создать проект"
+  },
+  "bora.": {
+    "en": "bora.",
+    "ru": "bora."
+  },
+  "PRIRODA. BLIŽE TEBI.": {
+    "en": "NATURE. CLOSER TO YOU.",
+    "ru": "ПРИРОДА. БЛИЖЕ К ВАМ."
+  },
+  "EDUKATIVNI PRIMJER": {
+    "en": "LEARNING EXAMPLE",
+    "ru": "УЧЕБНЫЙ ПРИМЕР"
+  },
+  "Kako izgleda jedna povezana priča?": {
+    "en": "What does a coherent identity look like?",
+    "ru": "Как выглядит цельный фирменный стиль?"
+  },
+  "Istraži primjer identiteta i prilagodi ga za vježbu.": {
+    "en": "Explore an identity example and adapt it for practice.",
+    "ru": "Изучите пример фирменного стиля и адаптируйте его для практики."
+  },
+  "Otvori primjer": {
+    "en": "Open example",
+    "ru": "Открыть пример"
+  },
+  "Nema projekata za „": {
+    "en": "No projects found for “",
+    "ru": "Нет проектов по запросу «"
+  },
+  "MALI VODIČ, VELIKA POMOĆ": {
+    "en": "A SMALL GUIDE, A BIG HELP",
+    "ru": "КОРОТКОЕ РУКОВОДСТВО, БОЛЬШАЯ ПОМОЩЬ"
+  },
+  "Šta zapravo čini dobar identitet?": {
+    "en": "What makes a good identity?",
+    "ru": "Что делает фирменный стиль удачным?"
+  },
+  "Smjernice s nastave, na dohvat ruke.": {
+    "en": "Class guidance at your fingertips.",
+    "ru": "Рекомендации с занятий всегда под рукой."
+  },
+  "SA ČASA / 29. OKTOBAR": {
+    "en": "FROM CLASS / 29 OCTOBER",
+    "ru": "С ЗАНЯТИЯ / 29 ОКТЯБРЯ"
+  },
+  "Logotip izvire iz vizije i misije.": {
+    "en": "A logo grows from vision and mission.",
+    "ru": "Логотип вырастает из видения и миссии."
+  },
+  "Prvo odredi značenje. Oblik dolazi poslije.": {
+    "en": "Define the meaning first. Shape follows.",
+    "ru": "Сначала определите смысл. Затем появится форма."
+  },
+  "FORMA — STUDIO ZA VIZUELNO KOMUNICIRANJE": {
+    "en": "FORMA — VISUAL COMMUNICATION STUDIO",
+    "ru": "FORMA — СТУДИЯ ВИЗУАЛЬНЫХ КОММУНИКАЦИЙ"
+  },
+  "Napravi nešto svoje.": {
+    "en": "Make something of your own.",
+    "ru": "Создайте что-то своё."
+  },
+  "Odaberi temu koja ti je bliska.": {
+    "en": "Choose a subject you care about.",
+    "ru": "Выберите близкую вам тему."
+  },
+  "Lični projekat, porodični posao, hobi ili organizacija koju poznaješ dobar su početak. Razvijaš novu robnu marku ili predlažeš izmjene postojećeg identiteta. Radiš individualno. Isti primjer kasnije možeš razvijati na drugim predmetima.": {
+    "en": "A personal project, family business, hobby or organisation you know is a good starting point. Develop a new brand or propose changes to an existing identity. Work individually. You can develop the same example further in other courses.",
+    "ru": "Начните с личного проекта, семейного бизнеса, хобби или знакомой организации. Разработайте новый бренд или предложите изменения существующего стиля. Работа выполняется индивидуально. Этот же проект можно развивать на других предметах."
+  },
+  "Opiši u dvije rečenice: šta radiš, za koga i zašto je to važno.": {
+    "en": "Describe in two sentences what you do, who it is for and why it matters.",
+    "ru": "Опишите в двух предложениях, чем вы занимаетесь, для кого и почему это важно."
+  },
+  "Vizija je emocija. Misija je djelovanje.": {
+    "en": "Vision is emotion. Mission is action.",
+    "ru": "Видение — это образ будущего. Миссия — действие."
+  },
+  "Vizija opisuje svijet kojem težiš — smije biti ambiciozna i idealizovana. Misija govori šta stvarno radiš da joj se približiš. Za svaku je dovoljno 1–2 rečenice. Dodaj kratku strategiju i 3–5 konkretnih ciljeva, kratkoročnih ili dugoročnih.": {
+    "en": "Your vision describes the world you aspire to; it can be ambitious and idealised. Your mission explains what you actually do to move towards it. One or two sentences for each is enough. Add a short strategy and 3–5 concrete short-term or long-term goals.",
+    "ru": "Видение описывает мир, к которому вы стремитесь; оно может быть амбициозным и идеализированным. Миссия объясняет, что вы делаете для приближения к нему. Для каждого пункта достаточно 1–2 предложений. Добавьте краткую стратегию и 3–5 конкретных краткосрочных или долгосрочных целей."
+  },
+  "Nemoj još crtati znak. Najprije pronađi ideju koju bi taj znak trebalo da prenese.": {
+    "en": "Before drawing a symbol, identify the idea it should communicate.",
+    "ru": "Прежде чем рисовать знак, найдите идею, которую он должен передавать."
+  },
+  "Izaberi 2–4 boje s razlogom.": {
+    "en": "Choose 2–4 colours with a purpose.",
+    "ru": "Выберите 2–4 цвета с обоснованием."
+  },
+  "Odredi primarnu, sekundarnu i po potrebi akcentnu boju. Poveži izbor s porukom i publikom. Kontrast je važniji od same dopadljivosti palete: tekst mora biti čitljiv. HEX vrijednosti u alatu olakšavaju primjenu, ali tehničke šifre nisu zahtjev kolokvijuma.": {
+    "en": "Define a primary, secondary and, if needed, accent colour. Connect your choices to the message and audience. Contrast matters more than an attractive palette: text must be readable. HEX values help with implementation, but technical codes are not an assessment requirement.",
+    "ru": "Определите основной, дополнительный и при необходимости акцентный цвет. Свяжите выбор с сообщением и аудиторией. Контраст важнее привлекательности палитры: текст должен читаться. HEX-коды помогают применять цвета, но технические обозначения не являются требованием коллоквиума."
+  },
+  "Provjeri tamnu na svijetloj i svijetlu na tamnoj pozadini. Bijelo na žutom najčešće nije čitljivo.": {
+    "en": "Check dark text on a light background and light text on a dark background. White on yellow is usually hard to read.",
+    "ru": "Проверьте тёмный текст на светлом фоне и светлый на тёмном. Белый текст на жёлтом обычно трудно читать."
+  },
+  "Jednostavan znak može reći mnogo.": {
+    "en": "A simple symbol can say a lot.",
+    "ru": "Простой знак может сказать многое."
+  },
+  "Možeš koristiti znak, naziv ili njihovu kombinaciju. Ikona liči na ono što predstavlja, dok simbol može nositi šire značenje. Znak treba da izvire iz vizije, misije i slogana. Ne mora sadržavati sve boje palete.": {
+    "en": "Use a symbol, a name or a combination. An icon resembles what it represents, while a symbol can carry a broader meaning. The mark should grow from the vision, mission and slogan. It does not need to contain every colour in the palette.",
+    "ru": "Используйте знак, название или их сочетание. Иконический знак похож на то, что он обозначает, а символ может передавать более широкий смысл. Знак должен вытекать из видения, миссии и слогана. Ему не обязательно содержать все цвета палитры."
+  },
+  "Predlošci su dozvoljeni, ali zahtijevaju vlastite izmjene. Isto važi za početne oblike u Formi. Objasni šta si promijenio/la i zašto.": {
+    "en": "Templates are allowed, but require your own changes. This also applies to Forma's starting shapes. Explain what you changed and why.",
+    "ru": "Шаблоны разрешены, но требуют собственных изменений. Это относится и к начальным формам в Forma. Объясните, что и почему вы изменили."
+  },
+  "Tipografija određuje ton.": {
+    "en": "Typography sets the tone.",
+    "ru": "Типографика задаёт тон."
+  },
+  "Serifni i neserifni fontovi imaju različit karakter. Postojeći font je sasvim dovoljan: prikaži primjer i obrazloži izbor. Provjeri čitljivost u naslovu i dužem tekstu, te podršku za naša slova.": {
+    "en": "Serif and sans-serif fonts have different characters. An existing font is sufficient: show a specimen and explain your choice. Check readability in headings and longer text, as well as support for the characters your language uses.",
+    "ru": "Шрифты с засечками и без засечек имеют разный характер. Достаточно готового шрифта: покажите образец и обоснуйте выбор. Проверьте читаемость заголовков и длинного текста, а также поддержку нужных букв."
+  },
+  "Počni sa jednim ili dva fonta. Jasna hijerarhija važnija je od velikog broja stilova.": {
+    "en": "Start with one or two fonts. Clear hierarchy matters more than a large number of styles.",
+    "ru": "Начните с одного или двух шрифтов. Ясная иерархия важнее большого количества начертаний."
+  },
+  "Identitet treba da radi i izvan logotipa.": {
+    "en": "An identity should work beyond the logo.",
+    "ru": "Фирменный стиль должен работать не только в логотипе."
+  },
+  "Primijeni identitet na memorandum: znak, naziv i odgovarajući kontakt podaci. Za simulaciju ne moraš unositi stvarni JIB ili privatne podatke. Uporedi primjenu na dokumentu i društvenoj objavi. Konzistentnost povezuje sve elemente.": {
+    "en": "Apply the identity to letterhead: include the mark, name and appropriate contact details. You do not need a real tax ID or private details for a mockup. Compare the document and social post applications. Consistency connects every element.",
+    "ru": "Примените стиль к фирменному бланку: используйте знак, название и подходящие контакты. Для макета не нужны настоящий налоговый номер или личные данные. Сравните оформление документа и публикации в соцсетях. Последовательность объединяет все элементы."
+  },
+  "U drugom kolokvijumu isti identitet postaje osnova jednostavne landing stranice.": {
+    "en": "In the second assessment, the same identity becomes the basis of a simple landing page.",
+    "ru": "Во втором коллоквиуме этот же стиль станет основой простой посадочной страницы."
+  },
+  "Objasni odluke. Pokaži svoje znanje.": {
+    "en": "Explain your decisions. Show your knowledge.",
+    "ru": "Объясните решения. Покажите свои знания."
+  },
+  "Prvi kolokvijum predaje se digitalno, kao jedan dokument u slobodnoj formi. Uključi radni naziv, viziju, misiju, strategiju, ciljeve, paletu, logotip, tipografiju i memorandum. Vrednuje se primjena znanja i smisao izbora. Kontrolna lista u aplikaciji provjerava popunjenost, ne dodjeljuje ocjenu.": {
+    "en": "The first assessment is submitted digitally as one document in a format of your choice. Include the working title, vision, mission, strategy, goals, palette, logo, typography and letterhead. Assessment focuses on applying knowledge and explaining choices. The app checklist checks completeness; it does not assign a grade.",
+    "ru": "Первый коллоквиум сдаётся в цифровом виде одним документом в свободной форме. Включите рабочее название, видение, миссию, стратегию, цели, палитру, логотип, типографику и бланк. Оцениваются применение знаний и обоснование выбора. Список в приложении проверяет заполнение, а не выставляет оценку."
+  },
+  "Rok je okvirno druga polovina novembra; tačan datum i kanal predaje provjeri na nastavi ili u Google učionici.": {
+    "en": "The expected deadline is in the second half of November; confirm the exact date and submission channel in class or Google Classroom.",
+    "ru": "Ориентировочный срок — вторая половина ноября. Уточните дату и способ сдачи на занятии или в Google Classroom."
+  },
+  "ZNANJE KOJE OBLIKUJE IDEJE": {
+    "en": "KNOWLEDGE THAT SHAPES IDEAS",
+    "ru": "ЗНАНИЯ, ПРИДАЮЩИЕ ИДЕЯМ ФОРМУ"
+  },
+  "Mali vodič kroz identitet.": {
+    "en": "A short guide to identity.",
+    "ru": "Краткое руководство по фирменному стилю."
+  },
+  "Sažetak praktičnih smjernica s nastave 15, 22. i 29. oktobra 2026.": {
+    "en": "A summary of practical guidance from the classes on 15, 22 and 29 October 2026.",
+    "ru": "Краткие практические рекомендации с занятий 15, 22 и 29 октября 2026 года."
+  },
+  "Primijeni na svojoj ideji": {
+    "en": "Apply it to your idea",
+    "ru": "Применить к своей идее"
+  },
+  "ZA TVOJ PROJEKAT": {
+    "en": "FOR YOUR PROJECT",
+    "ru": "ДЛЯ ВАШЕГО ПРОЕКТА"
+  },
+  "VAŽNO JE ZNAČENJE": {
+    "en": "MEANING MATTERS",
+    "ru": "СМЫСЛ ИМЕЕТ ЗНАЧЕНИЕ"
+  },
+  "Dobro izgleda.": {
+    "en": "It looks good.",
+    "ru": "Выглядит хорошо."
+  },
+  "Ali": {
+    "en": "But",
+    "ru": "Но"
+  },
+  "zašto?": {
+    "en": "why?",
+    "ru": "почему?"
+  },
+  "To je pitanje koje treba da prati svaku tvoju dizajnersku odluku.": {
+    "en": "Ask yourself this question with every design decision.",
+    "ru": "Задавайте себе этот вопрос при каждом дизайнерском решении."
+  },
+  "DOGOVOR S POSLJEDNJEG ČASA": {
+    "en": "FROM THE LAST CLASS",
+    "ru": "ДОГОВОРЁННОСТИ ПОСЛЕДНЕГО ЗАНЯТИЯ"
+  },
+  "Naredni blok od oko 2,5 sata posvećen je praktičnoj izradi identiteta. Ideja ostaje otvorena za dalju doradu.": {
+    "en": "The next session of about 2.5 hours is dedicated to developing the identity in practice. Your idea remains open to further refinement.",
+    "ru": "Следующий блок продолжительностью около 2,5 часов посвящён практической разработке стиля. Идею можно дорабатывать и дальше."
+  },
+  "Literatura i prezentacije nalaze se u Google učionici.": {
+    "en": "Reading materials and presentations are in Google Classroom.",
+    "ru": "Литература и презентации находятся в Google Classroom."
+  },
+  "Zatvori prozor": {
+    "en": "Close dialog",
+    "ru": "Закрыть окно"
+  },
+  "opciono": {
+    "en": "optional",
+    "ru": "необязательно"
+  },
+  "MALI DIZAJNERSKI SAVJET": {
+    "en": "A SMALL DESIGN TIP",
+    "ru": "НЕБОЛЬШОЙ СОВЕТ ПО ДИЗАЙНУ"
+  },
+  "Izaberi boju {0}": {
+    "en": "Choose colour {0}",
+    "ru": "Выбрать цвет {0}"
+  },
+  "Promijeni ↗": {
+    "en": "Change ↗",
+    "ru": "Изменить ↗"
+  },
+  "Ukloni boju {0}": {
+    "en": "Remove colour {0}",
+    "ru": "Удалить цвет {0}"
+  },
+  "Naziv boje {0}": {
+    "en": "Colour {0} name",
+    "ru": "Название цвета {0}"
+  },
+  "HEX boje {0}": {
+    "en": "Colour {0} HEX",
+    "ru": "HEX цвета {0}"
+  },
+  "Koristi # i 6 HEX znakova.": {
+    "en": "Use # followed by 6 hexadecimal characters.",
+    "ru": "Используйте # и 6 шестнадцатеричных символов."
+  },
+  "KOLOKVIJUM 01 /": {
+    "en": "ASSESSMENT 01 /",
+    "ru": "КОЛЛОКВИУМ 01 /"
+  },
+  "NOVI IDENTITET": {
+    "en": "NEW IDENTITY",
+    "ru": "НОВЫЙ ФИРМЕННЫЙ СТИЛЬ"
+  },
+  "Moj vizuelni identitet": {
+    "en": "My visual identity",
+    "ru": "Мой визуальный стиль"
+  },
+  "elemenata": {
+    "en": "elements",
+    "ru": "элементов"
+  },
+  "popunjeno": {
+    "en": "completed",
+    "ru": "заполнено"
+  },
+  "Koraci projekta": {
+    "en": "Project steps",
+    "ru": "Шаги проекта"
+  },
+  "KORAK 0": {
+    "en": "STEP 0",
+    "ru": "ШАГ 0"
+  },
+  "Odaberi ideju koja ti je bliska. Sve kasnije možeš mijenjati.": {
+    "en": "Choose an idea you care about. You can change everything later.",
+    "ru": "Выберите близкую вам идею. Позже всё можно изменить."
+  },
+  "Pronađi smisao iz kojeg će izrasti tvoj vizuelni identitet.": {
+    "en": "Find the meaning your visual identity will grow from.",
+    "ru": "Найдите смысл, из которого вырастет ваш визуальный стиль."
+  },
+  "Mala, pažljivo odabrana paleta ima snažan karakter.": {
+    "en": "A small, carefully chosen palette has a strong character.",
+    "ru": "Небольшая, тщательно подобранная палитра обладает ярким характером."
+  },
+  "Oblikuj znak koji sažima tvoju ideju. I objasni zašto.": {
+    "en": "Shape a mark that captures your idea. Explain why it works.",
+    "ru": "Создайте знак, выражающий вашу идею. И объясните свой выбор."
+  },
+  "Pronađi ravnotežu između karaktera i čitljivosti.": {
+    "en": "Find a balance between character and readability.",
+    "ru": "Найдите баланс между характером и читаемостью."
+  },
+  "Provjeri kako tvoji elementi funkcionišu zajedno.": {
+    "en": "See how your elements work together.",
+    "ru": "Проверьте, как элементы работают вместе."
+  },
+  "Provjeri cjelinu, obrazloži odluke i pripremi dokument.": {
+    "en": "Review the whole identity, explain your choices and prepare the document.",
+    "ru": "Проверьте целостность, обоснуйте решения и подготовьте документ."
+  },
+  "Radni naziv": {
+    "en": "Working title",
+    "ru": "Рабочее название"
+  },
+  "Kako se zove tvoja ideja?": {
+    "en": "What is your idea called?",
+    "ru": "Как называется ваша идея?"
+  },
+  "Ime i prezime autora": {
+    "en": "Author's full name",
+    "ru": "Имя и фамилия автора"
+  },
+  "Tvoje ime i prezime": {
+    "en": "Your full name",
+    "ru": "Ваше имя и фамилия"
+  },
+  "Šta razvijaš?": {
+    "en": "What are you developing?",
+    "ru": "Что вы разрабатываете?"
+  },
+  "Nova robna marka": {
+    "en": "New brand",
+    "ru": "Новый бренд"
+  },
+  "Od ideje do prvog identiteta": {
+    "en": "From idea to first identity",
+    "ru": "От идеи к первому фирменному стилю"
+  },
+  "Redizajn": {
+    "en": "Redesign",
+    "ru": "Редизайн"
+  },
+  "Novi pogled na postojeću priču": {
+    "en": "A fresh look at an existing story",
+    "ru": "Новый взгляд на существующую историю"
+  },
+  "Tvoja ideja, ukratko": {
+    "en": "Your idea, briefly",
+    "ru": "Кратко о вашей идее"
+  },
+  "Čime se baviš? Koji problem rješavaš? Šta te pokreće?": {
+    "en": "What do you do? What problem do you solve? What motivates you?",
+    "ru": "Чем вы занимаетесь? Какую проблему решаете? Что вас вдохновляет?"
+  },
+  "Opiši postojeću robnu marku i šta želiš poboljšati.": {
+    "en": "Describe the existing brand and what you want to improve.",
+    "ru": "Опишите существующий бренд и то, что хотите улучшить."
+  },
+  "Hobi, porodični posao, lični projekat ili nešto sasvim novo.": {
+    "en": "A hobby, family business, personal project or something entirely new.",
+    "ru": "Хобби, семейный бизнес, личный проект или что-то совершенно новое."
+  },
+  "Kome se obraćaš?": {
+    "en": "Who is your audience?",
+    "ru": "К кому вы обращаетесь?"
+  },
+  "Ko su ljudi kojima je tvoja ideja namijenjena?": {
+    "en": "Who are the people your idea is intended for?",
+    "ru": "Для каких людей предназначена ваша идея?"
+  },
+  "Najbolji početak je nešto što dobro poznaješ. Ovu ideju možeš nastaviti razvijati i na sljedećim predmetima.": {
+    "en": "Start with something you know well. You can keep developing this idea in later courses.",
+    "ru": "Лучше начать с того, что вы хорошо знаете. Эту идею можно развивать и на следующих предметах."
+  },
+  "Vizija": {
+    "en": "Vision",
+    "ru": "Видение"
+  },
+  "Kakav svijet želiš stvoriti? Jedna do dvije rečenice. Smiješ biti ambiciozan/na.": {
+    "en": "What kind of world do you want to create? One or two sentences. Be ambitious.",
+    "ru": "Какой мир вы хотите создать? Одно-два предложения. Можно мыслить масштабно."
+  },
+  "Zamišljamo svijet u kojem...": {
+    "en": "We imagine a world where...",
+    "ru": "Мы представляем мир, в котором..."
+  },
+  "Misija": {
+    "en": "Mission",
+    "ru": "Миссия"
+  },
+  "Šta konkretno radiš, za koga i na koji način? Jedna do dvije rečenice.": {
+    "en": "What exactly do you do, for whom and how? One or two sentences.",
+    "ru": "Что именно вы делаете, для кого и как? Одно-два предложения."
+  },
+  "Naša misija je da...": {
+    "en": "Our mission is to...",
+    "ru": "Наша миссия — ..."
+  },
+  "Kako ćeš ideju pretvoriti u djelovanje? Opiši pristup ukratko.": {
+    "en": "How will you put the idea into action? Briefly describe your approach.",
+    "ru": "Как вы воплотите идею в действие? Кратко опишите подход."
+  },
+  "Počinjemo od... Razlikujemo se po...": {
+    "en": "We start with... What sets us apart is...",
+    "ru": "Мы начинаем с... Нас отличает..."
+  },
+  "Ciljevi": {
+    "en": "Goals",
+    "ru": "Цели"
+  },
+  "3–5 konkretnih koraka, kratkoročnih ili dugoročnih.": {
+    "en": "3–5 concrete steps, short-term or long-term.",
+    "ru": "3–5 конкретных краткосрочных или долгосрочных шагов."
+  },
+  "Cilj {0}": {
+    "en": "Goal {0}",
+    "ru": "Цель {0}"
+  },
+  "Konkretan cilj {0}...": {
+    "en": "Concrete goal {0}...",
+    "ru": "Конкретная цель {0}..."
+  },
+  "Ukloni cilj {0}": {
+    "en": "Remove goal {0}",
+    "ru": "Удалить цель {0}"
+  },
+  "Dodaj cilj": {
+    "en": "Add goal",
+    "ru": "Добавить цель"
+  },
+  "Slogan": {
+    "en": "Slogan",
+    "ru": "Слоган"
+  },
+  "Velika ideja u nekoliko riječi.": {
+    "en": "A big idea in a few words.",
+    "ru": "Большая идея в нескольких словах."
+  },
+  "Vizija je ono čemu težiš. Misija je ono što radiš. Ciljevi su koraci koje možeš pratiti.": {
+    "en": "Vision is what you aspire to. Mission is what you do. Goals are steps you can track.",
+    "ru": "Видение — то, к чему вы стремитесь. Миссия — то, что вы делаете. Цели — шаги, которые можно отслеживать."
+  },
+  "Dodaj boju": {
+    "en": "Add colour",
+    "ru": "Добавить цвет"
+  },
+  "PROVJERA KONTRASTA": {
+    "en": "CONTRAST CHECK",
+    "ru": "ПРОВЕРКА КОНТРАСТА"
+  },
+  "Jasna poruka.": {
+    "en": "A clear message.",
+    "ru": "Ясное сообщение."
+  },
+  "Čitljiv tekst.": {
+    "en": "Readable text.",
+    "ru": "Читаемый текст."
+  },
+  "Boja teksta": {
+    "en": "Text colour",
+    "ru": "Цвет текста"
+  },
+  "Boja {0}": {
+    "en": "Colour {0}",
+    "ru": "Цвет {0}"
+  },
+  "Pozadina": {
+    "en": "Background",
+    "ru": "Фон"
+  },
+  "Dobar kontrast za standardni tekst (WCAG AA).": {
+    "en": "Good contrast for normal text (WCAG AA).",
+    "ru": "Хороший контраст для обычного текста (WCAG AA)."
+  },
+  "Dovoljno za veliki tekst. Za mali tekst ciljaj najmanje 4,5:1.": {
+    "en": "Suitable for large text. Aim for at least 4.5:1 for small text.",
+    "ru": "Подходит для крупного текста. Для мелкого текста нужен контраст не ниже 4,5:1."
+  },
+  "Nizak kontrast. Probaj tamniji tekst ili svjetliju pozadinu.": {
+    "en": "Low contrast. Try darker text or a lighter background.",
+    "ru": "Низкий контраст. Попробуйте более тёмный текст или светлый фон."
+  },
+  "Zašto baš ove boje?": {
+    "en": "Why these colours?",
+    "ru": "Почему именно эти цвета?"
+  },
+  "Koje značenje nose? Kako se povezuju s idejom i publikom?": {
+    "en": "What do they mean? How do they connect to your idea and audience?",
+    "ru": "Какой смысл они несут? Как связаны с идеей и аудиторией?"
+  },
+  "Ne moraš koristiti sve boje u logotipu. Dodijeli im jasne uloge i koristi ih dosljedno.": {
+    "en": "You do not need every colour in the logo. Give colours clear roles and use them consistently.",
+    "ru": "Не обязательно использовать все цвета в логотипе. Назначьте им понятные роли и используйте последовательно."
+  },
+  "Vrati početni geometrijski znak": {
+    "en": "Restore the starting geometric mark",
+    "ru": "Вернуть исходный геометрический знак"
+  },
+  "Istraži i početnu formu": {
+    "en": "Explore a starting shape too",
+    "ru": "Исследуйте и начальную форму"
+  },
+  "Ovi oblici su polazište za tvoju doradu, ne gotov autorski znak.": {
+    "en": "These shapes are starting points for your own work, not finished original marks.",
+    "ru": "Эти формы — отправная точка для доработки, а не готовые авторские знаки."
+  },
+  "Cvijet": {
+    "en": "Flower",
+    "ru": "Цветок"
+  },
+  "Krugovi": {
+    "en": "Circles",
+    "ru": "Круги"
+  },
+  "Luk": {
+    "en": "Arch",
+    "ru": "Арка"
+  },
+  "Romb": {
+    "en": "Diamond",
+    "ru": "Ромб"
+  },
+  "Samo tekst": {
+    "en": "Text only",
+    "ru": "Только текст"
+  },
+  "Tekst": {
+    "en": "Text",
+    "ru": "Текст"
+  },
+  "Tekst uz znak": {
+    "en": "Text beside the mark",
+    "ru": "Текст рядом со знаком"
+  },
+  "Naziv ili inicijali": {
+    "en": "Name or initials",
+    "ru": "Название или инициалы"
+  },
+  "Ostavi prazno da koristiš radni naziv projekta.": {
+    "en": "Leave blank to use the project's working title.",
+    "ru": "Оставьте пустым, чтобы использовать рабочее название проекта."
+  },
+  "SVIJETLA PODLOGA": {
+    "en": "LIGHT BACKGROUND",
+    "ru": "СВЕТЛЫЙ ФОН"
+  },
+  "JEDNOBOJNA PROBA": {
+    "en": "MONOCHROME TEST",
+    "ru": "ОДНОЦВЕТНАЯ ПРОБА"
+  },
+  "Značenje i autorska dorada": {
+    "en": "Meaning and original refinements",
+    "ru": "Смысл и авторская доработка"
+  },
+  "Šta znak predstavlja? Kako proizlazi iz tvoje vizije? Koje si izmjene unio/la?": {
+    "en": "What does the mark represent? How does it reflect your vision? What did you change?",
+    "ru": "Что означает знак? Как он отражает ваше видение? Какие изменения вы внесли?"
+  },
+  "Preuzmi SVG za dalju doradu": {
+    "en": "Download SVG for further editing",
+    "ru": "Скачать SVG для доработки"
+  },
+  "Font za naslove": {
+    "en": "Heading font",
+    "ru": "Шрифт заголовков"
+  },
+  "Font za tekst": {
+    "en": "Body font",
+    "ru": "Шрифт основного текста"
+  },
+  "Bb.": {
+    "en": "Bb.",
+    "ru": "Бб."
+  },
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ": {
+    "en": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "ru": "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+  },
+  "abcdefghijklmnopqrstuvwxyz": {
+    "en": "abcdefghijklmnopqrstuvwxyz",
+    "ru": "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+  },
+  "Čč Ćć Đđ Šš Žž · 0123456789": {
+    "en": "Čč Ćć Đđ Šš Žž · 0123456789",
+    "ru": "Ёё Йй Щщ Ыы Ъъ Ьь · 0123456789"
+  },
+  "Dobra ideja ima svoj glas.": {
+    "en": "A good idea has a voice.",
+    "ru": "У хорошей идеи есть свой голос."
+  },
+  "Vizuelni identitet je priča koju prepoznajemo i prije nego što pročitamo prvu riječ. Odabrana tipografija daje joj karakter, ritam i jasnoću.": {
+    "en": "A visual identity is a story we recognise before reading the first word. The chosen typography gives it character, rhythm and clarity.",
+    "ru": "Визуальный стиль — история, которую мы узнаём ещё до первого слова. Выбранная типографика придаёт ей характер, ритм и ясность."
+  },
+  "Zašto ovi fontovi?": {
+    "en": "Why these fonts?",
+    "ru": "Почему эти шрифты?"
+  },
+  "Kakav karakter prenose? Kako se dopunjuju? Zašto odgovaraju tvojoj publici?": {
+    "en": "What character do they convey? How do they complement each other? Why do they suit your audience?",
+    "ru": "Какой характер они передают? Как дополняют друг друга? Почему подходят вашей аудитории?"
+  },
+  "Testiraj naša slova: č, ć, đ, š i ž. U paru fontova traži jasnu hijerarhiju, a ne takmičenje za pažnju.": {
+    "en": "Check language-specific characters, including č, ć, đ, š and ž. Look for a clear hierarchy between fonts, rather than a contest for attention.",
+    "ru": "Проверьте поддержку нужных букв: ё, й, щ, ы, ъ и ь. В паре шрифтов важна ясная иерархия, а не борьба за внимание."
+  },
+  "Pregled primjene": {
+    "en": "Application preview",
+    "ru": "Просмотр применения"
+  },
+  "Memorandum": {
+    "en": "Letterhead",
+    "ru": "Фирменный бланк"
+  },
+  "Društvena objava": {
+    "en": "Social post",
+    "ru": "Публикация в соцсетях"
+  },
+  "Predložak s tvojim elementima": {
+    "en": "A template with your elements",
+    "ru": "Шаблон с вашими элементами"
+  },
+  "Precizan prikaz odabranog logotipa, boja i fontova.": {
+    "en": "An accurate preview of your chosen logo, colours and fonts.",
+    "ru": "Точный показ выбранного логотипа, цветов и шрифтов."
+  },
+  "PRIMJER MEMORANDUMA": {
+    "en": "LETTERHEAD EXAMPLE",
+    "ru": "ПРИМЕР ФИРМЕННОГО БЛАНКА"
+  },
+  "Poštovani,": {
+    "en": "Dear reader,",
+    "ru": "Уважаемые коллеги!"
+  },
+  "Ovdje počinje tvoja poruka. Dobar memorandum ostavlja prostor sadržaju i jasno predstavlja identitet.": {
+    "en": "Your message starts here. Good letterhead gives content space and clearly presents the identity.",
+    "ru": "Здесь начинается ваше сообщение. Хороший бланк оставляет место для содержания и ясно представляет фирменный стиль."
+  },
+  "Srdačno,": {
+    "en": "Kind regards,",
+    "ru": "С уважением,"
+  },
+  "Tvoja robna marka": {
+    "en": "Your brand",
+    "ru": "Ваш бренд"
+  },
+  "Kontakt · Adresa · Web stranica": {
+    "en": "Contact · Address · Website",
+    "ru": "Контакты · Адрес · Сайт"
+  },
+  "Mala ideja. Veliki potencijal.": {
+    "en": "Small idea. Great potential.",
+    "ru": "Маленькая идея. Большой потенциал."
+  },
+  "Tvoja priča": {
+    "en": "Your story",
+    "ru": "Ваша история"
+  },
+  "Kontakt": {
+    "en": "Contact",
+    "ru": "Контакты"
+  },
+  "npr. Banja Luka": {
+    "en": "e.g. Banja Luka",
+    "ru": "например, Баня-Лука"
+  },
+  "Web stranica": {
+    "en": "Website",
+    "ru": "Сайт"
+  },
+  "Obrazloženje primjene": {
+    "en": "Application rationale",
+    "ru": "Обоснование применения"
+  },
+  "Kako su povezani znak, boje i tekst? Zašto ovakav raspored?": {
+    "en": "How do the mark, colours and text connect? Why this layout?",
+    "ru": "Как связаны знак, цвета и текст? Почему выбран такой макет?"
+  },
+  "Za vježbu možeš koristiti izmišljene kontakt podatke. Dosljedan raspored i dovoljno praznog prostora čine memorandum profesionalnim.": {
+    "en": "You can use fictional contact details for this exercise. A consistent layout and enough white space make letterhead look professional.",
+    "ru": "В упражнении можно использовать вымышленные контакты. Последовательный макет и свободное пространство придают бланку профессиональный вид."
+  },
+  "Sve je na svom mjestu.": {
+    "en": "Everything is in place.",
+    "ru": "Всё на своих местах."
+  },
+  "Još malo do povezane cjeline.": {
+    "en": "Almost a coherent whole.",
+    "ru": "Ещё немного — и получится целостная работа."
+  },
+  "Provjera popunjenosti — nije ocjena kvaliteta rada.": {
+    "en": "A completeness check, not a quality grade.",
+    "ru": "Проверка заполнения, а не оценка качества работы."
+  },
+  "Izvori i vlastite izmjene": {
+    "en": "Sources and your own changes",
+    "ru": "Источники и собственные изменения"
+  },
+  "Navedi predloške, fontove, reference i šta si samostalno promijenio/la. Ako je sve tvoje, napiši to.": {
+    "en": "List templates, fonts, references and the changes you made yourself. If everything is your own work, say so.",
+    "ru": "Укажите шаблоны, шрифты, источники и собственные изменения. Если всё сделано самостоятельно, напишите об этом."
+  },
+  "Upotreba AI alata": {
+    "en": "Use of AI tools",
+    "ru": "Использование ИИ"
+  },
+  "Koji alat si koristio/la, za šta i kako si doradio/la rezultat?": {
+    "en": "Which tool did you use, for what purpose, and how did you refine the result?",
+    "ru": "Какой инструмент вы использовали, для чего и как доработали результат?"
+  },
+  "Kratak osvrt na rad": {
+    "en": "A short reflection on your work",
+    "ru": "Краткий анализ работы"
+  },
+  "Šta povezuje cijeli identitet? Koja odluka je bila najvažnija? Šta bi još doradio/la?": {
+    "en": "What connects the whole identity? Which decision mattered most? What would you refine further?",
+    "ru": "Что объединяет весь стиль? Какое решение было самым важным? Что вы бы ещё доработали?"
+  },
+  "SPREMNO ZA SLJEDEĆI KORAK": {
+    "en": "READY FOR THE NEXT STEP",
+    "ru": "ГОТОВО К СЛЕДУЮЩЕМУ ШАГУ"
+  },
+  "Ponesi svoj identitet sa sobom.": {
+    "en": "Take your identity with you.",
+    "ru": "Возьмите свой фирменный стиль с собой."
+  },
+  "Preuzmi komplet identiteta (.zip)": {
+    "en": "Download identity kit (.zip)",
+    "ru": "Скачать комплект стиля (.zip)"
+  },
+  "Projekat za nastavak rada, knjiga identiteta, logotip, paleta, vizuali i osnova web stranice u jednom paketu.": {
+    "en": "Your editable project, identity book, logo, palette, visuals and website starter in one package.",
+    "ru": "Проект для редактирования, руководство по стилю, логотип, палитра, изображения и основа сайта в одном архиве."
+  },
+  "PDF za prvi kolokvijum": {
+    "en": "First assessment PDF",
+    "ru": "PDF первого коллоквиума"
+  },
+  "Preuzmi uređen A4 dokument: naslovnica, sve cjeline identiteta, vizuali i obrazloženja. Pregledaj PDF prije predaje.": {
+    "en": "Download a formatted A4 document: cover, all identity sections, visuals and explanations. Preview the PDF before submitting.",
+    "ru": "Скачайте оформленный документ A4: обложка, все разделы стиля, изображения и обоснования. Просмотрите PDF перед сдачей."
+  },
+  "Projekat (.json)": {
+    "en": "Project (.json)",
+    "ru": "Проект (.json)"
+  },
+  "Osnova web stranice": {
+    "en": "Website starter",
+    "ru": "Основа сайта"
+  },
+  "JSON čuva sve za nastavak uređivanja. HTML je početni predložak za drugi kolokvijum.": {
+    "en": "JSON preserves everything for further editing. HTML is a starting template for the second assessment.",
+    "ru": "JSON сохраняет всё для дальнейшего редактирования. HTML — начальный шаблон для второго коллоквиума."
+  },
+  "Prethodni korak": {
+    "en": "Previous step",
+    "ru": "Предыдущий шаг"
+  },
+  "Nastavi": {
+    "en": "Continue",
+    "ru": "Продолжить"
+  },
+  "PREGLED UŽIVO": {
+    "en": "LIVE PREVIEW",
+    "ru": "ПРОСМОТР В РЕАЛЬНОМ ВРЕМЕНИ"
+  },
+  "Tvoj identitet": {
+    "en": "Your identity",
+    "ru": "Ваш фирменный стиль"
+  },
+  "RADNA VERZIJA": {
+    "en": "DRAFT",
+    "ru": "РАБОЧАЯ ВЕРСИЯ"
+  },
+  "SMISAO PRIJE OBLIKA": {
+    "en": "MEANING BEFORE SHAPE",
+    "ru": "СМЫСЛ ПРЕЖДЕ ФОРМЫ"
+  },
+  "Tvoja vizija povezaće svaki element ove priče.": {
+    "en": "Your vision will connect every element of this story.",
+    "ru": "Ваше видение объединит все элементы этой истории."
+  },
+  "Jedan dokument. Tvoja priča.": {
+    "en": "One document. Your story.",
+    "ru": "Один документ. Ваша история."
+  },
+  "Predaja čuva jednu verziju rada za nastavnika. Dalje izmjene ostaju u tvom projektu dok ne predaš novu verziju.": {
+    "en": "Submitting saves a version for your instructor. Further changes stay in your project until you submit another version.",
+    "ru": "При сдаче сохраняется версия для преподавателя. Последующие изменения остаются в проекте до сдачи новой версии."
+  },
+  "Digitalni dokument obuhvata sve elemente identiteta. Izvoz ne šalje rad nastavniku automatski.": {
+    "en": "The digital document contains all identity elements. Exporting does not automatically submit it to your instructor.",
+    "ru": "Цифровой документ содержит все элементы стиля. Экспорт не отправляет работу преподавателю автоматически."
+  },
+  "Okvirni rok: druga polovina novembra. Tačan datum provjeri na nastavi.": {
+    "en": "Expected deadline: the second half of November. Confirm the exact date in class.",
+    "ru": "Ориентировочный срок: вторая половина ноября. Уточните дату на занятии."
+  },
+  "forma.": {
+    "en": "forma.",
+    "ru": "forma."
+  },
+  "Tvoje ideje.": {
+    "en": "Your ideas.",
+    "ru": "Ваши идеи."
+  },
+  "Tvoj radni prostor.": {
+    "en": "Your workspace.",
+    "ru": "Ваше рабочее пространство."
+  },
+  "Dobro došli,": {
+    "en": "Welcome,",
+    "ru": "Добро пожаловать,"
+  },
+  ". Poveži nalog s predmetom i nastavi svoj identitet na bilo kojem uređaju.": {
+    "en": ". Connect your account to the course and continue your identity on any device.",
+    "ru": ". Подключите аккаунт к курсу и продолжайте работу над стилем на любом устройстве."
+  },
+  "Google nalog je potvrđen": {
+    "en": "Google account verified",
+    "ru": "Аккаунт Google подтверждён"
+  },
+  "Pridruživanje nije uspjelo.": {
+    "en": "Unable to join the course.",
+    "ru": "Не удалось присоединиться к курсу."
+  },
+  "Kod predmeta": {
+    "en": "Course code",
+    "ru": "Код курса"
+  },
+  "Kod koji si dobio/la od nastavnika": {
+    "en": "The code your instructor gave you",
+    "ru": "Код, полученный от преподавателя"
+  },
+  "npr. Grafički dizajn · I godina": {
+    "en": "e.g. Graphic Design · Year 1",
+    "ru": "например, Графический дизайн · 1 курс"
+  },
+  "Rad se čuva uz ovaj nalog. Nastavnik vidi tvoj napredak i verzije koje predaš na pregled. Lokalni projekti se prenose tek kada ih izabereš.": {
+    "en": "Your work is saved to this account. Your instructor can see progress and versions you submit for review. Local projects are transferred only when you select them.",
+    "ru": "Работа сохраняется в этом аккаунте. Преподаватель видит прогресс и версии, отправленные на проверку. Локальные проекты переносятся только после вашего выбора."
+  },
+  "Pridruži se predmetu": {
+    "en": "Join the course",
+    "ru": "Присоединиться к курсу"
+  },
+  "Promjena naloga nije uspjela. Provjeri vezu i pokušaj ponovo.": {
+    "en": "Unable to switch accounts. Check your connection and try again.",
+    "ru": "Не удалось сменить аккаунт. Проверьте соединение и попробуйте снова."
+  },
+  "Koristi drugi Google nalog": {
+    "en": "Use another Google account",
+    "ru": "Использовать другой аккаунт Google"
+  },
+  "Google prijava nije završena. Pokušaj ponovo ili se obrati nastavniku.": {
+    "en": "Google sign-in was not completed. Try again or contact your instructor.",
+    "ru": "Вход через Google не завершён. Попробуйте снова или обратитесь к преподавателю."
+  },
+  "Google prijava trenutno nije dostupna. Pokušaj ponovo.": {
+    "en": "Google sign-in is currently unavailable. Try again.",
+    "ru": "Вход через Google временно недоступен. Попробуйте снова."
+  },
+  "Google prijava nije uspjela. Provjeri vezu i pokušaj ponovo.": {
+    "en": "Google sign-in failed. Check your connection and try again.",
+    "ru": "Не удалось войти через Google. Проверьте соединение и попробуйте снова."
+  },
+  "Otvaram Google...": {
+    "en": "Opening Google...",
+    "ru": "Открываем Google..."
+  },
+  "Nastavi s Google nalogom": {
+    "en": "Continue with Google",
+    "ru": "Продолжить с Google"
+  },
+  "Projekti, vizuali i napredak dostupni su ti na svakom uređaju. Kod predmeta unosiš pri prvom pristupu.": {
+    "en": "Your projects, visuals and progress are available on every device. Enter the course code on your first visit.",
+    "ru": "Проекты, изображения и прогресс доступны на любом устройстве. Код курса вводится при первом входе."
+  },
+  "Nastavnik dovršava povezivanje Google prijave. Do tada možeš raditi lokalno uz kod predmeta.": {
+    "en": "Your instructor is finishing Google sign-in setup. Until then, you can work locally using the course code.",
+    "ru": "Преподаватель завершает настройку входа через Google. Пока можно работать локально по коду курса."
+  },
+  "Prijava nije uspjela.": {
+    "en": "Sign-in failed.",
+    "ru": "Не удалось войти."
+  },
+  "Veza nije dostupna. Pokušaj ponovo.": {
+    "en": "Connection unavailable. Try again.",
+    "ru": "Соединение недоступно. Попробуйте снова."
+  },
+  "forma": {
+    "en": "forma",
+    "ru": "forma"
+  },
+  "STUDIO ZA VIZUELNO KOMUNICIRANJE": {
+    "en": "VISUAL COMMUNICATION STUDIO",
+    "ru": "СТУДИЯ ВИЗУАЛЬНЫХ КОММУНИКАЦИЙ"
+  },
+  "Svaka ideja": {
+    "en": "Every idea",
+    "ru": "Каждая идея"
+  },
+  "traži svoju": {
+    "en": "needs its",
+    "ru": "ищет свою"
+  },
+  "formu.": {
+    "en": "form.",
+    "ru": "форму."
+  },
+  "01 — ZNAK": {
+    "en": "01 — MARK",
+    "ru": "01 — ЗНАК"
+  },
+  "02 — GLAS": {
+    "en": "02 — VOICE",
+    "ru": "02 — ГОЛОС"
+  },
+  "Od onoga što želiš reći,": {
+    "en": "From what you want to say,",
+    "ru": "От того, что вы хотите сказать,"
+  },
+  "do načina na koji će te prepoznati.": {
+    "en": "to the way you will be recognised.",
+    "ru": "к тому, как вас будут узнавать."
+  },
+  "IDEJA → IDENTITET → PRIMJENA": {
+    "en": "IDEA → IDENTITY → APPLICATION",
+    "ru": "ИДЕЯ → СТИЛЬ → ПРИМЕНЕНИЕ"
+  },
+  "VIZUELNO KOMUNICIRANJE": {
+    "en": "VISUAL COMMUNICATION",
+    "ru": "ВИЗУАЛЬНЫЕ КОММУНИКАЦИИ"
+  },
+  "TVOJ KREATIVNI PROSTOR": {
+    "en": "YOUR CREATIVE SPACE",
+    "ru": "ВАШЕ ПРОСТРАНСТВО ДЛЯ ТВОРЧЕСТВА"
+  },
+  "Dobro došli": {
+    "en": "Welcome",
+    "ru": "Добро пожаловать"
+  },
+  "u studio.": {
+    "en": "to the studio.",
+    "ru": "в студию."
+  },
+  "Mjesto gdje razvijaš svoju ideju, istražuješ vizuelni jezik i gradiš prepoznatljiv identitet.": {
+    "en": "A place to develop your idea, explore visual language and build a distinctive identity.",
+    "ru": "Место, где можно развивать идею, исследовать визуальный язык и создавать узнаваемый стиль."
+  },
+  "ILI NASTAVI LOKALNO UZ KOD": {
+    "en": "OR WORK LOCALLY WITH A CODE",
+    "ru": "ИЛИ РАБОТАЙТЕ ЛОКАЛЬНО ПО КОДУ"
+  },
+  "Pristupni kod": {
+    "en": "Access code",
+    "ru": "Код доступа"
+  },
+  "Unesi kod za predmet": {
+    "en": "Enter the course code",
+    "ru": "Введите код курса"
+  },
+  "Sakrij kod": {
+    "en": "Hide code",
+    "ru": "Скрыть код"
+  },
+  "Prikaži kod": {
+    "en": "Show code",
+    "ru": "Показать код"
+  },
+  "Kod za pristup dobijaš od nastavnika.": {
+    "en": "Your instructor provides the access code.",
+    "ru": "Код доступа выдаёт преподаватель."
+  },
+  "Otvaram studio": {
+    "en": "Opening the studio",
+    "ru": "Открываем студию"
+  },
+  "Uđi u studio": {
+    "en": "Enter the studio",
+    "ru": "Войти в студию"
+  },
+  "Nije potrebno dizajnersko iskustvo.": {
+    "en": "No design experience needed.",
+    "ru": "Опыт в дизайне не требуется."
+  },
+  "Samo ideja koju želiš razviti.": {
+    "en": "Just an idea you want to develop.",
+    "ru": "Нужна лишь идея, которую хочется развить."
+  },
+  "Prostor za eksperiment. Znanje za dobar dizajn.": {
+    "en": "Space to experiment. Knowledge for good design.",
+    "ru": "Пространство для экспериментов. Знания для хорошего дизайна."
+  },
+  "Lokalne radove nije moguće pročitati.": {
+    "en": "Unable to read local work.",
+    "ru": "Не удалось прочитать локальные работы."
+  },
+  "Prenesi svoje lokalne radove.": {
+    "en": "Transfer your local work.",
+    "ru": "Перенесите локальные работы."
+  },
+  "Izaberi projekte koji pripadaju tebi. Kopije će se sačuvati uz trenutno prijavljeni Google nalog. Lokalni originali ostaju na ovom uređaju.": {
+    "en": "Select the projects that belong to you. Copies will be saved to the Google account you are signed in with. Local originals remain on this device.",
+    "ru": "Выберите свои проекты. Копии будут сохранены в текущем аккаунте Google. Локальные оригиналы останутся на этом устройстве."
+  },
+  "· prvo završi AI zahtjev u lokalnom radu": {
+    "en": "· finish the AI request in the local project first",
+    "ru": "· сначала завершите запрос ИИ в локальном проекте"
+  },
+  "Lokalni Playground": {
+    "en": "Local Playground",
+    "ru": "Локальная песочница"
+  },
+  "vizuala · dopunjava slobodna mjesta u galeriji naloga": {
+    "en": "visuals · fills available slots in your account gallery",
+    "ru": "изображений · займут свободные места в галерее аккаунта"
+  },
+  "Kasnije": {
+    "en": "Later",
+    "ru": "Позже"
+  },
+  "Prenos nije uspio.": {
+    "en": "Transfer failed.",
+    "ru": "Не удалось перенести работы."
+  },
+  "Prenesi izabrane radove": {
+    "en": "Transfer selected work",
+    "ru": "Перенести выбранные работы"
+  },
+  "Unesi ispravan datum dokumenta.": {
+    "en": "Enter a valid document date.",
+    "ru": "Укажите корректную дату документа."
+  },
+  "Pripremam PDF alat...": {
+    "en": "Loading PDF tools...",
+    "ru": "Загружаем инструмент PDF..."
+  },
+  "Pripremam fontove i vizuale...": {
+    "en": "Preparing fonts and visuals...",
+    "ru": "Подготавливаем шрифты и изображения..."
+  },
+  "Slažem stranice dokumenta...": {
+    "en": "Laying out the document...",
+    "ru": "Оформляем страницы документа..."
+  },
+  "PDF nije moguće pripremiti. Provjeri vezu radi učitavanja fontova, pa pokušaj ponovo. Tvoj projekat je sačuvan.": {
+    "en": "Unable to prepare the PDF. Check your connection so fonts can load, then try again. Your export settings remain available in this dialog.",
+    "ru": "Не удалось подготовить PDF. Проверьте соединение для загрузки шрифтов и попробуйте снова. Настройки экспорта остаются в этом окне."
+  },
+  "Jedan uređen A4 dokument sa svim cjelinama vizuelnog identiteta, vizualima i obrazloženjima.": {
+    "en": "One formatted A4 document with every identity section, visuals and explanations.",
+    "ru": "Один оформленный документ A4 со всеми разделами стиля, изображениями и обоснованиями."
+  },
+  "Sadržaj PDF dokumenta": {
+    "en": "PDF contents",
+    "ru": "Содержание PDF"
+  },
+  "Vizuelni identitet": {
+    "en": "Visual identity",
+    "ru": "Визуальная айдентика"
+  },
+  "Knjiga vizuelnog identiteta": {
+    "en": "Visual identity book",
+    "ru": "Руководство по визуальному стилю"
+  },
+  "A4 · numerisane stranice · ugrađeni fontovi": {
+    "en": "A4 · numbered pages · embedded fonts",
+    "ru": "A4 · нумерация страниц · встроенные шрифты"
+  },
+  "Podaci za PDF": {
+    "en": "PDF details",
+    "ru": "Данные для PDF"
+  },
+  "Autor / autorka": {
+    "en": "Author",
+    "ru": "Автор"
+  },
+  "Ime i prezime": {
+    "en": "Full name",
+    "ru": "Имя и фамилия"
+  },
+  "Datum dokumenta": {
+    "en": "Document date",
+    "ru": "Дата документа"
+  },
+  "npr. Grafički dizajn": {
+    "en": "e.g. Graphic Design",
+    "ru": "например, Графический дизайн"
+  },
+  "Uključi AI vizuale": {
+    "en": "Include AI visuals",
+    "ru": "Включить изображения ИИ"
+  },
+  "Odabrane slike uz odgovarajuće cjeline i naziv modela.": {
+    "en": "Selected images alongside the relevant sections, with model names.",
+    "ru": "Выбранные изображения в соответствующих разделах с названиями моделей."
+  },
+  "Dodaj ranije varijante": {
+    "en": "Add earlier variants",
+    "ru": "Добавить предыдущие варианты"
+  },
+  "Prikaži istraživanje uz odabrana rješenja.": {
+    "en": "Show your exploration alongside the chosen solutions.",
+    "ru": "Покажите процесс поиска вместе с выбранными решениями."
+  },
+  "Dodaj promptove u prilogu": {
+    "en": "Add prompts as an appendix",
+    "ru": "Добавить промпты в приложение"
+  },
+  "Sačuvaj opise korištene za uključene AI vizuale.": {
+    "en": "Keep the descriptions used for the included AI visuals.",
+    "ru": "Сохраните описания, использованные для включённых изображений ИИ."
+  },
+  "Izvozi se sačuvana predaja, verzija {0}.": {
+    "en": "Exporting saved submission, version {0}.",
+    "ru": "Экспортируется сданная работа, версия {0}."
+  },
+  "Izvozi se trenutni projekat. Podaci uneseni ovdje važe samo za ovaj PDF.": {
+    "en": "Exporting the current project. Details entered here apply only to this PDF.",
+    "ru": "Экспортируется текущий проект. Введённые здесь данные относятся только к этому PDF."
+  },
+  "AI vizuali: {0}.": {
+    "en": "AI visuals: {0}.",
+    "ru": "Изображения ИИ: {0}."
+  },
+  "Odabrani logotip ostaje uključen.": {
+    "en": "The selected logo remains included.",
+    "ru": "Выбранный логотип остаётся в документе."
+  },
+  "Prije predaje provjeri:": {
+    "en": "Check before submitting:",
+    "ru": "Проверьте перед сдачей:"
+  },
+  "nepopunjenih stavki": {
+    "en": "incomplete items",
+    "ru": "незаполненных пунктов"
+  },
+  "Možeš preuzeti radnu verziju. Prazna polja u PDF-u ostaju označena.": {
+    "en": "You can download a draft. Empty fields remain labelled in the PDF.",
+    "ru": "Можно скачать рабочую версию. Пустые поля в PDF будут отмечены."
+  },
+  "Pregled PDF-a": {
+    "en": "Preview PDF",
+    "ru": "Просмотр PDF"
+  },
+  "Preuzmi PDF": {
+    "en": "Download PDF",
+    "ru": "Скачать PDF"
+  },
+  "PDF je spreman ·": {
+    "en": "PDF ready ·",
+    "ru": "PDF готов ·"
+  },
+  "Preuzimanje ne predaje rad nastavniku.": {
+    "en": "Downloading does not submit your work to the instructor.",
+    "ru": "Скачивание не отправляет работу преподавателю."
+  },
+  "Pregled dokumenta": {
+    "en": "Document preview",
+    "ru": "Просмотр документа"
+  },
+  "Sakrij pregled": {
+    "en": "Hide preview",
+    "ru": "Скрыть просмотр"
+  },
+  "Pregled PDF-a za prvi kolokvijum": {
+    "en": "First assessment PDF preview",
+    "ru": "Просмотр PDF первого коллоквиума"
+  },
+  "Ako pregled nije dostupan u tvom pregledniku, izaberi „Preuzmi PDF“ i otvori datoteku.": {
+    "en": "If your browser cannot show the preview, select “Download PDF” and open the file.",
+    "ru": "Если браузер не показывает документ, нажмите «Скачать PDF» и откройте файл."
+  },
+  "Znak": {
+    "en": "Mark",
+    "ru": "Знак"
+  },
+  "Originalan minimalistički znak za mali arhitektonski studio LIN: dvije povezane geometrijske forme koje sugerišu prostor i ravnotežu. Tamnozelena #244D3E na toploj bijeloj pozadini. Precizne linije, ravni prikaz, bez mockupa i dodatnog teksta.": {
+    "en": "An original minimalist mark for a small architecture studio called LIN: two connected geometric forms suggesting space and balance. Dark green #244D3E on a warm white background. Precise lines, flat view, no mockup or extra text.",
+    "ru": "Оригинальный минималистичный знак для небольшой архитектурной студии LIN: две соединённые геометрические формы, передающие пространство и равновесие. Тёмно-зелёный #244D3E на тёплом белом фоне. Точные линии, плоский вид, без мокапа и дополнительного текста."
+  },
+  "Plakat": {
+    "en": "Poster",
+    "ru": "Плакат"
+  },
+  "Tipografski plakat za izložbu naziva OBLIK. Velika izražajna slova, jasna hijerarhija, ritam i puno praznog prostora. Dvije boje: crna i terakota #DD6846 na toplom krem papiru. Eksperimentalni urednički dizajn, ravni prikaz plakata.": {
+    "en": "A typographic poster for an exhibition called OBLIK. Large expressive lettering, clear hierarchy, rhythm and plenty of white space. Two colours: black and terracotta #DD6846 on warm cream paper. Experimental editorial design, flat poster view.",
+    "ru": "Типографический плакат для выставки OBLIK. Крупные выразительные буквы, ясная иерархия, ритм и много свободного пространства. Два цвета: чёрный и терракотовый #DD6846 на тёплой кремовой бумаге. Экспериментальный редакционный дизайн, плоский вид плаката."
+  },
+  "Materijal": {
+    "en": "Material",
+    "ru": "Материал"
+  },
+  "Studijska fotografija apstraktne skulpture od savijenog mat papira, meki lukovi i oštre geometrijske sjene. Maslinasta, krem i terakota. Bočno prirodno svjetlo, taktilna tekstura, jednostavna kompozicija, bez teksta.": {
+    "en": "A studio photograph of an abstract sculpture made of folded matte paper, soft arches and sharp geometric shadows. Olive, cream and terracotta. Natural side lighting, tactile texture, simple composition, no text.",
+    "ru": "Студийная фотография абстрактной скульптуры из согнутой матовой бумаги: мягкие арки и чёткие геометрические тени. Оливковый, кремовый и терракотовый цвета. Естественный боковой свет, тактильная фактура, простая композиция, без текста."
+  },
+  "Ambalaža": {
+    "en": "Packaging",
+    "ru": "Упаковка"
+  },
+  "Koncept ambalaže za izmišljeni biljni čaj LIST. Krem papir s utisnutom teksturom, tamnozelena geometrijska ilustracija lista, naziv LIST u jasnoj tipografiji. Jedna kutija na neutralnoj studijskoj podlozi, meko svjetlo i pažljivo poravnati elementi.": {
+    "en": "A packaging concept for a fictional herbal tea called LIST. Cream paper with an embossed texture, a dark green geometric leaf illustration, and LIST in clear typography. One box on a neutral studio surface, soft lighting and carefully aligned elements.",
+    "ru": "Концепция упаковки вымышленного травяного чая LIST. Кремовая бумага с тиснением, тёмно-зелёная геометрическая иллюстрация листа и название LIST читаемым шрифтом. Одна коробка на нейтральной студийной поверхности, мягкий свет и тщательно выровненные элементы."
+  },
+  "Moodboard": {
+    "en": "Moodboard",
+    "ru": "Мудборд"
+  },
+  "Moodboard za savremeni kulturni centar: izrezani papir, teksture betona, ritmični geometrijski oblici i detalji urbanog prostora. Topla krem, tamna plava i jarko narandžasta. Uredna kompozicija povezanih vizuelnih referenci, bez logotipa i teksta.": {
+    "en": "A moodboard for a contemporary cultural centre: cut paper, concrete textures, rhythmic geometric shapes and urban details. Warm cream, dark blue and vivid orange. An orderly composition of related visual references, without logos or text.",
+    "ru": "Мудборд современного культурного центра: вырезанная бумага, фактуры бетона, ритмичные геометрические формы и детали городской среды. Тёплый кремовый, тёмно-синий и ярко-оранжевый. Упорядоченная композиция связанных визуальных референсов, без логотипов и текста."
+  },
+  "Playground nije moguće otvoriti. Provjeri dozvole za lokalno čuvanje. Postojeći eksperimenti nisu obrisani.": {
+    "en": "Unable to open Playground. Check local storage permissions. Existing experiments have not been deleted.",
+    "ru": "Не удалось открыть песочницу. Проверьте разрешения на локальное хранение. Существующие эксперименты не удалены."
+  },
+  "Čuvanje nije uspjelo. Preuzmi rezultate prije zatvaranja preglednika.": {
+    "en": "Unable to save. Download your results before closing the browser.",
+    "ru": "Не удалось сохранить. Скачайте результаты перед закрытием браузера."
+  },
+  "Arhiva je uvezena. Dodato je {0} vizuala; postojeći radovi su sačuvani.": {
+    "en": "Archive imported. Added visuals: {0}. Your existing work is preserved.",
+    "ru": "Архив импортирован. Добавлено изображений: {0}. Существующие работы сохранены."
+  },
+  "Arhiva je pročitana. Vizuali su već u galeriji ili nema slobodnog mjesta.": {
+    "en": "Archive read. The visuals are already in the gallery, or there is no free space.",
+    "ru": "Архив прочитан. Изображения уже есть в галерее либо свободных мест нет."
+  },
+  "Uvoz nije uspio.": {
+    "en": "Import failed.",
+    "ru": "Не удалось импортировать файл."
+  },
+  "Otvaramo Playground...": {
+    "en": "Opening Playground...",
+    "ru": "Открываем песочницу..."
+  },
+  "Opis je vraćen u editor. Izaberi model i doradi svoju ideju.": {
+    "en": "Description restored to the editor. Choose a model and refine your idea.",
+    "ru": "Описание возвращено в редактор. Выберите модель и доработайте идею."
+  },
+  "PROSTOR ZA SLOBODAN EKSPERIMENT": {
+    "en": "SPACE FOR FREE EXPERIMENTATION",
+    "ru": "ПРОСТРАНСТВО ДЛЯ СВОБОДНЫХ ЭКСПЕРИМЕНТОВ"
+  },
+  "Playground": {
+    "en": "Playground",
+    "ru": "Песочница"
+  },
+  "Jedna ideja. Četiri modela. Istraži šta sve može da nastane.": {
+    "en": "One idea. Four models. Explore what you can create.",
+    "ru": "Одна идея. Четыре модели. Исследуйте возможности."
+  },
+  "Čuvanje...": {
+    "en": "Saving...",
+    "ru": "Сохраняем..."
+  },
+  "Nije sačuvano": {
+    "en": "Not saved",
+    "ru": "Не сохранено"
+  },
+  "Galerija uz tvoj nalog": {
+    "en": "Gallery in your account",
+    "ru": "Галерея в аккаунте"
+  },
+  "Lokalni radni prostor": {
+    "en": "Local workspace",
+    "ru": "Локальное рабочее пространство"
+  },
+  "TVOJA IDEJA, TVOJA PRAVILA.": {
+    "en": "YOUR IDEA, YOUR RULES.",
+    "ru": "ВАША ИДЕЯ, ВАШИ ПРАВИЛА."
+  },
+  "Kreni od svog projekta": {
+    "en": "Start from your project",
+    "ru": "Начните со своего проекта"
+  },
+  "Projekat": {
+    "en": "Project",
+    "ru": "Проект"
+  },
+  "Vrsta vizuala": {
+    "en": "Visual type",
+    "ru": "Тип изображения"
+  },
+  "Opis je sastavljen iz ideje, strategije i palete projekta.": {
+    "en": "The description was built from the project's idea, strategy and palette.",
+    "ru": "Описание составлено из идеи, стратегии и палитры проекта."
+  },
+  "Sastavi opis iz projekta": {
+    "en": "Build description from project",
+    "ru": "Составить описание из проекта"
+  },
+  "Ili istraži primjer": {
+    "en": "Or explore an example",
+    "ru": "Или исследуйте пример"
+  },
+  "Šta želiš da napraviš?": {
+    "en": "What would you like to create?",
+    "ru": "Что вы хотите создать?"
+  },
+  "Svih 24 mjesta čuvaju favorite. Ukloni zvjezdicu s jednog rezultata ili ga arhiviraj i obriši da napraviš prostor za novi.": {
+    "en": "All 24 slots contain favourites. Unstar a result, or archive and delete one, to make room for a new image.",
+    "ru": "Все 24 места заняты избранным. Снимите звёздочку с результата или сохраните его в архив и удалите, чтобы освободить место."
+  },
+  "Dodaj vizual projektu": {
+    "en": "Add visual to project",
+    "ru": "Добавить изображение в проект"
+  },
+  "Galerija eksperimenata": {
+    "en": "Experiment gallery",
+    "ru": "Галерея экспериментов"
+  },
+  "TVOJI EKSPERIMENTI": {
+    "en": "YOUR EXPERIMENTS",
+    "ru": "ВАШИ ЭКСПЕРИМЕНТЫ"
+  },
+  "Od pokušaja do ideje": {
+    "en": "From attempts to ideas",
+    "ru": "От попыток к идеям"
+  },
+  "Sačuvaj ono što vrijedi. Zvjezdica čuva favorit pri novim generisanjima; dvije označene slike možeš uporediti.": {
+    "en": "Keep what matters. Stars protect favourites when generating new images; select two images to compare them.",
+    "ru": "Сохраняйте ценное. Звёздочка защищает избранное при новых генерациях; выберите два изображения для сравнения."
+  },
+  "Uporedi": {
+    "en": "Compare",
+    "ru": "Сравнить"
+  },
+  "Uvezi arhivu": {
+    "en": "Import archive",
+    "ru": "Импортировать архив"
+  },
+  "Arhiva": {
+    "en": "Archive",
+    "ru": "Архив"
+  },
+  "Pretraži vizuale": {
+    "en": "Search visuals",
+    "ru": "Поиск изображений"
+  },
+  "Pretraži opis ili model...": {
+    "en": "Search description or model...",
+    "ru": "Поиск по описанию или модели..."
+  },
+  "Filtriraj po modelu": {
+    "en": "Filter by model",
+    "ru": "Фильтр по модели"
+  },
+  "Svi modeli": {
+    "en": "All models",
+    "ru": "Все модели"
+  },
+  "Favoriti": {
+    "en": "Favourites",
+    "ru": "Избранное"
+  },
+  "Pogledaj vizual: {0}": {
+    "en": "View visual: {0}",
+    "ru": "Посмотреть изображение: {0}"
+  },
+  "{0} favorite: {1}": {
+    "en": "{0} favourites: {1}",
+    "ru": "{0} избранное: {1}"
+  },
+  "Ukloni iz": {
+    "en": "Remove from",
+    "ru": "Убрать из"
+  },
+  "Dodaj u": {
+    "en": "Add to",
+    "ru": "Добавить в"
+  },
+  "Izaberi za poređenje: {0}": {
+    "en": "Select for comparison: {0}",
+    "ru": "Выбрать для сравнения: {0}"
+  },
+  "Ponovi prompt: {0}": {
+    "en": "Reuse prompt: {0}",
+    "ru": "Повторить промпт: {0}"
+  },
+  "Vrati opis u editor": {
+    "en": "Restore description to editor",
+    "ru": "Вернуть описание в редактор"
+  },
+  "Dodaj ovaj vizual projektu": {
+    "en": "Add this visual to a project",
+    "ru": "Добавить это изображение в проект"
+  },
+  "Preuzmi eksperiment": {
+    "en": "Download experiment",
+    "ru": "Скачать эксперимент"
+  },
+  "Ukloni eksperiment": {
+    "en": "Remove experiment",
+    "ru": "Удалить эксперимент"
+  },
+  "Nema vizuala za ovaj izbor.": {
+    "en": "No visuals match these filters.",
+    "ru": "Нет изображений по выбранным условиям."
+  },
+  "Probaj drugi opis, model ili prikaži cijelu galeriju.": {
+    "en": "Try another description or model, or show the entire gallery.",
+    "ru": "Попробуйте другое описание или модель либо откройте всю галерею."
+  },
+  "Prikaži sve vizuale": {
+    "en": "Show all visuals",
+    "ru": "Показать все изображения"
+  },
+  "OVDJE POČINJE NEŠTO NOVO": {
+    "en": "SOMETHING NEW STARTS HERE",
+    "ru": "ЗДЕСЬ НАЧИНАЕТСЯ ЧТО-ТО НОВОЕ"
+  },
+  "Ostavi prostor": {
+    "en": "Leave room",
+    "ru": "Оставьте место"
+  },
+  "za iznenađenje.": {
+    "en": "for surprises.",
+    "ru": "для неожиданного."
+  },
+  "Opiši ideju, izaberi model i provjeri cijenu. Tvoj prvi vizual pojaviće se ovdje.": {
+    "en": "Describe an idea, choose a model and check the price. Your first visual will appear here.",
+    "ru": "Опишите идею, выберите модель и проверьте цену. Первое изображение появится здесь."
+  },
+  "Galerija čuva do": {
+    "en": "The gallery holds up to",
+    "ru": "Галерея хранит до"
+  },
+  "vizuala": {
+    "en": "visuals",
+    "ru": "изображений"
+  },
+  "uz tvoj nalog": {
+    "en": "in your account",
+    "ru": "в вашем аккаунте"
+  },
+  "na ovom uređaju": {
+    "en": "on this device",
+    "ru": "на этом устройстве"
+  },
+  ". Preuzmi arhivu za rezervnu kopiju.": {
+    "en": ". Download an archive for a backup.",
+    "ru": ". Скачайте архив для резервного копирования."
+  },
+  "Uvezi Playground arhivu": {
+    "en": "Import Playground archive",
+    "ru": "Импортировать архив песочницы"
+  },
+  "Ista ideja. Drugačiji pogled.": {
+    "en": "Same idea. A different view.",
+    "ru": "Одна идея. Другой взгляд."
+  },
+  "Preuzmi": {
+    "en": "Download",
+    "ru": "Скачать"
+  },
+  "Ukloni eksperiment iz galerije?": {
+    "en": "Remove this experiment from the gallery?",
+    "ru": "Удалить эксперимент из галереи?"
+  },
+  "Prije uklanjanja možeš preuzeti sliku. Vizuali već dodati projektima ostaju sačuvani u tim projektima.": {
+    "en": "You can download the image before removing it. Visuals already added to projects remain saved in those projects.",
+    "ru": "Перед удалением можно скачать изображение. Копии, уже добавленные в проекты, останутся в них."
+  },
+  "Zadrži": {
+    "en": "Keep",
+    "ru": "Оставить"
+  },
+  "Ukloni": {
+    "en": "Remove",
+    "ru": "Удалить"
+  },
+  "Dodaj vizual svom projektu.": {
+    "en": "Add a visual to your project.",
+    "ru": "Добавьте изображение в свой проект."
+  },
+  "Izaberi projekat i korak. Prethodni vizual ostaje među sačuvanim varijantama; logotip će postati aktivni znak projekta.": {
+    "en": "Choose a project and step. The previous visual remains in saved variants; a logo becomes the project's active mark.",
+    "ru": "Выберите проект и шаг. Предыдущее изображение останется среди вариантов; логотип станет активным знаком проекта."
+  },
+  "Korak": {
+    "en": "Step",
+    "ru": "Шаг"
+  },
+  "Dodaj projektu": {
+    "en": "Add to project",
+    "ru": "Добавить в проект"
+  },
+  "Prvo kreiraj projekat u odjeljku Moji projekti. Eksperiment će ostati sačuvan ovdje.": {
+    "en": "Create a project in My projects first. This experiment will stay saved here.",
+    "ru": "Сначала создайте проект в разделе «Мои проекты». Эксперимент останется сохранён здесь."
+  },
+  "{0}: {1}, preko Pika API Club. Autorske dorade: [opiši izmjene].": {
+    "en": "{0}: {1}, via Pika API Club. Author’s changes: [describe your edits].",
+    "ru": "{0}: {1}, через Pika API Club. Авторские доработки: [опишите изменения]."
+  },
+  "Obnovi opis iz projekta": {
+    "en": "Refresh description from project",
+    "ru": "Обновить описание из проекта"
+  },
+  "Vizual služi za istraživanje odnosa boja. Tačne HEX vrijednosti i kontrast određuješ u paleti iznad.": {
+    "en": "This visual explores colour relationships. Set the exact HEX values and check contrast in the palette above.",
+    "ru": "Этот визуал помогает изучить сочетания цветов. Точные HEX-коды и контраст задаются в палитре выше."
+  },
+  "AI skica istražuje raspored. Stvarne fontove i čitljivost provjeri u tipografskoj probi iznad.": {
+    "en": "The AI sketch explores layout. Check the actual fonts and readability in the typography sample above.",
+    "ru": "Эскиз ИИ помогает изучить композицию. Проверьте реальные шрифты и читаемость в типографической пробе выше."
+  },
+  "Model dobija tekstualni opis identiteta. Za precizan logotip i fontove koristi predložak ispod; AI skica je prijedlog kompozicije.": {
+    "en": "The model receives a text description of the identity. For an accurate logo and fonts, use the template below; the AI sketch suggests a composition.",
+    "ru": "Модель получает текстовое описание айдентики. Для точного логотипа и шрифтов используйте шаблон ниже; эскиз ИИ предлагает вариант композиции."
+  },
+  "Podaci iz preglednika nisu dostupni. Provjeri dozvole za lokalno čuvanje ili uvezi rezervnu kopiju. Postojeći zapisi nisu obrisani.": {
+    "en": "Browser data is unavailable. Check local storage permissions or import a backup. Existing records have not been deleted.",
+    "ru": "Данные браузера недоступны. Проверьте разрешение на локальное хранение или импортируйте резервную копию. Существующие записи не удалены."
+  },
+  "Trenutni projekat nije na nalogu. Predatu verziju možeš otvoriti u Predajama i komentarima.": {
+    "en": "The current project is not in your account. Open the submitted version in Submissions and feedback.",
+    "ru": "Текущего проекта нет в аккаунте. Сданную версию можно открыть в разделе «Работы и отзывы»."
+  },
+  "Čuvanje nije uspjelo. Preuzmi JSON kopiju projekta prije zatvaranja.": {
+    "en": "Saving failed. Download a JSON backup of the project before closing.",
+    "ru": "Не удалось сохранить. Скачайте JSON-копию проекта перед закрытием."
+  },
+  "Izaberi postojeći projekat.": {
+    "en": "Select an existing project.",
+    "ru": "Выберите существующий проект."
+  },
+  "U tom koraku se već generiše vizual. Sačekaj završetak prije dodavanja eksperimenta.": {
+    "en": "A visual is already being generated in that step. Wait until it finishes before adding the experiment.",
+    "ru": "На этом шаге уже создаётся визуал. Дождитесь завершения, прежде чем добавлять эксперимент."
+  },
+  "{0}: {1}, preko Pika API Club (Playground). Autorske dorade: [opiši izmjene].": {
+    "en": "{0}: {1}, via Pika API Club (Playground). Author’s changes: [describe your edits].",
+    "ru": "{0}: {1}, через Pika API Club (Playground). Авторские доработки: [опишите изменения]."
+  },
+  "Vizual je dodat projektu „{0}“ · {1}.": {
+    "en": "Visual added to “{0}” · {1}.",
+    "ru": "Визуал добавлен в проект «{0}» · {1}."
+  },
+  "Projekat nije moguće sačuvati. Omogući lokalno čuvanje u pregledniku.": {
+    "en": "The project could not be saved. Enable local storage in your browser.",
+    "ru": "Не удалось сохранить проект. Разрешите локальное хранение в браузере."
+  },
+  "Projekat je uvezen kao nova kopija.": {
+    "en": "Project imported as a new copy.",
+    "ru": "Проект импортирован как новая копия."
+  },
+  "Projekat je uklonjen. Brisanje se sinhronizuje s nalogom.": {
+    "en": "Project removed. Deletion is syncing with your account.",
+    "ru": "Проект удалён. Удаление синхронизируется с аккаунтом."
+  },
+  "Projekat je obrisan iz ovog preglednika.": {
+    "en": "Project deleted from this browser.",
+    "ru": "Проект удалён из этого браузера."
+  },
+  "Brisanje nije uspjelo. Pokušaj ponovo.": {
+    "en": "Deletion failed. Please try again.",
+    "ru": "Не удалось удалить. Попробуйте ещё раз."
+  },
+  "Prvo preuzmi rezervnu kopiju: posljednje izmjene nisu sačuvane.": {
+    "en": "Download a backup first: your latest changes have not been saved.",
+    "ru": "Сначала скачайте резервную копию: последние изменения не сохранены."
+  },
+  "Odjava nije uspjela. Provjeri vezu.": {
+    "en": "Sign-out failed. Check your connection.",
+    "ru": "Не удалось выйти. Проверьте соединение."
+  },
+  "Paket identiteta je spreman za preuzimanje.": {
+    "en": "Your identity kit is ready to download.",
+    "ru": "Комплект айдентики готов к скачиванию."
+  },
+  "Paket nije moguće pripremiti. Preuzmi JSON kopiju projekta.": {
+    "en": "The kit could not be prepared. Download a JSON backup of the project.",
+    "ru": "Не удалось подготовить комплект. Скачайте JSON-копию проекта."
+  },
+  "Pregled": {
+    "en": "Overview",
+    "ru": "Обзор"
+  },
+  "Vodič za identitet": {
+    "en": "Identity guide",
+    "ru": "Руководство по айдентике"
+  },
+  "Poveži Google nalog": {
+    "en": "Connect Google account",
+    "ru": "Подключить Google"
+  },
+  "Predaje i komentari": {
+    "en": "Submissions and feedback",
+    "ru": "Работы и отзывы"
+  },
+  "Nastavnički pregled": {
+    "en": "Teacher overview",
+    "ru": "Обзор преподавателя"
+  },
+  "API postavke": {
+    "en": "API settings",
+    "ru": "Настройки API"
+  },
+  "Preskoči na sadržaj": {
+    "en": "Skip to content",
+    "ru": "Перейти к содержимому"
+  },
+  "Glavna navigacija": {
+    "en": "Main navigation",
+    "ru": "Главная навигация"
+  },
+  "IDEJAMA DAJEMO OBLIK.": {
+    "en": "GIVING IDEAS FORM.",
+    "ru": "ПРИДАЁМ ИДЕЯМ ФОРМУ."
+  },
+  "Zatvori navigaciju": {
+    "en": "Close navigation",
+    "ru": "Закрыть навигацию"
+  },
+  "Vk": {
+    "en": "Vk",
+    "ru": "Vk"
+  },
+  "Vizuelno": {
+    "en": "Visual",
+    "ru": "Визуальная"
+  },
+  "komuniciranje": {
+    "en": "communication",
+    "ru": "коммуникация"
+  },
+  "STUDENTSKI STUDIO": {
+    "en": "STUDENT STUDIO",
+    "ru": "СТУДЕНЧЕСКАЯ СТУДИЯ"
+  },
+  "RADNI PROSTOR": {
+    "en": "WORKSPACE",
+    "ru": "РАБОЧЕЕ ПРОСТРАНСТВО"
+  },
+  "Jednostavno ne znači": {
+    "en": "Simple can still",
+    "ru": "Простота может"
+  },
+  "bez ideje.": {
+    "en": "have meaning.",
+    "ru": "быть осмысленной."
+  },
+  "ZNAČENJE PRIJE OBLIKA": {
+    "en": "MEANING BEFORE FORM",
+    "ru": "СМЫСЛ ПРЕЖДЕ ФОРМЫ"
+  },
+  "Povezan nalog": {
+    "en": "Account connected",
+    "ru": "Аккаунт подключён"
+  },
+  "Sačuvano lokalno": {
+    "en": "Saved locally",
+    "ru": "Сохранено локально"
+  },
+  "Projekti na svim uređajima": {
+    "en": "Projects on every device",
+    "ru": "Проекты на всех устройствах"
+  },
+  "Na ovom uređaju": {
+    "en": "On this device",
+    "ru": "На этом устройстве"
+  },
+  "VK": {
+    "en": "VK",
+    "ru": "VK"
+  },
+  "Studentski pristup": {
+    "en": "Student access",
+    "ru": "Студенческий доступ"
+  },
+  "Nastavnik": {
+    "en": "Teacher",
+    "ru": "Преподаватель"
+  },
+  "Google nalog": {
+    "en": "Google account",
+    "ru": "Аккаунт Google"
+  },
+  "Odjavi se": {
+    "en": "Sign out",
+    "ru": "Выйти"
+  },
+  "Zatvori meni": {
+    "en": "Close menu",
+    "ru": "Закрыть меню"
+  },
+  "Otvori navigaciju": {
+    "en": "Open navigation",
+    "ru": "Открыть навигацию"
+  },
+  "Nazad na projekte": {
+    "en": "Back to projects",
+    "ru": "К проектам"
+  },
+  "Studio": {
+    "en": "Studio",
+    "ru": "Студия"
+  },
+  "Stanje sinhronizacije": {
+    "en": "Sync status",
+    "ru": "Состояние синхронизации"
+  },
+  "Sačuvano na nalogu": {
+    "en": "Saved to account",
+    "ru": "Сохранено в аккаунте"
+  },
+  "Različite verzije": {
+    "en": "Different versions",
+    "ru": "Различающиеся версии"
+  },
+  "Provjeri čuvanje": {
+    "en": "Check saving",
+    "ru": "Проверьте сохранение"
+  },
+  "Čuvanje nije uspjelo": {
+    "en": "Saving failed",
+    "ru": "Не удалось сохранить"
+  },
+  "Lokalno sačuvano": {
+    "en": "Saved locally",
+    "ru": "Сохранено локально"
+  },
+  "Izvezi": {
+    "en": "Export",
+    "ru": "Экспорт"
+  },
+  "Zatvori izvoz": {
+    "en": "Close export menu",
+    "ru": "Закрыть меню экспорта"
+  },
+  "Priprema paketa...": {
+    "en": "Preparing kit...",
+    "ru": "Подготовка комплекта..."
+  },
+  "Komplet identiteta (.zip)": {
+    "en": "Identity kit (.zip)",
+    "ru": "Комплект айдентики (.zip)"
+  },
+  "Kolokvijum 01 (.pdf)": {
+    "en": "Assessment 01 (.pdf)",
+    "ru": "Коллоквиум 01 (.pdf)"
+  },
+  "Projekat za nastavak (.json)": {
+    "en": "Editable project (.json)",
+    "ru": "Редактируемый проект (.json)"
+  },
+  "Logotip (.svg)": {
+    "en": "Logo (.svg)",
+    "ru": "Логотип (.svg)"
+  },
+  "Osnova stranice (.html)": {
+    "en": "Page starter (.html)",
+    "ru": "Основа страницы (.html)"
+  },
+  "KOLOKVIJUM": {
+    "en": "ASSESSMENT",
+    "ru": "КОЛЛОКВИУМ"
+  },
+  "Pokušaj ponovo": {
+    "en": "Try again",
+    "ru": "Попробовать снова"
+  },
+  "“ ima različite verzije na dva uređaja. Tvoje izmjene su sačuvane lokalno.": {
+    "en": "” has different versions on two devices. Your changes are saved locally.",
+    "ru": "» имеет разные версии на двух устройствах. Ваши изменения сохранены локально."
+  },
+  "Izaberi verziju": {
+    "en": "Choose a version",
+    "ru": "Выбрать версию"
+  },
+  "Na ovom uređaju imaš": {
+    "en": "On this device you have",
+    "ru": "На этом устройстве у вас"
+  },
+  "lokalnih projekata.": {
+    "en": "local projects.",
+    "ru": "локальных проектов."
+  },
+  "Izaberi svoje radove i prenesi ih na ovaj Google nalog.": {
+    "en": "Select your work and transfer it to this Google account.",
+    "ru": "Выберите свои работы и перенесите их в этот аккаунт Google."
+  },
+  "Prenesi projekte": {
+    "en": "Transfer projects",
+    "ru": "Перенести проекты"
+  },
+  "Sakrij ponudu za prenos": {
+    "en": "Dismiss transfer offer",
+    "ru": "Скрыть предложение переноса"
+  },
+  "Trenutno si bez interneta. Nastavi pisati i uređivati projekat; AI generisanje će biti dostupno kada se veza vrati.": {
+    "en": "You’re offline. Continue writing and editing your project; AI generation will be available when your connection returns.",
+    "ru": "Вы не в сети. Продолжайте писать и редактировать проект; генерация ИИ станет доступна после восстановления соединения."
+  },
+  "Pripremamo tvoj radni prostor...": {
+    "en": "Preparing your workspace...",
+    "ru": "Подготовка рабочего пространства..."
+  },
+  "Uvezi Forma projekat": {
+    "en": "Import a Forma project",
+    "ru": "Импортировать проект Forma"
+  },
+  "Zatvori obavještenje": {
+    "en": "Dismiss notification",
+    "ru": "Закрыть уведомление"
+  },
+  "Izabrani projekti su kopirani u tvoj nalog. Sinhronizacija je u toku.": {
+    "en": "Selected projects have been copied to your account. Sync is in progress.",
+    "ru": "Выбранные проекты скопированы в аккаунт. Идёт синхронизация."
+  },
+  "Sačuvaj pravi nastavak rada.": {
+    "en": "Keep the right version of your work.",
+    "ru": "Выберите версию для продолжения работы."
+  },
+  "Na nalogu je druga verzija. Preuzimanjem verzije s naloga zamijenićeš lokalne izmjene ovog rada. Za projekat možeš prvo napraviti zasebnu kopiju.": {
+    "en": "Your account has a different version. Downloading it will replace local changes to this project. You can first save a separate copy of your work.",
+    "ru": "В аккаунте хранится другая версия. Её загрузка заменит локальные изменения проекта. Сначала можно сохранить отдельную копию своей работы."
+  },
+  "Lokalne izmjene su sačuvane kao zaseban projekat.": {
+    "en": "Local changes saved as a separate project.",
+    "ru": "Локальные изменения сохранены как отдельный проект."
+  },
+  "Kopija nije sačuvana.": {
+    "en": "The copy was not saved.",
+    "ru": "Не удалось сохранить копию."
+  },
+  "Sačuvaj moje izmjene kao kopiju": {
+    "en": "Save my changes as a copy",
+    "ru": "Сохранить мои изменения как копию"
+  },
+  "Prvo preuzmi svoju Playground arhivu ako želiš sačuvati lokalne eksperimente.": {
+    "en": "Download your Playground archive first if you want to keep local experiments.",
+    "ru": "Сначала скачайте архив Playground, если хотите сохранить локальные эксперименты."
+  },
+  "Zadrži lokalno za sada": {
+    "en": "Keep local version for now",
+    "ru": "Пока оставить локальную версию"
+  },
+  "Preuzeta je verzija s naloga.": {
+    "en": "Account version downloaded.",
+    "ru": "Версия из аккаунта загружена."
+  },
+  "Verzija nije preuzeta.": {
+    "en": "The version was not downloaded.",
+    "ru": "Не удалось загрузить версию."
+  },
+  "Preuzmi verziju s naloga": {
+    "en": "Download account version",
+    "ru": "Загрузить версию из аккаунта"
+  },
+  "Daj svojoj ideji početak.": {
+    "en": "Give your idea a starting point.",
+    "ru": "Дайте своей идее начало."
+  },
+  "Dovoljan je radni naziv. Sve ostalo gradimo korak po korak.": {
+    "en": "A working title is enough. We’ll build the rest step by step.",
+    "ru": "Достаточно рабочего названия. Всё остальное создадим шаг за шагом."
+  },
+  "Radni naziv projekta": {
+    "en": "Working project title",
+    "ru": "Рабочее название проекта"
+  },
+  "npr. Studio List, Moja priča...": {
+    "en": "e.g. Studio Leaf, My Story...",
+    "ru": "Например, «Студия Лист», «Моя история»..."
+  },
+  "Autor/ka identiteta": {
+    "en": "Identity author",
+    "ru": "Автор айдентики"
+  },
+  "Projekat se čuva uz tvoj Google nalog i ima lokalnu kopiju za rad bez interneta.": {
+    "en": "Your project is saved to your Google account, with a local copy for offline work.",
+    "ru": "Проект сохраняется в вашем аккаунте Google, а локальная копия позволяет работать без интернета."
+  },
+  "Projekat se čuva u ovom pregledniku. Za drugi uređaj koristi izvoz i uvoz projekta.": {
+    "en": "Your project is saved in this browser. Export and import it to use another device.",
+    "ru": "Проект сохраняется в этом браузере. Для работы на другом устройстве используйте экспорт и импорт."
+  },
+  "Odustani": {
+    "en": "Cancel",
+    "ru": "Отмена"
+  },
+  "Obriši projekat?": {
+    "en": "Delete project?",
+    "ru": "Удалить проект?"
+  },
+  "Projekat „": {
+    "en": "Project “",
+    "ru": "Проект «"
+  },
+  "biće uklonjen s naloga i povezanih uređaja. Predate verzije ostaju sačuvane.": {
+    "en": "will be removed from your account and connected devices. Submitted versions will be kept.",
+    "ru": "будет удалён из аккаунта и с подключённых устройств. Сданные версии сохранятся."
+  },
+  "biće obrisan iz ovog preglednika.": {
+    "en": "will be deleted from this browser.",
+    "ru": "будет удалён из этого браузера."
+  },
+  "Ova radnja se ne može poništiti. Prethodno možeš preuzeti rezervnu kopiju.": {
+    "en": "This action cannot be undone. You can download a backup first.",
+    "ru": "Это действие нельзя отменить. Сначала можно скачать резервную копию."
+  },
+  "Preuzmi kopiju": {
+    "en": "Download backup",
+    "ru": "Скачать копию"
+  },
+  "Zadrži projekat": {
+    "en": "Keep project",
+    "ru": "Оставить проект"
+  },
+  "Tvoj rad ostaje kod tebe.": {
+    "en": "Your work stays with you.",
+    "ru": "Ваша работа остаётся у вас."
+  },
+  "Projekti i slike čuvaju se u ovom pregledniku na ovom uređaju. Ne šalju se nastavniku automatski i ne sinhronizuju se između uređaja.": {
+    "en": "Projects and images are stored in this browser on this device. They are not sent to your teacher automatically or synced between devices.",
+    "ru": "Проекты и изображения хранятся в этом браузере на этом устройстве. Они не отправляются преподавателю автоматически и не синхронизируются между устройствами."
+  },
+  "Za nastavak na drugom računaru:": {
+    "en": "To continue on another computer:",
+    "ru": "Чтобы продолжить на другом компьютере:"
+  },
+  "izvezi projekat kao JSON, a zatim ga uvezi u Formu na drugom uređaju.": {
+    "en": "export your project as JSON, then import it into Forma on the other device.",
+    "ru": "экспортируйте проект в JSON, а затем импортируйте его в Forma на другом устройстве."
+  },
+  "Na zajedničkom računaru:": {
+    "en": "On a shared computer:",
+    "ru": "На общем компьютере:"
+  },
+  "preuzmi JSON kopiju i obriši svoj projekat prije odlaska. Odjava zaključava aplikaciju, ali ne briše lokalne projekte.": {
+    "en": "download a JSON backup and delete your project before leaving. Signing out locks the app but does not delete local projects.",
+    "ru": "скачайте JSON-копию и удалите проект перед уходом. Выход блокирует приложение, но не удаляет локальные проекты."
+  },
+  "Za predaju:": {
+    "en": "To submit your work:",
+    "ru": "Чтобы сдать работу:"
+  },
+  "izvezi dokument kao PDF i predaj ga kroz dogovoreni kanal.": {
+    "en": "export the document as PDF and submit it through the agreed channel.",
+    "ru": "экспортируйте документ в PDF и отправьте через согласованный канал."
+  },
+  "Brisanje podataka preglednika uklanja lokalne projekte. Redovno preuzimaj rezervnu kopiju.": {
+    "en": "Clearing browser data removes local projects. Download backups regularly.",
+    "ru": "Очистка данных браузера удаляет локальные проекты. Регулярно скачивайте резервную копию."
+  },
+  "Razumijem": {
+    "en": "Got it",
+    "ru": "Понятно"
+  },
+  "Predatu verziju nije moguće učitati. Provjeri vezu i pokušaj ponovo.": {
+    "en": "The submitted version could not be loaded. Check your connection and try again.",
+    "ru": "Не удалось загрузить сданную версию. Проверьте соединение и попробуйте снова."
+  },
+  "{0} · verzija {1}": {
+    "en": "{0} · version {1}",
+    "ru": "{0} · версия {1}"
+  },
+  "· predata": {
+    "en": "· submitted",
+    "ru": "· сдано"
+  },
+  ". Prikazuje se sačuvana predaja.": {
+    "en": ". Showing the saved submission.",
+    "ru": ". Показана сохранённая сданная версия."
+  },
+  "Knjiga identiteta predate verzije": {
+    "en": "Identity book for the submitted version",
+    "ru": "Книга айдентики сданной версии"
+  },
+  "PDF predate verzije": {
+    "en": "PDF of submitted version",
+    "ru": "PDF сданной версии"
+  },
+  "Preuzmi ovu verziju": {
+    "en": "Download this version",
+    "ru": "Скачать эту версию"
+  },
+  "Otvaramo predatu verziju...": {
+    "en": "Opening submitted version...",
+    "ru": "Открываем сданную версию..."
+  },
+  "Pregled nije sačuvan.": {
+    "en": "Review was not saved.",
+    "ru": "Не удалось сохранить отзыв."
+  },
+  "POVRATNA INFORMACIJA": {
+    "en": "FEEDBACK",
+    "ru": "ОБРАТНАЯ СВЯЗЬ"
+  },
+  "Obrazloži šta funkcioniše i šta doraditi.": {
+    "en": "Explain what works and what needs refining.",
+    "ru": "Объясните, что удалось и что стоит доработать."
+  },
+  "Ove smjernice nisu automatska brojčana ocjena.": {
+    "en": "These guidelines are not an automatic numerical grade.",
+    "ru": "Эти рекомендации не являются автоматической оценкой в баллах."
+  },
+  "Bez oznake": {
+    "en": "No rating",
+    "ru": "Без отметки"
+  },
+  "Jasno obrazloženo": {
+    "en": "Clearly explained",
+    "ru": "Ясно обосновано"
+  },
+  "Potrebna dorada": {
+    "en": "Needs refinement",
+    "ru": "Нужна доработка"
+  },
+  "Komentar studentu": {
+    "en": "Comment for the student",
+    "ru": "Комментарий студенту"
+  },
+  "Navedi konkretan primjer i sljedeći korak za doradu.": {
+    "en": "Give a specific example and the next step for improvement.",
+    "ru": "Приведите конкретный пример и следующий шаг для доработки."
+  },
+  "Status rada": {
+    "en": "Work status",
+    "ru": "Статус работы"
+  },
+  "Pregledano": {
+    "en": "Reviewed",
+    "ru": "Проверено"
+  },
+  "Sačuvaj pregled": {
+    "en": "Save review",
+    "ru": "Сохранить отзыв"
+  },
+  "Verzija": {
+    "en": "Version",
+    "ru": "Версия"
+  },
+  "Verzija je predata nastavniku. Dalje izmjene projekta neće mijenjati ovu predaju.": {
+    "en": "This version has been submitted to your teacher. Further project changes will not alter this submission.",
+    "ru": "Версия сдана преподавателю. Дальнейшие изменения проекта не изменят эту сданную версию."
+  },
+  "Predaje trenutno nisu dostupne. Pokušaj ponovo kada se veza vrati.": {
+    "en": "Submissions are currently unavailable. Please try again when your connection returns.",
+    "ru": "Сдача работ сейчас недоступна. Попробуйте после восстановления соединения."
+  },
+  "PREDAJA I POVRATNA INFORMACIJA": {
+    "en": "SUBMISSION AND FEEDBACK",
+    "ru": "СДАЧА И ОБРАТНАЯ СВЯЗЬ"
+  },
+  "Spremno za drugi pogled?": {
+    "en": "Ready for a second opinion?",
+    "ru": "Готовы к взгляду со стороны?"
+  },
+  "Predaj sačuvanu verziju nastavniku. Možeš nastaviti doradu; naredna predaja ostaje zasebna verzija.": {
+    "en": "Submit a saved version to your teacher. You can keep refining it; your next submission will be a separate version.",
+    "ru": "Сдайте сохранённую версию преподавателю. Можно продолжать доработку; следующая сдача станет отдельной версией."
+  },
+  "Učitavanje predaja...": {
+    "en": "Loading submissions...",
+    "ru": "Загрузка сданных работ..."
+  },
+  "Sačekaj prvo čuvanje projekta na nalogu.": {
+    "en": "Wait for the project to be saved to your account for the first time.",
+    "ru": "Дождитесь первого сохранения проекта в аккаунте."
+  },
+  "Verzija rada je predata nastavniku.": {
+    "en": "This version has been submitted to your teacher.",
+    "ru": "Версия работы сдана преподавателю."
+  },
+  "Predaja nije uspjela.": {
+    "en": "Submission failed.",
+    "ru": "Не удалось сдать работу."
+  },
+  "Ova verzija je već predata": {
+    "en": "This version is already submitted",
+    "ru": "Эта версия уже сдана"
+  },
+  "Predaj novu verziju": {
+    "en": "Submit a new version",
+    "ru": "Сдать новую версию"
+  },
+  "Predaj nastavniku na pregled": {
+    "en": "Submit for teacher review",
+    "ru": "Сдать на проверку"
+  },
+  "Prvo popuni svih osam elemenata kontrolne liste.": {
+    "en": "Complete all eight checklist items first.",
+    "ru": "Сначала заполните все восемь пунктов контрольного списка."
+  },
+  "Sačekaj završetak generisanja prije predaje.": {
+    "en": "Wait for generation to finish before submitting.",
+    "ru": "Дождитесь завершения генерации перед сдачей."
+  },
+  "Prethodne verzije (": {
+    "en": "Previous versions (",
+    "ru": "Предыдущие версии ("
+  },
+  "Predaje nisu dostupne. Provjeri vezu i pokušaj ponovo.": {
+    "en": "Submissions are unavailable. Check your connection and try again.",
+    "ru": "Сданные работы недоступны. Проверьте соединение и попробуйте снова."
+  },
+  "OD RADNE VERZIJE DO CJELINE": {
+    "en": "FROM DRAFT TO COMPLETE IDENTITY",
+    "ru": "ОТ ЧЕРНОВИКА К ЦЕЛОСТНОЙ АЙДЕНТИКЕ"
+  },
+  "Sve predate verzije i povratne informacije nastavnika.": {
+    "en": "All submitted versions and your teacher’s feedback.",
+    "ru": "Все сданные версии и отзывы преподавателя."
+  },
+  "Sve predaje": {
+    "en": "All submissions",
+    "ru": "Все работы"
+  },
+  "Osvježi": {
+    "en": "Refresh",
+    "ru": "Обновить"
+  },
+  "Pogledaj predatu verziju": {
+    "en": "View submitted version",
+    "ru": "Посмотреть сданную версию"
+  },
+  "Otvori trenutni projekat": {
+    "en": "Open current project",
+    "ru": "Открыть текущий проект"
+  },
+  "Nema predaja za ovaj status.": {
+    "en": "No submissions with this status.",
+    "ru": "Нет работ с таким статусом."
+  },
+  "Tvoj prvi pregled počinje predajom.": {
+    "en": "Your first review starts with a submission.",
+    "ru": "Первая проверка начинается со сдачи работы."
+  },
+  "U projektu otvori „Pregled i izvoz“, popuni kontrolnu listu i predaj verziju nastavniku.": {
+    "en": "Open “Review and export” in your project, complete the checklist and submit a version to your teacher.",
+    "ru": "Откройте в проекте «Обзор и экспорт», заполните контрольный список и сдайте версию преподавателю."
+  },
+  "Pregled predmeta trenutno nije dostupan. Provjeri vezu i pokušaj ponovo.": {
+    "en": "The course overview is currently unavailable. Check your connection and try again.",
+    "ru": "Обзор курса сейчас недоступен. Проверьте соединение и попробуйте снова."
+  },
+  "VIZUELNO KOMUNICIRANJE / NASTAVA": {
+    "en": "VISUAL COMMUNICATION / TEACHING",
+    "ru": "ВИЗУАЛЬНАЯ КОММУНИКАЦИЯ / ОБУЧЕНИЕ"
+  },
+  "Pregled studija": {
+    "en": "Studio overview",
+    "ru": "Обзор студии"
+  },
+  "Napredak studenata, predate verzije i konkretne smjernice za doradu.": {
+    "en": "Student progress, submitted versions and specific guidance for improvement.",
+    "ru": "Прогресс студентов, сданные версии и конкретные рекомендации по доработке."
+  },
+  "Osvježi pregled": {
+    "en": "Refresh overview",
+    "ru": "Обновить обзор"
+  },
+  "naloga na predmetu": {
+    "en": "course accounts",
+    "ru": "аккаунтов на курсе"
+  },
+  "radova čeka pregled": {
+    "en": "works awaiting review",
+    "ru": "работ ожидают проверки"
+  },
+  "pregledanih radova": {
+    "en": "reviewed works",
+    "ru": "работ проверено"
+  },
+  "Pregled predmeta": {
+    "en": "Course overview",
+    "ru": "Обзор курса"
+  },
+  "Predati radovi": {
+    "en": "Submitted work",
+    "ru": "Сданные работы"
+  },
+  "Studenti i napredak": {
+    "en": "Students and progress",
+    "ru": "Студенты и прогресс"
+  },
+  "Pretraži predmet": {
+    "en": "Search course",
+    "ru": "Поиск по курсу"
+  },
+  "Status predaje": {
+    "en": "Submission status",
+    "ru": "Статус сдачи"
+  },
+  "Sve verzije": {
+    "en": "All versions",
+    "ru": "Все версии"
+  },
+  "Učitavanje predmeta...": {
+    "en": "Loading course...",
+    "ru": "Загрузка курса..."
+  },
+  "Student": {
+    "en": "Student",
+    "ru": "Студент"
+  },
+  "Grupa / indeks": {
+    "en": "Group / student ID",
+    "ru": "Группа / номер студента"
+  },
+  "Projekti": {
+    "en": "Projects",
+    "ru": "Проекты"
+  },
+  "Popunjenost": {
+    "en": "Completion",
+    "ru": "Заполнение"
+  },
+  "Posljednja aktivnost": {
+    "en": "Last activity",
+    "ru": "Последняя активность"
+  },
+  "Indeks nije unesen": {
+    "en": "Student ID not provided",
+    "ru": "Номер студента не указан"
+  },
+  "predaja": {
+    "en": "submissions",
+    "ru": "сданных версий"
+  },
+  "Nema studenata za ovaj izbor.": {
+    "en": "No students match this selection.",
+    "ru": "Нет студентов, соответствующих выбору."
+  },
+  "Studentski nalozi pojavljuju se nakon Google prijave i unosa koda predmeta.": {
+    "en": "Student accounts appear after Google sign-in and entry of the course code.",
+    "ru": "Аккаунты студентов появляются после входа через Google и ввода кода курса."
+  },
+  "Popunjenost prikazuje najpotpuniji aktivni projekat studenta. Nije ocjena kvaliteta rada. Sadržaj rada vidiš nakon predaje.": {
+    "en": "Completion shows the student’s most complete active project. It is not a quality grade. You can see the work’s content after submission.",
+    "ru": "Заполнение показывает наиболее полный активный проект студента. Это не оценка качества работы. Содержание доступно после сдачи."
+  },
+  "Nema predaja za ovaj izbor.": {
+    "en": "No submissions match this selection.",
+    "ru": "Нет сданных работ, соответствующих выбору."
+  },
+  "Student predaje sačuvanu verziju iz koraka „Pregled i izvoz“.": {
+    "en": "Students submit a saved version from the “Review and export” step.",
+    "ru": "Студент сдаёт сохранённую версию на шаге «Обзор и экспорт»."
+  },
+  "Pogledaj svaki detalj.": {
+    "en": "See every detail.",
+    "ru": "Рассмотрите каждую деталь."
+  },
+  "Korišteni opis": {
+    "en": "Prompt used",
+    "ru": "Использованный запрос"
+  },
+  "Kopiranje nije dostupno. Označi i kopiraj opis iznad.": {
+    "en": "Copying is unavailable. Select and copy the prompt above.",
+    "ru": "Копирование недоступно. Выделите и скопируйте запрос выше."
+  },
+  "Kopiraj opis": {
+    "en": "Copy prompt",
+    "ru": "Копировать запрос"
+  },
+  "Ideja i strategija": {
+    "en": "Idea and strategy",
+    "ru": "Идея и стратегия"
+  },
+  "Vizuelne odluke proizlaze iz vizije, misije i publike.": {
+    "en": "Visual decisions follow from the vision, mission and audience.",
+    "ru": "Визуальные решения следуют из видения, миссии и аудитории."
+  },
+  "Znak i paleta": {
+    "en": "Mark and palette",
+    "ru": "Знак и палитра"
+  },
+  "Znak je jasan, boje imaju uloge i dovoljan kontrast.": {
+    "en": "The mark is clear, colours have defined roles and sufficient contrast.",
+    "ru": "Знак понятен, у цветов есть роли и достаточный контраст."
+  },
+  "Čitljivost, hijerarhija i podrška za naša slova.": {
+    "en": "Readability, hierarchy and support for our alphabet.",
+    "ru": "Читаемость, иерархия и поддержка нужных букв."
+  },
+  "Primjena identiteta": {
+    "en": "Identity applications",
+    "ru": "Применение айдентики"
+  },
+  "Memorandum i druge primjene čine povezanu cjelinu.": {
+    "en": "The letterhead and other applications form a coherent whole.",
+    "ru": "Фирменный бланк и другие носители образуют единую систему."
+  },
+  "Obrazloženje i autorstvo": {
+    "en": "Rationale and authorship",
+    "ru": "Обоснование и авторство"
+  },
+  "Izvori, autorske dorade i upotreba AI alata su jasno navedeni.": {
+    "en": "Sources, author’s changes and use of AI tools are clearly stated.",
+    "ru": "Источники, авторские доработки и использование ИИ ясно указаны."
+  },
+  "Čeka pregled": {
+    "en": "Awaiting review",
+    "ru": "Ожидает проверки"
+  },
+  "Prijava je istekla. Ponovo se prijavi u studio.": {
+    "en": "Your session has expired. Sign in to the studio again.",
+    "ru": "Срок сеанса истёк. Войдите в студию снова."
+  },
+  "Zahtjev je prevelik.": {
+    "en": "The request is too large.",
+    "ru": "Слишком большой запрос."
+  },
+  "Zahtjev nije moguće obraditi. Provjeri unos ili pokušaj ponovo.": {
+    "en": "The request could not be processed. Check your input or try again.",
+    "ru": "Не удалось обработать запрос. Проверьте данные или попробуйте снова."
+  },
+  "Veza je prekinuta. Provjeri internet i pokušaj ponovo.": {
+    "en": "Connection lost. Check your internet connection and try again.",
+    "ru": "Соединение прервано. Проверьте интернет и попробуйте снова."
+  },
+  "Servis nije vratio čitljiv odgovor.": {
+    "en": "The service returned an unreadable response.",
+    "ru": "Сервис вернул нечитаемый ответ."
+  },
+  "Sinhronizacija trenutno nije dostupna.": {
+    "en": "Sync is currently unavailable.",
+    "ru": "Синхронизация сейчас недоступна."
+  },
+  "Vizual nije ispravno sačuvan.": {
+    "en": "The visual was not saved correctly.",
+    "ru": "Визуал сохранён некорректно."
+  },
+  "Arhiva sadrži neispravnu sliku.": {
+    "en": "The archive contains an invalid image.",
+    "ru": "Архив содержит некорректное изображение."
+  },
+  "Vizual nije dostupan. Provjeri vezu i pokušaj ponovo.": {
+    "en": "The visual is unavailable. Check your connection and try again.",
+    "ru": "Визуал недоступен. Проверьте соединение и попробуйте снова."
+  },
+  "Vizual je prevelik.": {
+    "en": "The visual is too large.",
+    "ru": "Визуал слишком большой."
+  },
+  "Vizual nije moguće otvoriti.": {
+    "en": "The visual could not be opened.",
+    "ru": "Не удалось открыть визуал."
+  },
+  "Projekat nije pronađen.": {
+    "en": "Project not found.",
+    "ru": "Проект не найден."
+  },
+  "Neki vizuali još nisu sačuvani. Ponovi sinhronizaciju.": {
+    "en": "Some visuals have not been saved yet. Retry sync.",
+    "ru": "Некоторые визуалы ещё не сохранены. Повторите синхронизацию."
+  },
+  "Identifikator projekta nije ispravan.": {
+    "en": "The project identifier is invalid.",
+    "ru": "Некорректный идентификатор проекта."
+  },
+  "Postoji novija verzija rada. Sačuvaj svoje izmjene kao kopiju ili preuzmi verziju s naloga.": {
+    "en": "A newer version exists. Save your changes as a copy or download the account version.",
+    "ru": "Есть более новая версия работы. Сохраните свои изменения как копию или загрузите версию из аккаунта."
+  },
+  "Nalog može imati do 30 projekata. Izvezi i ukloni one koji ti više nisu potrebni.": {
+    "en": "An account can hold up to 30 projects. Export and remove projects you no longer need.",
+    "ru": "В аккаунте может быть до 30 проектов. Экспортируйте и удалите ненужные."
+  },
+  "Verzija nije dostupna.": {
+    "en": "This version is unavailable.",
+    "ru": "Версия недоступна."
+  },
+  "Na nalogu postoji novija verzija. Brisanje je zaustavljeno.": {
+    "en": "A newer version exists in your account. Deletion has been stopped.",
+    "ru": "В аккаунте есть более новая версия. Удаление остановлено."
+  },
+  "Podaci nisu ispravni. Provjeri unos i pokušaj ponovo.": {
+    "en": "The data is invalid. Check your input and try again.",
+    "ru": "Некорректные данные. Проверьте ввод и попробуйте снова."
+  },
+  "Čuvanje na nalogu trenutno nije dostupno. Lokalna kopija ostaje sačuvana; pokušaj ponovo.": {
+    "en": "Saving to your account is currently unavailable. Your local copy is safe; please try again.",
+    "ru": "Сохранение в аккаунте сейчас недоступно. Локальная копия сохранена; попробуйте ещё раз."
+  },
+  "Nedostaju podaci.": {
+    "en": "Data is missing.",
+    "ru": "Не хватает данных."
+  },
+  "Podaci nisu čitljivi.": {
+    "en": "The data is unreadable.",
+    "ru": "Данные нечитаемы."
+  },
+  "Prijavi se Google nalogom i pridruži se predmetu.": {
+    "en": "Sign in with Google and join the course.",
+    "ru": "Войдите через Google и присоединитесь к курсу."
+  },
+  "Ovaj pregled je dostupan nastavniku.": {
+    "en": "This view is available to teachers.",
+    "ru": "Этот раздел доступен преподавателю."
+  },
+  "Previše zahtjeva. Sačekaj minut i pokušaj ponovo.": {
+    "en": "Too many requests. Wait a minute and try again.",
+    "ru": "Слишком много запросов. Подождите минуту и попробуйте снова."
+  },
+  "Prvo sinhronizuj posljednju verziju rada.": {
+    "en": "Sync the latest version of your work first.",
+    "ru": "Сначала синхронизируйте последнюю версию работы."
+  },
+  "Prije predaje popuni sve elemente iz kontrolne liste.": {
+    "en": "Complete every checklist item before submitting.",
+    "ru": "Перед сдачей заполните все пункты контрольного списка."
+  },
+  "Izmjene ostaju na uređaju dok se veza ne vrati.": {
+    "en": "Changes will stay on this device until your connection returns.",
+    "ru": "Изменения останутся на устройстве до восстановления соединения."
+  },
+  "Lokalna kopija nije sačuvana. Preuzmi rezervnu kopiju prije zatvaranja.": {
+    "en": "The local copy was not saved. Download a backup before closing.",
+    "ru": "Локальная копия не сохранена. Скачайте резервную копию перед закрытием."
+  },
+  "Brisanje nije sačuvano. Pokušaj ponovo.": {
+    "en": "Deletion was not saved. Please try again.",
+    "ru": "Удаление не сохранено. Попробуйте ещё раз."
+  },
+  "Postoje izmjene s drugog uređaja. Izaberi verziju koju želiš zadržati.": {
+    "en": "There are changes from another device. Choose the version you want to keep.",
+    "ru": "Есть изменения с другого устройства. Выберите версию, которую хотите сохранить."
+  },
+  "Sinhronizacija nije uspjela.": {
+    "en": "Sync failed.",
+    "ru": "Не удалось синхронизировать."
+  },
+  "Nema lokalne kopije.": {
+    "en": "No local copy is available.",
+    "ru": "Локальной копии нет."
+  },
+  "Preuzmi Playground arhivu prije preuzimanja verzije s naloga.": {
+    "en": "Download your Playground archive before downloading the account version.",
+    "ru": "Скачайте архив Playground перед загрузкой версии из аккаунта."
+  },
+  "Izmjene još nisu sačuvane na nalogu. Provjeri vezu ili razriješi različite verzije rada.": {
+    "en": "Changes have not been saved to your account yet. Check your connection or resolve the different versions.",
+    "ru": "Изменения ещё не сохранены в аккаунте. Проверьте соединение или разрешите конфликт версий."
+  },
+  "Baza podataka još nije povezana.": {
+    "en": "The database is not connected yet.",
+    "ru": "База данных ещё не подключена."
+  },
+  "Identitet": {
+    "en": "Identity",
+    "ru": "Айдентика"
+  },
+  "Ideja koja nas pokreće.": {
+    "en": "The idea that drives us.",
+    "ru": "Идея, которая нас вдохновляет."
+  },
+  "Razradi kompoziciju i detaljan vizuelni brief.": {
+    "en": "Develop the composition and a detailed visual brief.",
+    "ru": "Проработайте композицию и подробный визуальный бриф."
+  },
+  "Istraži stilove, materijale i svjetlo.": {
+    "en": "Explore styles, materials and light.",
+    "ru": "Исследуйте стили, материалы и свет."
+  },
+  "Eksperimentiši s vizuelnim smjerom i primjenama.": {
+    "en": "Experiment with visual direction and applications.",
+    "ru": "Экспериментируйте с визуальным направлением и носителями."
+  },
+  "Istraži natpise i tipografske kompozicije.": {
+    "en": "Explore lettering and typographic compositions.",
+    "ru": "Исследуйте надписи и типографические композиции."
+  },
+  "Podržane su PNG, JPG i WebP slike.": {
+    "en": "PNG, JPG and WebP images are supported.",
+    "ru": "Поддерживаются изображения PNG, JPG и WebP."
+  },
+  "Vizual nema sliku.": {
+    "en": "The visual has no image.",
+    "ru": "У визуала нет изображения."
+  },
+  "Vizuelni smjer": {
+    "en": "Visual direction",
+    "ru": "Визуальное направление"
+  },
+  "Istraži atmosferu svoje ideje": {
+    "en": "Explore the mood of your idea",
+    "ru": "Исследуйте атмосферу своей идеи"
+  },
+  "Napravi moodboard: povezanu kompoziciju materijala, oblika, tekstura i fotografskih detalja koji predstavljaju karakter ove ideje. Bez logotipa i suvišnih natpisa.": {
+    "en": "Create a moodboard: a coherent composition of materials, shapes, textures and photographic details that express this idea’s character. No logos or unnecessary lettering.",
+    "ru": "Создайте мудборд: целостную композицию материалов, форм, текстур и фотодеталей, передающих характер идеи. Без логотипов и лишних надписей."
+  },
+  "Paleta boja": {
+    "en": "Colour palette",
+    "ru": "Цветовая палитра"
+  },
+  "Pogledaj kako tvoje boje žive zajedno": {
+    "en": "See how your colours work together",
+    "ru": "Посмотрите, как ваши цвета сочетаются"
+  },
+  "Napravi vizuelnu studiju zadate palete: velike plohe boja, teksture i jednostavne geometrijske kompozicije. Poštuj HEX vrijednosti kao smjernice. Bez dodatnih natpisa. Prikaži odnos primarne, sekundarne i akcentne boje.": {
+    "en": "Create a visual study of the specified palette: large colour fields, textures and simple geometric compositions. Use the HEX values as guidance. No additional lettering. Show the relationship between the primary, secondary and accent colours.",
+    "ru": "Создайте визуальное исследование заданной палитры: крупные цветовые поля, текстуры и простые геометрические композиции. Ориентируйтесь на HEX-коды. Без дополнительных надписей. Покажите соотношение основного, дополнительного и акцентного цветов."
+  },
+  "Generiši znak iz svoje ideje": {
+    "en": "Generate a mark from your idea",
+    "ru": "Создайте знак на основе своей идеи"
+  },
+  "Predloži jednostavan originalan znak i naziv robne marke na čistoj svijetloj pozadini, bez mockupa i dodatnog teksta. Znak treba da bude prepoznatljiv u maloj veličini i da funkcioniše u jednoj boji. Izbjegni postojeće logotipe i generičke simbole.": {
+    "en": "Propose a simple original mark and brand name on a clean light background, without mockups or additional text. The mark should be recognisable at a small size and work in one colour. Avoid existing logos and generic symbols.",
+    "ru": "Предложите простой оригинальный знак и название бренда на чистом светлом фоне, без мокапов и дополнительного текста. Знак должен быть узнаваемым в малом размере и работать в одном цвете. Избегайте существующих логотипов и шаблонных символов."
+  },
+  "Istraži karakter slova": {
+    "en": "Explore the character of letters",
+    "ru": "Исследуйте характер букв"
+  },
+  "Napravi tipografski plakat s nazivom i sloganom iz briefa. Prikaži jasnu hijerarhiju naslova i teksta, skladne razmake i slova č, ć, đ, š, ž. Navedeni fontovi su vizuelna smjernica; ovo je skica rasporeda za kasniju preciznu obradu.": {
+    "en": "Create a typographic poster using the name and slogan from the brief. Show a clear heading and body hierarchy, balanced spacing and the letters č, ć, đ, š, ž. The named fonts are visual guidance; this is a layout sketch for later precise refinement.",
+    "ru": "Создайте типографический плакат с названием и слоганом из брифа. Покажите ясную иерархию заголовков и текста, гармоничные интервалы и кириллицу: Аа, Бб, Ёё, Жж, Щщ, Ыы, Яя. Указанные шрифты служат визуальным ориентиром; это эскиз для дальнейшей точной доработки."
+  },
+  "Generiši primjenu na memorandumu": {
+    "en": "Generate a letterhead application",
+    "ru": "Создайте вариант фирменного бланка"
+  },
+  "Napravi ravni prikaz dizajna poslovnog memoranduma: naziv u zaglavlju, mali znak, prostrana površina za sadržaj, tanka razdjelna linija i zadati kontakt u podnožju. Koristi paletu i karakter tipografije iz briefa. Bez perspektive i fotografskog mockupa. Ne izmišljaj kontakt podatke.": {
+    "en": "Create a flat layout of a business letterhead: name in the header, small mark, spacious content area, thin divider and the supplied contact details in the footer. Use the palette and typographic character from the brief. No perspective or photographic mockup. Do not invent contact details.",
+    "ru": "Создайте плоский макет делового бланка: название вверху, небольшой знак, просторное поле для текста, тонкий разделитель и заданные контакты внизу. Используйте палитру и характер типографики из брифа. Без перспективы и фотореалистичного мокапа. Не придумывайте контакты."
+  },
+  "Pretvori identitet u objavu": {
+    "en": "Turn your identity into a post",
+    "ru": "Превратите айдентику в публикацию"
+  },
+  "Napravi dizajn društvene objave s nazivom robne marke i zadatim sloganom. Koristi zadatu paletu, izražajnu kompoziciju i jasnu hijerarhiju. Bez izmišljenih ponuda i kontakt podataka. Ostavi dovoljno praznog prostora.": {
+    "en": "Create a social post design with the brand name and supplied slogan. Use the given palette, an expressive composition and a clear hierarchy. Do not invent offers or contact details. Leave enough empty space.",
+    "ru": "Создайте дизайн публикации с названием бренда и заданным слоганом. Используйте заданную палитру, выразительную композицию и ясную иерархию. Не придумывайте предложения или контакты. Оставьте достаточно свободного пространства."
+  },
+  "Nije uneseno.": {
+    "en": "Not provided.",
+    "ru": "Не указано."
+  },
+  "Odabrana varijanta": {
+    "en": "Selected version",
+    "ru": "Выбранный вариант"
+  },
+  "Prethodna varijanta": {
+    "en": "Previous version",
+    "ru": "Предыдущий вариант"
+  },
+  "{0} — komplet vizuelnog identiteta Autor/ka: {1} • projekat.forma.json: uvezi u Formu za nastavak uređivanja. • knjiga-identiteta.html: pregled cjelokupnog rada; otvori u pregledniku i sačuvaj kao PDF. • logotip.svg: znak ili SVG s ugrađenom rasterskom slikom. AI slika se ovim ne pretvara u vektore. • paleta.svg i dizajn-tokeni.json: tačne boje i nazivi fontova. • vizuali/: odabrani i prethodni vizuali, s opisima korištenim za generisanje. • web-stranica.html: osnova za drugi kolokvijum. U HTML dokumentima odabrani fontovi prikazuju se ako su instalirani. Font datoteke nisu dio paketa. Za PDF s ugrađenim fontovima koristi izvoz dokumenta direktno iz aplikacije. Predaj rad kroz kanal dogovoren na nastavi. Provjeri obrazloženja, izvore i autorske izmjene prije predaje.": {
+    "en": "{0} — visual identity kit\nAuthor: {1}\n• projekat.forma.json: import into Forma to continue editing.\n• knjiga-identiteta.html: a complete overview; open in a browser and save as PDF.\n• logotip.svg: a mark or SVG with an embedded raster image. This does not convert AI images to vectors.\n• paleta.svg and dizajn-tokeni.json: exact colours and font names.\n• vizuali/: selected and previous visuals, with generation prompts.\n• web-stranica.html: a starter for the second assessment.\n\nSelected fonts appear in HTML documents if installed. Font files are not included in this kit. For a PDF with embedded fonts, export the document directly from the app.\n\nSubmit through the channel agreed in class. Check your rationale, sources and author’s changes before submitting.",
+    "ru": "{0} — комплект визуальной айдентики\nАвтор: {1}\n• projekat.forma.json: импортируйте в Forma для продолжения редактирования.\n• knjiga-identiteta.html: полный обзор работы; откройте в браузере и сохраните как PDF.\n• logotip.svg: знак или SVG со встроенным растровым изображением. Изображения ИИ не преобразуются в векторы.\n• paleta.svg и dizajn-tokeni.json: точные цвета и названия шрифтов.\n• vizuali/: выбранные и предыдущие визуалы с запросами для генерации.\n• web-stranica.html: основа для второго коллоквиума.\n\nВыбранные шрифты в HTML отображаются, если установлены. Файлы шрифтов не входят в комплект. Для PDF со встроенными шрифтами используйте экспорт прямо из приложения.\n\nСдайте работу через согласованный на занятиях канал. Перед сдачей проверьте обоснования, источники и авторские изменения."
+  },
+  "Preglednik ne podržava pripremu vizuala za PDF.": {
+    "en": "Your browser does not support preparing visuals for PDF.",
+    "ru": "Браузер не поддерживает подготовку визуалов для PDF."
+  },
+  "Slika „{0}“ nije čitljiva. Izaberi drugu varijantu ili isključi AI vizuale i pokušaj ponovo.": {
+    "en": "Image “{0}” could not be read. Select another version or exclude AI visuals and try again.",
+    "ru": "Не удалось прочитать изображение «{0}». Выберите другой вариант или исключите визуалы ИИ и попробуйте снова."
+  },
+  "Aa Bb Čč Ćć Đđ Šš Žž": {
+    "en": "Aa Bb Cc Dd Ee Ff Gg",
+    "ru": "Аа Бб Вв Гг Дд Её Жж"
+  },
+  "Dobar identitet počinje jasnom idejom.": {
+    "en": "A good identity starts with a clear idea.",
+    "ru": "Хорошая айдентика начинается с ясной идеи."
+  },
+  "Čitljivost, karakter i dosljednost povezuju cijelu priču.": {
+    "en": "Readability, character and consistency connect the whole story.",
+    "ru": "Читаемость, характер и последовательность объединяют всю историю."
+  },
+  "Aa Čć Đđ Šš Žž": {
+    "en": "Aa Bb Cc Dd Ee",
+    "ru": "Аа Бб Ёё Жж Яя"
+  },
+  "FORMA / VIZUELNO KOMUNICIRANJE": {
+    "en": "FORMA / VISUAL COMMUNICATION",
+    "ru": "FORMA / ВИЗУАЛЬНАЯ КОММУНИКАЦИЯ"
+  },
+  "VIZUELNI IDENTITET /": {
+    "en": "VISUAL IDENTITY /",
+    "ru": "ВИЗУАЛЬНАЯ АЙДЕНТИКА /"
+  },
+  "· Istraživanje znaka": {
+    "en": "· Mark exploration",
+    "ru": "· Исследование знака"
+  },
+  "FORMA / STUDENTSKI STUDIO": {
+    "en": "FORMA / STUDENT STUDIO",
+    "ru": "FORMA / СТУДЕНЧЕСКАЯ СТУДИЯ"
+  },
+  "VIZUELNO KOMUNICIRANJE · PRVI KOLOKVIJUM": {
+    "en": "VISUAL COMMUNICATION · FIRST ASSESSMENT",
+    "ru": "ВИЗУАЛЬНАЯ КОММУНИКАЦИЯ · ПЕРВЫЙ КОЛЛОКВИУМ"
+  },
+  "AUTOR / AUTORKA": {
+    "en": "AUTHOR",
+    "ru": "АВТОР"
+  },
+  "Broj indeksa:": {
+    "en": "Student ID:",
+    "ru": "Номер студента:"
+  },
+  "DATUM DOKUMENTA": {
+    "en": "DOCUMENT DATE",
+    "ru": "ДАТА ДОКУМЕНТА"
+  },
+  "VRSTA PROJEKTA": {
+    "en": "PROJECT TYPE",
+    "ru": "ТИП ПРОЕКТА"
+  },
+  "Redizajn identiteta": {
+    "en": "Identity redesign",
+    "ru": "Редизайн айдентики"
+  },
+  "Novi identitet": {
+    "en": "New identity",
+    "ru": "Новая айдентика"
+  },
+  "Sačuvana predaja · verzija": {
+    "en": "Saved submission · version",
+    "ru": "Сданная работа · версия"
+  },
+  "· predato": {
+    "en": "· submitted",
+    "ru": "· сдано"
+  },
+  "Ideja projekta": {
+    "en": "Project idea",
+    "ru": "Идея проекта"
+  },
+  "Ciljna publika": {
+    "en": "Target audience",
+    "ru": "Целевая аудитория"
+  },
+  "SADRŽAJ DOKUMENTA": {
+    "en": "DOCUMENT CONTENTS",
+    "ru": "СОДЕРЖАНИЕ ДОКУМЕНТА"
+  },
+  "Zašto ove boje?": {
+    "en": "Why these colours?",
+    "ru": "Почему эти цвета?"
+  },
+  "Aa / Kontrast": {
+    "en": "Aa / Contrast",
+    "ru": "Аа / Контраст"
+  },
+  "na": {
+    "en": "on",
+    "ru": "на"
+  },
+  "· odnos": {
+    "en": "· ratio",
+    "ru": "· соотношение"
+  },
+  "Ova kombinacija zadovoljava WCAG AA prag od 4,5 : 1 za običan tekst.": {
+    "en": "This combination meets the WCAG AA threshold of 4.5 : 1 for normal text.",
+    "ru": "Это сочетание соответствует порогу WCAG AA 4,5 : 1 для обычного текста."
+  },
+  "Ova kombinacija zadovoljava WCAG AA prag za veliki tekst, ali ne i prag od 4,5 : 1 za običan tekst.": {
+    "en": "This combination meets the WCAG AA threshold for large text, but not the 4.5 : 1 threshold for normal text.",
+    "ru": "Это сочетание соответствует порогу WCAG AA для крупного текста, но не порогу 4,5 : 1 для обычного."
+  },
+  "Ova kombinacija ne zadovoljava WCAG AA prag za tekst. Za čitanje izaberi kontrastniju kombinaciju.": {
+    "en": "This combination does not meet the WCAG AA text threshold. Choose a higher-contrast combination for reading.",
+    "ru": "Это сочетание не соответствует порогу WCAG AA для текста. Для чтения выберите более контрастную комбинацию."
+  },
+  "Odnos se odnosi samo na prikazane dvije boje.": {
+    "en": "The ratio applies only to the two colours shown.",
+    "ru": "Соотношение относится только к двум показанным цветам."
+  },
+  "Odabrani logotip projekta": {
+    "en": "Selected project logo",
+    "ru": "Выбранный логотип проекта"
+  },
+  "Značenje i obrazloženje": {
+    "en": "Meaning and rationale",
+    "ru": "Значение и обоснование"
+  },
+  "NASLOVI /": {
+    "en": "HEADINGS /",
+    "ru": "ЗАГОЛОВКИ /"
+  },
+  "OSNOVNI TEKST /": {
+    "en": "BODY TEXT /",
+    "ru": "ОСНОВНОЙ ТЕКСТ /"
+  },
+  "Izbor i odnos fontova": {
+    "en": "Font choice and pairing",
+    "ru": "Выбор и сочетание шрифтов"
+  },
+  "Ovaj primjer prikazuje raspored logotipa, teksta i kontakta na poslovnom memorandumu.": {
+    "en": "This sample shows the arrangement of the logo, text and contact details on a business letterhead.",
+    "ru": "Этот образец показывает расположение логотипа, текста и контактов на деловом бланке."
+  },
+  "Naziv projekta": {
+    "en": "Project name",
+    "ru": "Название проекта"
+  },
+  "Kontakt podaci nisu uneseni.": {
+    "en": "Contact details not provided.",
+    "ru": "Контакты не указаны."
+  },
+  "Primjer rasporeda memoranduma izveden iz elemenata projekta.": {
+    "en": "Sample letterhead layout using the project’s elements.",
+    "ru": "Пример фирменного бланка на основе элементов проекта."
+  },
+  "AI VIZUALI U OVOM DOKUMENTU": {
+    "en": "AI VISUALS IN THIS DOCUMENT",
+    "ru": "ВИЗУАЛЫ ИИ В ЭТОМ ДОКУМЕНТЕ"
+  },
+  "Vizuali su označeni kao AI skice. Autorske dorade i odluke opisane su u obrazloženjima projekta.": {
+    "en": "Visuals are marked as AI sketches. Author’s changes and decisions are described in the project rationale.",
+    "ru": "Визуалы обозначены как эскизы ИИ. Авторские доработки и решения описаны в обоснованиях проекта."
+  },
+  "Osvrt na rad": {
+    "en": "Reflection on the work",
+    "ru": "Рефлексия о работе"
+  },
+  "Dokument pripremljen u studiju Forma ·": {
+    "en": "Document prepared in Forma studio ·",
+    "ru": "Документ подготовлен в студии Forma ·"
+  },
+  "PDF je izvoz": {
+    "en": "This PDF exports",
+    "ru": "Этот PDF содержит экспорт"
+  },
+  "sačuvane predaje, verzija {0}": {
+    "en": "saved submission, version {0}",
+    "ru": "сданной работы, версия {0}"
+  },
+  "trenutnog projekta": {
+    "en": "the current project",
+    "ru": "текущего проекта"
+  },
+  "; njegovo preuzimanje ne predstavlja predaju rada nastavniku.": {
+    "en": "; downloading it does not submit your work to the teacher.",
+    "ru": "; скачивание не означает сдачу работы преподавателю."
+  },
+  "PRILOG / AI PROCES": {
+    "en": "APPENDIX / AI PROCESS",
+    "ru": "ПРИЛОЖЕНИЕ / РАБОТА С ИИ"
+  },
+  "Promptovi": {
+    "en": "Prompts",
+    "ru": "Запросы"
+  },
+  "Opisi korišteni za vizuale uključene u dokument.": {
+    "en": "Prompts used for the visuals included in this document.",
+    "ru": "Запросы, использованные для визуалов в этом документе."
+  },
+  "Ideja, publika i vizuelni smjer": {
+    "en": "Idea, audience and visual direction",
+    "ru": "Идея, аудитория и визуальное направление"
+  },
+  "Vizija, misija, strategija i ciljevi": {
+    "en": "Vision, mission, strategy and goals",
+    "ru": "Видение, миссия, стратегия и цели"
+  },
+  "Boje, vrijednosti i obrazloženje": {
+    "en": "Colours, values and rationale",
+    "ru": "Цвета, значения и обоснование"
+  },
+  "Znak i značenje": {
+    "en": "Mark and meaning",
+    "ru": "Знак и значение"
+  },
+  "Izbor fontova i primjeri slova": {
+    "en": "Font choices and letter samples",
+    "ru": "Выбор шрифтов и образцы букв"
+  },
+  "Memorandum i odabrane primjene": {
+    "en": "Letterhead and selected applications",
+    "ru": "Фирменный бланк и выбранные носители"
+  },
+  "Proces i izvori": {
+    "en": "Process and sources",
+    "ru": "Процесс и источники"
+  },
+  "Autorstvo, AI alati i osvrt na rad": {
+    "en": "Authorship, AI tools and reflection",
+    "ru": "Авторство, инструменты ИИ и рефлексия"
+  },
+  "{0} · {1} · AI skica · {2} · {3}": {
+    "en": "{0} · {1} · AI sketch · {2} · {3}",
+    "ru": "{0} · {1} · Эскиз ИИ · {2} · {3}"
+  },
+  "Ranija varijanta {0}": {
+    "en": "Earlier version {0}",
+    "ru": "Ранний вариант {0}"
+  },
+  "Odabrani vizual": {
+    "en": "Selected visual",
+    "ru": "Выбранный визуал"
+  },
+  "Logotip · Ranija AI skica": {
+    "en": "Logo · Earlier AI sketch",
+    "ru": "Логотип · Ранний эскиз ИИ"
+  },
+  "Servis nije prihvatio ovaj opis. Preformuliši brief i pokušaj ponovo.": {
+    "en": "The service did not accept this prompt. Rephrase the brief and try again.",
+    "ru": "Сервис не принял этот запрос. Переформулируйте бриф и попробуйте снова."
+  },
+  "Pika kredit nije dovoljan. Nastavnik treba dopuniti račun.": {
+    "en": "Pika credit is insufficient. The teacher needs to top up the account.",
+    "ru": "Недостаточно средств Pika. Преподавателю нужно пополнить счёт."
+  },
+  "Potrebno je aktivno Pika API Club članstvo.": {
+    "en": "An active Pika API Club membership is required.",
+    "ru": "Требуется активная подписка Pika API Club."
+  },
+  "Dostignuto je ograničenje potrošnje na Pika računu.": {
+    "en": "The spending limit on the Pika account has been reached.",
+    "ru": "Достигнут лимит расходов аккаунта Pika."
+  },
+  "Servis je trenutno zauzet. Sačekaj prije novog pokušaja.": {
+    "en": "The service is busy. Wait before trying again.",
+    "ru": "Сервис занят. Подождите перед следующей попыткой."
+  },
+  "Servis nije prihvatio postavke. Obrati se nastavniku.": {
+    "en": "The service did not accept these settings. Contact your teacher.",
+    "ru": "Сервис не принял настройки. Обратитесь к преподавателю."
+  },
+  "Generisanje nije završeno. Tvoj projekat je sačuvan; pokušaj ponovo kasnije.": {
+    "en": "Generation did not finish. Your project is saved; try again later.",
+    "ru": "Генерация не завершена. Проект сохранён; попробуйте позже."
+  },
+  "Nastavnik još nije povezao Pika API ključ.": {
+    "en": "The teacher has not connected a Pika API key yet.",
+    "ru": "Преподаватель ещё не подключил ключ Pika API."
+  },
+  "Pika servis trenutno ne odgovara. Sačekaj i provjeri status prije novog generisanja.": {
+    "en": "Pika is not responding. Wait and check the status before generating again.",
+    "ru": "Pika не отвечает. Подождите и проверьте статус перед новой генерацией."
+  },
+  "Pika ključ nije aktivan ili nema odgovarajući pristup. Obrati se nastavniku.": {
+    "en": "The Pika key is inactive or lacks the required access. Contact your teacher.",
+    "ru": "Ключ Pika неактивен или не имеет нужного доступа. Обратитесь к преподавателю."
+  },
+  "Cijena prelazi dozvoljeni iznos za jednu sliku. Obrati se nastavniku.": {
+    "en": "The price exceeds the per-image limit. Contact your teacher.",
+    "ru": "Цена превышает лимит на одно изображение. Обратитесь к преподавателю."
+  },
+  "Servis je vratio nepodržanu adresu slike.": {
+    "en": "The service returned an unsupported image address.",
+    "ru": "Сервис вернул неподдерживаемый адрес изображения."
+  },
+  "Nepodržana adresa slike.": {
+    "en": "Unsupported image address.",
+    "ru": "Неподдерживаемый адрес изображения."
+  },
+  "Slika trenutno nije dostupna za preuzimanje.": {
+    "en": "The image is currently unavailable for download.",
+    "ru": "Изображение сейчас недоступно для скачивания."
+  },
+  "Prazan rezultat servisa.": {
+    "en": "The service returned an empty result.",
+    "ru": "Сервис вернул пустой результат."
+  },
+  "Slika prelazi dozvoljenih 8 MB.": {
+    "en": "The image exceeds the 8 MB limit.",
+    "ru": "Изображение превышает лимит 8 МБ."
+  },
+  "Previše preusmjerenja pri preuzimanju slike.": {
+    "en": "Too many redirects while downloading the image.",
+    "ru": "Слишком много перенаправлений при скачивании изображения."
+  },
+  "Dobra priča počinje idejom": {
+    "en": "A good story starts with an idea",
+    "ru": "Хорошая история начинается с идеи"
+  },
+  "Prvo smisao. Onda oblik.": {
+    "en": "Meaning first. Then form.",
+    "ru": "Сначала смысл. Затем форма."
+  },
+  "Boje koje govore tvoju priču": {
+    "en": "Colours that tell your story",
+    "ru": "Цвета, которые рассказывают вашу историю"
+  },
+  "Jedan znak. Jasna poruka.": {
+    "en": "One mark. A clear message.",
+    "ru": "Один знак. Ясное сообщение."
+  },
+  "Daj svom identitetu glas": {
+    "en": "Give your identity a voice",
+    "ru": "Придайте своей айдентике голос"
+  },
+  "Iz studija u stvarni svijet": {
+    "en": "From studio to the real world",
+    "ru": "Из студии в реальный мир"
+  },
+  "Pregled i izvoz": {
+    "en": "Review and export",
+    "ru": "Обзор и экспорт"
+  },
+  "Poveži sve u jednu cjelinu": {
+    "en": "Bring everything together",
+    "ru": "Объедините всё в одно целое"
+  },
+  "Bora": {
+    "en": "Bora",
+    "ru": "Bora"
+  },
+  "Primjer za vježbu": {
+    "en": "Practice example",
+    "ru": "Учебный пример"
+  },
+  "Mala robna marka prirodnih proizvoda za njegu, inspirisana biljkama našeg podneblja. Ovo je izmišljeni edukativni primjer, a ne studentski rad.": {
+    "en": "A small natural skincare brand inspired by local plants. This is a fictional educational example, not student work.",
+    "ru": "Небольшой бренд натуральной косметики, вдохновлённый местными растениями. Это вымышленный учебный пример, а не работа студента."
+  },
+  "Ljudi koji biraju jednostavnu njegu, razumljive sastojke i odgovornu ambalažu.": {
+    "en": "People who choose simple skincare, understandable ingredients and responsible packaging.",
+    "ru": "Люди, выбирающие простой уход, понятные ингредиенты и экологичную упаковку."
+  },
+  "Svijet u kojem briga o sebi ide ruku pod ruku s brigom o prirodi.": {
+    "en": "A world where caring for yourself goes hand in hand with caring for nature.",
+    "ru": "Мир, где забота о себе идёт рука об руку с заботой о природе."
+  },
+  "Pravimo male serije proizvoda za svakodnevnu njegu, koristeći lokalne biljne sastojke i povratnu ambalažu.": {
+    "en": "We make small batches of everyday skincare products using local plant ingredients and returnable packaging.",
+    "ru": "Мы выпускаем небольшие партии средств для ежедневного ухода, используя местные растительные ингредиенты и возвратную упаковку."
+  },
+  "Počinjemo sa tri proizvoda. Povjerenje gradimo transparentnim porijeklom sastojaka, direktnim kontaktom i jednostavnom vizuelnom komunikacijom.": {
+    "en": "We start with three products. We build trust through transparent ingredient sourcing, direct contact and simple visual communication.",
+    "ru": "Начинаем с трёх продуктов. Создаём доверие через прозрачное происхождение ингредиентов, прямой контакт и простую визуальную коммуникацию."
+  },
+  "Razviti tri proizvoda u prvoj godini.": {
+    "en": "Develop three products in the first year.",
+    "ru": "Разработать три продукта за первый год."
+  },
+  "Uspostaviti saradnju sa dva lokalna uzgajivača.": {
+    "en": "Partner with two local growers.",
+    "ru": "Наладить сотрудничество с двумя местными производителями."
+  },
+  "Uvesti povratnu ambalažu za cijelu liniju.": {
+    "en": "Introduce returnable packaging for the whole range.",
+    "ru": "Ввести возвратную упаковку для всей линейки."
+  },
+  "Priroda. Bliže tebi.": {
+    "en": "Nature. Closer to you.",
+    "ru": "Природа. Ближе к вам."
+  },
+  "Tamnozelena povezuje identitet s biljnim porijeklom. Topla krem boja donosi smirenost, a terakota ističe važne informacije. Tamni tekst na svijetloj pozadini ostaje čitljiv.": {
+    "en": "Dark green connects the identity with its plant origins. Warm cream brings calm, while terracotta highlights key information. Dark text on a light background remains readable.",
+    "ru": "Тёмно-зелёный связывает айдентику с растительным происхождением. Тёплый кремовый создаёт спокойствие, а терракотовый выделяет важную информацию. Тёмный текст на светлом фоне остаётся читаемым."
+  },
+  "Radijalni znak asocira na listove i rast. Jednostavna forma ostaje prepoznatljiva u maloj veličini i u jednoj boji. Ovo je početni predložak za dalju autorsku doradu.": {
+    "en": "The radial mark evokes leaves and growth. Its simple form stays recognisable at a small size and in one colour. This is a starting template for further author-led refinement.",
+    "ru": "Радиальный знак напоминает листья и рост. Простая форма остаётся узнаваемой в малом размере и в одном цвете. Это исходный шаблон для дальнейшей авторской доработки."
+  },
+  "Space Grotesk daje naslovima savremen, jasan karakter. DM Sans je neutralan i čitljiv za duže opise proizvoda. Oba fonta podržavaju č, ć, ž, š i đ.": {
+    "en": "Space Grotesk gives headings a contemporary, clear character. DM Sans is neutral and readable for longer product descriptions. Both fonts support č, ć, ž, š and đ.",
+    "ru": "Space Grotesk придаёт заголовкам современный и ясный характер. DM Sans нейтрален и удобен для длинных описаний продуктов. Оба шрифта поддерживают č, ć, ž, š и đ."
+  },
+  "Banja Luka, BiH": {
+    "en": "Banja Luka, Bosnia and Herzegovina",
+    "ru": "Баня-Лука, Босния и Герцеговина"
+  },
+  "Memorandum koristi dosta praznog prostora i malu verziju logotipa. Na društvenim mrežama primarna boja ostaje dominantna, a akcent vodi pogled na poruku.": {
+    "en": "The letterhead uses plenty of empty space and a small logo. On social media, the primary colour stays dominant while the accent guides the eye to the message.",
+    "ru": "В бланке много свободного пространства и небольшой логотип. В социальных сетях основной цвет остаётся доминирующим, а акцент направляет взгляд на сообщение."
+  },
+  "Edukativni primjer aplikacije Forma. Geometrijski znak je početni predložak. Fontovi DM Sans i Space Grotesk: Google Fonts, SIL Open Font License.": {
+    "en": "Forma educational example. The geometric mark is a starting template. DM Sans and Space Grotesk fonts: Google Fonts, SIL Open Font License.",
+    "ru": "Учебный пример Forma. Геометрический знак — исходный шаблон. Шрифты DM Sans и Space Grotesk: Google Fonts, лицензия SIL Open Font License."
+  },
+  "Isti odnos boja i fontova povezuje sve primjene. Prije konačne predaje dodatno bih testirao znak na maloj ambalaži i doradio njegov autorski karakter.": {
+    "en": "The same balance of colours and fonts connects all applications. Before final submission, I would test the mark on small packaging and further refine its original character.",
+    "ru": "Единое соотношение цветов и шрифтов связывает все носители. Перед итоговой сдачей я бы дополнительно проверил знак на небольшой упаковке и доработал его авторский характер."
+  },
+  "Radni naziv, autor i opis ideje": {
+    "en": "Working title, author and idea description",
+    "ru": "Рабочее название, автор и описание идеи"
+  },
+  "Vizija, misija i strategija": {
+    "en": "Vision, mission and strategy",
+    "ru": "Видение, миссия и стратегия"
+  },
+  "Najmanje 3 konkretna cilja": {
+    "en": "At least 3 specific goals",
+    "ru": "Не менее 3 конкретных целей"
+  },
+  "Paleta od 2–4 boje s obrazloženjem": {
+    "en": "A palette of 2–4 colours with rationale",
+    "ru": "Палитра из 2–4 цветов с обоснованием"
+  },
+  "Logotip i objašnjenje značenja": {
+    "en": "Logo and explanation of its meaning",
+    "ru": "Логотип и объяснение его значения"
+  },
+  "Tipografija i razlog izbora": {
+    "en": "Typography and reasons for the choice",
+    "ru": "Типографика и обоснование выбора"
+  },
+  "Memorandum i obrazloženje primjene": {
+    "en": "Letterhead and application rationale",
+    "ru": "Бланк и обоснование применения"
+  },
+  "Izvori i osvrt na vlastiti rad": {
+    "en": "Sources and reflection on your work",
+    "ru": "Источники и рефлексия о своей работе"
+  },
+  "Kreativni brief za vizuelni identitet: {0} Ideja: {1} Publika: {2} Vizija: {3} Misija: {4} Slogan: {5} Paleta: {6} Vizuelni smjer: {7} Predloži jednostavan koncept znaka na čistoj pozadini, bez mockupa i dodatnog teksta. Znak treba da bude prepoznatljiv u maloj veličini i da funkcioniše u jednoj boji. Izbjegni postojeće logotipe i generičke simbole. Rezultat je skica za autorsku doradu, a ne gotov identitet.": {
+    "en": "Creative brief for the visual identity: {0} Idea: {1} Audience: {2} Vision: {3} Mission: {4} Slogan: {5} Palette: {6} Visual direction: {7} Propose a simple mark on a clean background, without mockups or additional text. The mark should be recognisable at a small size and work in one colour. Avoid existing logos and generic symbols. The result is a sketch for author-led refinement, not a finished identity.",
+    "ru": "Креативный бриф визуальной айдентики: {0} Идея: {1} Аудитория: {2} Видение: {3} Миссия: {4} Слоган: {5} Палитра: {6} Визуальное направление: {7} Предложите простой знак на чистом фоне, без мокапов и дополнительного текста. Знак должен быть узнаваем в малом размере и работать в одном цвете. Избегайте существующих логотипов и шаблонных символов. Результат — эскиз для авторской доработки, а не готовая айдентика."
+  },
+  "[opiši ideju]": {
+    "en": "[describe the idea]",
+    "ru": "[опишите идею]"
+  },
+  "[definiši publiku]": {
+    "en": "[define the audience]",
+    "ru": "[определите аудиторию]"
+  },
+  "[napiši viziju]": {
+    "en": "[write the vision]",
+    "ru": "[сформулируйте видение]"
+  },
+  "[napiši misiju]": {
+    "en": "[write the mission]",
+    "ru": "[сформулируйте миссию]"
+  },
+  "Vizuelni identitet: {0} Ideja: {1} Publika: {2} Vizija: {3} Misija: {4} Slogan: {5} Paleta: {6} Tipografija: {7} za naslove, {8} za tekst. Karakter znaka: {9} Kontakt: {10} {11} Ovo je skica za autorsku doradu. Vizuelni smjer: jasan, promišljen i dosljedan.": {
+    "en": "Visual identity: {0} Idea: {1} Audience: {2} Vision: {3} Mission: {4} Slogan: {5} Palette: {6} Typography: {7} for headings, {8} for body text. Mark character: {9} Contact: {10} {11} This is a sketch for author-led refinement. Visual direction: clear, thoughtful and consistent.",
+    "ru": "Визуальная айдентика: {0} Идея: {1} Аудитория: {2} Видение: {3} Миссия: {4} Слоган: {5} Палитра: {6} Типографика: {7} для заголовков, {8} для текста. Характер знака: {9} Контакты: {10} {11} Это эскиз для авторской доработки. Визуальное направление: ясное, продуманное и последовательное."
+  },
+  "bez slogana": {
+    "en": "no slogan",
+    "ru": "без слогана"
+  },
+  "jednostavan i prepoznatljiv": {
+    "en": "simple and recognisable",
+    "ru": "простой и узнаваемый"
+  },
+  "bez kontakta": {
+    "en": "no contact details",
+    "ru": "без контактов"
+  },
+  "Neki podaci nisu čitljivi. Sačuvani zapisi nisu obrisani; pokušaj ponovni uvoz rezervne kopije.": {
+    "en": "Some data is unreadable. Saved records have not been deleted; try importing your backup again.",
+    "ru": "Некоторые данные нечитаемы. Сохранённые записи не удалены; попробуйте снова импортировать резервную копию."
+  },
+  "Datoteka je prevelika. Maksimalna veličina je 64 MB.": {
+    "en": "The file is too large. Maximum size is 64 MB.",
+    "ru": "Файл слишком большой. Максимальный размер — 64 МБ."
+  },
+  "Datoteka nije ispravan JSON projekat.": {
+    "en": "The file is not a valid JSON project.",
+    "ru": "Файл не является корректным JSON-проектом."
+  },
+  "Ovo nije ispravan Forma projekat. Izaberi .forma.json datoteku izvezenu iz aplikacije.": {
+    "en": "This is not a valid Forma project. Choose a .forma.json file exported from the app.",
+    "ru": "Это некорректный проект Forma. Выберите файл .forma.json, экспортированный из приложения."
+  },
+  "Izaberi PNG, JPG ili WebP sliku.": {
+    "en": "Choose a PNG, JPG or WebP image.",
+    "ru": "Выберите изображение PNG, JPG или WebP."
+  },
+  "Slika može imati najviše 8 MB.": {
+    "en": "Images can be up to 8 MB.",
+    "ru": "Размер изображения не должен превышать 8 МБ."
+  },
+  "Sliku nije moguće otvoriti. Izaberi ispravan PNG, JPG ili WebP fajl.": {
+    "en": "The image could not be opened. Choose a valid PNG, JPG or WebP file.",
+    "ru": "Не удалось открыть изображение. Выберите корректный файл PNG, JPG или WebP."
+  },
+  "Preglednik ne podržava obradu slike.": {
+    "en": "Your browser does not support image processing.",
+    "ru": "Браузер не поддерживает обработку изображений."
+  },
+  "Arhiva može imati najviše 96 MB.": {
+    "en": "Archives can be up to 96 MB.",
+    "ru": "Размер архива не должен превышать 96 МБ."
+  },
+  "Arhiva nije ispravan JSON dokument.": {
+    "en": "The archive is not a valid JSON document.",
+    "ru": "Архив не является корректным JSON-документом."
+  },
+  "Izaberi Forma Playground arhivu. Projekti se uvoze u odjeljku Moji projekti.": {
+    "en": "Choose a Forma Playground archive. Projects are imported in My projects.",
+    "ru": "Выберите архив Forma Playground. Проекты импортируются в разделе «Мои проекты»."
+  },
+  "Jezik interfejsa": {
+    "en": "Interface language",
+    "ru": "Язык интерфейса"
+  },
+  "Primarna": {
+    "en": "Primary",
+    "ru": "Основной"
+  },
+  "Sekundarna": {
+    "en": "Secondary",
+    "ru": "Дополнительный"
+  },
+  "Akcent": {
+    "en": "Accent",
+    "ru": "Акцентный"
+  },
+  "Noto Sans podržava ćirilicu. Različite veličine i debljine slova povezuju jasne naslove i čitljiv osnovni tekst.": {
+    "en": "Noto Sans supports Cyrillic. Different sizes and weights connect clear headings with readable body text.",
+    "ru": "Noto Sans поддерживает кириллицу. Разные размеры и начертания объединяют ясные заголовки и читаемый основной текст."
+  },
+  "Edukativni primjer aplikacije Forma. Geometrijski znak je početni predložak. Font Noto Sans: Google Fonts, SIL Open Font License.": {
+    "en": "Forma educational example. The geometric mark is a starting template. Noto Sans: Google Fonts, SIL Open Font License.",
+    "ru": "Учебный пример Forma. Геометрический знак — исходный шаблон. Шрифт Noto Sans: Google Fonts, лицензия SIL Open Font License."
+  },
+  "Provjera...": {
+    "en": "Checking...",
+    "ru": "Проверка..."
+  },
+  "REDIZAJN": {
+    "en": "REDESIGN",
+    "ru": "РЕДИЗАЙН"
+  },
+  "7 KORAKA": {
+    "en": "7 STEPS",
+    "ru": "7 ШАГОВ"
+  },
+  "npr. zdravo@primjer.ba": {
+    "en": "e.g. hello@example.com",
+    "ru": "Например, hello@example.com"
+  },
+  "Grad / adresa": {
+    "en": "City / address",
+    "ru": "Город / адрес"
+  },
+  "npr. moj-projekat.ba": {
+    "en": "e.g. my-project.com",
+    "ru": "Например, my-project.com"
+  },
+  "npr. 24/2026": {
+    "en": "e.g. 24/2026",
+    "ru": "Например, 24/2026"
+  },
+  "Akademska 2026/27.": {
+    "en": "Academic year 2026/27",
+    "ru": "Учебный год 2026/27"
+  },
+  "Sinhronizacija...": {
+    "en": "Syncing...",
+    "ru": "Синхронизация..."
+  },
+  "Ime, projekat, email...": {
+    "en": "Name, project, email...",
+    "ru": "Имя, проект, email..."
+  },
+  "Ukloni iz favorita: {0}": {
+    "en": "Remove from favourites: {0}",
+    "ru": "Удалить из избранного: {0}"
+  },
+  "Dodaj u favorite: {0}": {
+    "en": "Add to favourites: {0}",
+    "ru": "Добавить в избранное: {0}"
+  },
+  "Eksperiment · {0}": {
+    "en": "Experiment · {0}",
+    "ru": "Эксперимент · {0}"
+  },
+  "[naziv]": {
+    "en": "[name]",
+    "ru": "[название]"
+  },
+  "[opciono]": {
+    "en": "[optional]",
+    "ru": "[необязательно]"
+  },
+  "Ciljevi nisu uneseni.": {
+    "en": "Goals not provided.",
+    "ru": "Цели не указаны."
+  },
+  "Izvori nisu uneseni.": {
+    "en": "Sources not provided.",
+    "ru": "Источники не указаны."
+  },
+  "Upotreba AI alata nije opisana.": {
+    "en": "Use of AI tools not described.",
+    "ru": "Использование ИИ не описано."
+  },
+  "Osvrt nije unesen.": {
+    "en": "Reflection not provided.",
+    "ru": "Рефлексия не указана."
+  },
+  "Prompt nije sačuvan.": {
+    "en": "Prompt not saved.",
+    "ru": "Запрос не сохранён."
+  },
+  "Prilog / Promptovi": {
+    "en": "Appendix / Prompts",
+    "ru": "Приложение / Запросы"
+  },
+  "Vizuelno komuniciranje · Knjiga vizuelnog identiteta": {
+    "en": "Visual communication · Visual identity book",
+    "ru": "Визуальная коммуникация · Книга визуальной айдентики"
+  },
+  "Forma — studentski studio": {
+    "en": "Forma — student studio",
+    "ru": "Forma — студенческая студия"
+  },
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ · 0123456789": {
+    "en": "ABCDEFGHIJKLMNOPQRSTUVWXYZ · 0123456789",
+    "ru": "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ · 0123456789"
+  },
+  "Upoznaj našu priču ↗": {
+    "en": "Discover our story ↗",
+    "ru": "Узнайте нашу историю ↗"
+  },
+  "NAŠA PRIČA": {
+    "en": "OUR STORY",
+    "ru": "НАША ИСТОРИЯ"
+  },
+  "Početni predložak za drugi kolokvijum. Doradi sadržaj i poveži odabrane fontove prije objave.": {
+    "en": "Starter template for the second assessment. Refine the content and connect your chosen fonts before publishing.",
+    "ru": "Исходный шаблон для второго коллоквиума. Доработайте содержание и подключите выбранные шрифты перед публикацией."
+  },
+  "knjiga identiteta": {
+    "en": "identity book",
+    "ru": "книга айдентики"
+  },
+  "Vizuelno komuniciranje · Knjiga identiteta": {
+    "en": "Visual communication · Identity book",
+    "ru": "Визуальная коммуникация · Книга айдентики"
+  },
+  "Autor/ka:": {
+    "en": "Author:",
+    "ru": "Автор:"
+  },
+  "01 / Polazište": {
+    "en": "01 / Starting point",
+    "ru": "01 / Отправная точка"
+  },
+  "02 / Strategija": {
+    "en": "02 / Strategy",
+    "ru": "02 / Стратегия"
+  },
+  "03 / Paleta boja": {
+    "en": "03 / Colour palette",
+    "ru": "03 / Цветовая палитра"
+  },
+  "04 / Logotip": {
+    "en": "04 / Logo",
+    "ru": "04 / Логотип"
+  },
+  "05 / Tipografija": {
+    "en": "05 / Typography",
+    "ru": "05 / Типографика"
+  },
+  "06 / Primjena": {
+    "en": "06 / Applications",
+    "ru": "06 / Применение"
+  },
+  "07 / Proces i izvori": {
+    "en": "07 / Process and sources",
+    "ru": "07 / Процесс и источники"
+  },
+  "naslovi": {
+    "en": "headings",
+    "ru": "заголовки"
+  },
+  "tekst": {
+    "en": "body text",
+    "ru": "основной текст"
+  },
+  "Aa Bb Čć Đđ Šš Žž": {
+    "en": "Aa Bb Cc Dd Ee Ff Gg",
+    "ru": "Аа Бб Вв Гг Дд Её Жж"
+  },
+  "Razvijeno u studiju Forma. Za PDF otvori štampu u pregledniku. Odabrani fontovi prikazuju se ako su instalirani na uređaju.": {
+    "en": "Created in Forma studio. To save as PDF, open your browser’s print dialog. Selected fonts appear if installed on the device.",
+    "ru": "Создано в студии Forma. Для сохранения в PDF откройте печать в браузере. Выбранные шрифты отображаются, если установлены на устройстве."
+  },
+  "Datum:": {
+    "en": "Date:",
+    "ru": "Дата:"
+  },
+  "Format:": {
+    "en": "Format:",
+    "ru": "Формат:"
+  },
+  "Model:": {
+    "en": "Model:",
+    "ru": "Модель:"
+  },
+  "POPUNJENO": {
+    "en": "COMPLETE",
+    "ru": "ЗАПОЛНЕНО"
+  },
+  "AI skica": {
+    "en": "AI sketch",
+    "ru": "Эскиз ИИ"
+  },
+  "Dodatna": {
+    "en": "Additional",
+    "ru": "Дополнительный"
+  },
+  "kopija": {
+    "en": "copy",
+    "ru": "копия"
+  },
+  "Oblik: {0}": {
+    "en": "Shape: {0}",
+    "ru": "Форма: {0}"
+  },
+  "Kolokvijum 01": {
+    "en": "Assessment 01",
+    "ru": "Коллоквиум 01"
+  },
+  "lokalna kopija": {
+    "en": "local copy",
+    "ru": "локальная копия"
+  }
+}

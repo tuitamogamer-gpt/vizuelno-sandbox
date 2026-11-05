@@ -6,6 +6,8 @@ Studentski web studio za prvi kolokvijum: od radne ideje do obrazloženog vizuel
 
 ## Šta radi
 
+- Srpski je podrazumijevani jezik; izbor gore desno uključuje English i Русский i pamti se u pregledniku. Prevedeni su interfejs, vodič, AI uputstva, nalozi i izvezeni dokumenti. Studentski tekstovi, promptovi i komentari nastavnika ostaju u izvornom jeziku.
+
 - Pristup zajedničkim kodom, provjerenim isključivo na serveru; potpisana HttpOnly sesija traje sedam dana.
 - Google nalog i upis kodom predmeta, privatni projekti i Playground na svim uređajima, profil s indeksom i grupom. Lokalni režim uz kod ostaje dostupan.
 - Predaja sačuvanih verzija, istorija komentara, nastavnički pregled napretka i obrazložene povratne informacije po pet kriterijuma.
@@ -119,3 +121,7 @@ Testovi naloga koriste izdvojeni lokalni PostgreSQL, stvarne serverske rute i po
 Sadržaj je prilagođen dogovorima iz Wispr Flow zapisa od 15, 22. i 29. oktobra 2026. Tačan rok nije izmišljen: aplikacija navodi samo drugu polovinu novembra i upućuje na nastavu. Noviji dogovor o praktičnom bloku ima prednost nad ranijim planom. Udžbenik, transkripti i lični primjeri studenata nisu kopirani u aplikaciju. Primjer „Bora“ je izmišljen i jasno označen kao edukativni.
 
 Mapiranje zahtjeva i izvora: [docs/teaching-notes.md](docs/teaching-notes.md).
+
+## Jezici
+
+Detalji prevoda i provjera: [src/lib/i18n/README.md](src/lib/i18n/README.md). PDF i HTML/ZIP dokumenti koriste trenutno odabrani jezik. Ruski interfejs i PDF podržavaju ćirilicu; za nove ruske projekte podrazumijevani font je Noto Sans.

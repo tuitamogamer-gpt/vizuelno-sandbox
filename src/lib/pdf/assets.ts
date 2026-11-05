@@ -1,3 +1,4 @@
+import { createTranslator, type Locale } from "../i18n/core";
 import type { Project } from "../project";
 import { pdfVisuals, type PdfOptions, type PdfVisual } from "./options";
 
@@ -13,7 +14,8 @@ function canvas(width: number, height: number) {
   element.width = width;
   element.height = height;
   const context = element.getContext("2d");
-  if (!context) throw new Error("Preglednik ne podržava pripremu vizuala za PDF.");
+  if (!context)
+    throw new Error("Preglednik ne podržava pripremu vizuala za PDF.");
   return { element, context };
 }
 
@@ -23,8 +25,16 @@ async function imageAsset(source: string, label: string) {
     // All project images are validated data URLs. No external image URLs are fetched.
     image.src = source;
     await image.decode();
-    if (!image.naturalWidth || !image.naturalHeight || image.naturalWidth * image.naturalHeight > 64_000_000) throw new Error();
-    const scale = Math.min(1, 1800 / Math.max(image.naturalWidth, image.naturalHeight));
+    if (
+      !image.naturalWidth ||
+      !image.naturalHeight ||
+      image.naturalWidth * image.naturalHeight > 64_000_000
+    )
+      throw new Error();
+    const scale = Math.min(
+      1,
+      1800 / Math.max(image.naturalWidth, image.naturalHeight),
+    );
     const width = Math.max(1, Math.round(image.naturalWidth * scale));
     const height = Math.max(1, Math.round(image.naturalHeight * scale));
     const { element, context } = canvas(width, height);
@@ -32,20 +42,55 @@ async function imageAsset(source: string, label: string) {
     // React PDF accepts PNG/JPEG; generated and imported images are often WebP.
     return { image: element.toDataURL("image/png"), width, height };
   } catch {
-    throw new Error(`Slika „${label}“ nije čitljiva. Izaberi drugu varijantu ili isključi AI vizuale i pokušaj ponovo.`);
+    throw new Error(
+      `Slika „${label}“ nije čitljiva. Izaberi drugu varijantu ili isključi AI vizuale i pokušaj ponovo.`,
+    );
   }
 }
 
-function fitFont(context: CanvasRenderingContext2D, family: string, text: string, width: number, size: number, weight = 400) {
-  context.font = `${weight} ${size}px "${family}"`;
-  const measured = context.measureText(text).width;
-  if (measured > width) context.font = `${weight} ${size * width / measured}px "${family}"`;
+const canvasFonts = new Map<number, FontFace>();
+async function loadCanvasFont(weight: 400 | 700) {
+  let face = canvasFonts.get(weight);
+  if (!face) {
+    face = new FontFace(
+      "Forma PDF Canvas",
+      `url("/fonts/pdf/NotoSans-${weight === 700 ? "Bold" : "Regular"}.ttf")`,
+      { weight: String(weight) },
+    );
+    canvasFonts.set(weight, face);
+  }
+  try {
+    document.fonts.add(await face.load());
+  } catch (error) {
+    // CSS FontFace objects retain a rejected load. A fresh, separately named
+    // canvas face lets the next export retry without disturbing the interface.
+    if (canvasFonts.get(weight) === face) canvasFonts.delete(weight);
+    throw error;
+  }
+}
+function canvasFamily(family: string) {
+  return `"${family === "Noto Sans" ? "Forma PDF Canvas" : family}", "Forma PDF Canvas", sans-serif`;
 }
 
-function drawLogo(project: Project) {
+function fitFont(
+  context: CanvasRenderingContext2D,
+  family: string,
+  text: string,
+  width: number,
+  size: number,
+  weight = 400,
+) {
+  context.font = `${weight} ${size}px ${canvasFamily(family)}`;
+  const measured = context.measureText(text).width;
+  if (measured > width)
+    context.font = `${weight} ${(size * width) / measured}px ${canvasFamily(family)}`;
+}
+
+function drawLogo(project: Project, locale: Locale) {
+  const t = createTranslator(locale);
   const { element, context: ctx } = canvas(1500, 400);
   ctx.fillStyle = project.colors[0].hex;
-  const label = project.logoText || project.name || "Identitet";
+  const label = project.logoText || project.name || t("Identitet");
   const hasSymbol = project.logoShape !== "none";
   const labelWidth = hasSymbol ? 1020 : 1340;
   fitFont(ctx, project.headingFont, label, labelWidth, 140, 700);
@@ -58,17 +103,30 @@ function drawLogo(project: Project) {
     ctx.scale(2.8, 2.8);
     if (project.logoShape === "spark") {
       for (let i = 0; i < 8; i++) {
-        ctx.save(); ctx.translate(50, 50); ctx.rotate(i * Math.PI / 4); ctx.beginPath();
-        ctx.ellipse(0, -23, 10, 25, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+        ctx.save();
+        ctx.translate(50, 50);
+        ctx.rotate((i * Math.PI) / 4);
+        ctx.beginPath();
+        ctx.ellipse(0, -23, 10, 25, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
       }
     } else if (project.logoShape === "circle") {
-      ctx.beginPath(); ctx.arc(36, 50, 32, 0, Math.PI * 2); ctx.fill();
-      ctx.globalAlpha = 0.45; ctx.beginPath(); ctx.arc(68, 50, 24, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath();
+      ctx.arc(36, 50, 32, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 0.45;
+      ctx.beginPath();
+      ctx.arc(68, 50, 24, 0, Math.PI * 2);
+      ctx.fill();
     } else if (project.logoShape === "arch") {
-      ctx.fill(new Path2D("M12 88V46a38 38 0 0176 0v42H64V46a14 14 0 00-28 0v42z"));
+      ctx.fill(
+        new Path2D("M12 88V46a38 38 0 0176 0v42H64V46a14 14 0 00-28 0v42z"),
+      );
     } else if (project.logoShape === "diamond") {
       ctx.fill(new Path2D("M50 3 97 50 50 97 3 50z"));
-      ctx.fillStyle = "rgba(255,255,255,.8)"; ctx.fill(new Path2D("M50 26 74 50 50 74 26 50z"));
+      ctx.fillStyle = "rgba(255,255,255,.8)";
+      ctx.fill(new Path2D("M50 26 74 50 50 74 26 50z"));
     }
     ctx.restore();
   }
@@ -77,27 +135,54 @@ function drawLogo(project: Project) {
   return element.toDataURL("image/png");
 }
 
-function typeSample(font: string, heading: boolean) {
+function typeSample(font: string, heading: boolean, locale: Locale) {
+  const t = createTranslator(locale);
   const { element, context: ctx } = canvas(1500, heading ? 300 : 200);
   ctx.fillStyle = "#25332c";
-  const line = heading ? "Aa Bb Čč Ćć Đđ Šš Žž" : "Dobar identitet počinje jasnom idejom.";
+  const line = heading
+    ? t("Aa Bb Čč Ćć Đđ Šš Žž")
+    : t("Dobar identitet počinje jasnom idejom.");
   fitFont(ctx, font, line, 1440, heading ? 125 : 65, heading ? 700 : 400);
   ctx.fillText(line, 15, heading ? 145 : 80);
-  ctx.font = `400 ${heading ? 38 : 44}px "${font}"`;
-  ctx.fillText(heading ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ · 0123456789" : "Čitljivost, karakter i dosljednost povezuju cijelu priču.", 15, heading ? 235 : 155);
+  ctx.font = `400 ${heading ? 38 : 44}px ${canvasFamily(font)}`;
+  ctx.fillText(
+    heading
+      ? t("ABCDEFGHIJKLMNOPQRSTUVWXYZ · 0123456789")
+      : t("Čitljivost, karakter i dosljednost povezuju cijelu priču."),
+    15,
+    heading ? 235 : 155,
+  );
   return element.toDataURL("image/png");
 }
 
-export async function preparePdfAssets(project: Project, options: PdfOptions): Promise<PdfAssets> {
+export async function preparePdfAssets(
+  project: Project,
+  options: PdfOptions,
+): Promise<PdfAssets> {
+  const locale = options.locale || "sr";
+  const probe = "Aa Čć Đđ Šš Žž Аа Бб Ёё Жж Щщ Ыы Яя";
   await Promise.all([
-    document.fonts.load(`700 24px "${project.headingFont}"`, "Aa Čć Đđ Šš Žž"),
-    document.fonts.load(`400 24px "${project.bodyFont}"`, "Aa Čć Đđ Šš Žž"),
+    loadCanvasFont(700),
+    loadCanvasFont(400),
+    ...([[project.headingFont, 700], [project.bodyFont, 400]] as const)
+      .filter(([family]) => family !== "Noto Sans")
+      .map(([family, weight]) => document.fonts.load(`${weight} 24px "${family}"`, probe)),
   ]);
-  const logo = project.logoImage ? (await imageAsset(project.logoImage, "Logotip")).image : drawLogo(project);
+  const logo = project.logoImage
+    ? (await imageAsset(project.logoImage, "Logotip")).image
+    : drawLogo(project, locale);
   const visuals: PdfAssets["visuals"] = [];
   // Bound peak memory on phones by decoding one image at a time.
   for (const visual of pdfVisuals(project, options)) {
-    visuals.push({ ...visual, ...await imageAsset(visual.image, visual.caption) });
+    visuals.push({
+      ...visual,
+      ...(await imageAsset(visual.image, visual.caption)),
+    });
   }
-  return { logo, headingSample: typeSample(project.headingFont, true), bodySample: typeSample(project.bodyFont, false), visuals };
+  return {
+    logo,
+    headingSample: typeSample(project.headingFont, true, locale),
+    bodySample: typeSample(project.bodyFont, false, locale),
+    visuals,
+  };
 }

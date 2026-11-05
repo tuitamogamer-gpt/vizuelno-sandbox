@@ -1,3 +1,5 @@
+"use client";
+import { useI18n } from "@/components/language-provider";
 import { ArrowUpRight } from "lucide-react";
 import type { CSSProperties } from "react";
 import { Project, inkOn } from "@/lib/project";
@@ -14,18 +16,22 @@ export function BrandSymbol({ shape = "spark", className = "" }: { shape?: Proje
   </svg>;
 }
 export function Logo({ project, className = "", imageOnly = false }: { project: Project; className?: string; imageOnly?: boolean }) {
+  const { t } = useI18n();
+
   return <div className={`brand-logo ${className}`} style={{ fontFamily: `'${project.headingFont}', sans-serif` }}>
     {project.logoImage ? <img src={project.logoImage} alt={`Logotip: ${project.name}`} /> : <>
       {project.logoShape !== "none" && <BrandSymbol shape={project.logoShape} />}
-      {!imageOnly && <span>{project.logoText || project.name || "Tvoja ideja"}</span>}
+      {!imageOnly && <span>{project.logoText || project.name || t("Tvoja ideja")}</span>}
     </>}
   </div>;
 }
 export function BrandPreview({ project, compact = false }: { project: Project; compact?: boolean }) {
+  const { t } = useI18n();
+
   const primary = project.colors[0].hex, secondary = project.colors[1].hex;
   return <div className={`brand-board ${compact ? "compact" : ""}`} style={{ "--brand-primary": primary, "--brand-secondary": secondary, "--brand-ink": inkOn(primary), "--brand-accent": project.colors[2]?.hex || secondary } as CSSProperties}>
-    <div className="board-primary"><span className="board-label">VIZUELNI IDENTITET / 01</span><Logo project={project} /><span className="board-slogan">{project.slogan || "Ovdje počinje tvoja priča."}</span><span className="board-corner"><ArrowUpRight size={19}/></span></div>
-    <div className="board-type" style={{ color: inkOn(secondary), fontFamily: `'${project.headingFont}', sans-serif` }}><span className="board-label">TIPOGRAFIJA</span><strong>Aa</strong><span>{project.headingFont}</span></div>
+    <div className="board-primary"><span className="board-label">{t("VIZUELNI IDENTITET / 01")}</span><Logo project={project} /><span className="board-slogan">{project.slogan || t("Ovdje počinje tvoja priča.")}</span><span className="board-corner"><ArrowUpRight size={19}/></span></div>
+    <div className="board-type" style={{ color: inkOn(secondary), fontFamily: `'${project.headingFont}', sans-serif` }}><span className="board-label">{t("TIPOGRAFIJA")}</span><strong>Aa</strong><span>{project.headingFont}</span></div>
     <div className="board-swatches">{project.colors.map((c, i) => <div key={i} style={{ background: c.hex, color: inkOn(c.hex) }}><span>{c.hex}</span></div>)}</div>
   </div>;
 }

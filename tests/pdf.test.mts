@@ -106,3 +106,20 @@ test("PDF includes selected visuals and optional variants/prompts, without gener
   assert.ok(!output.text.includes("NE-IZVOZI-JOB-TOKEN"));
   assert.ok(output.imageCount >= 7);
 });
+
+test("English and Russian PDFs localize every chapter and metadata while preserving student prose", async () => {
+  const project = exampleProject();
+  project.name = "Моя идея / My idea";
+  project.description = "Оригинальный текст студента. Moja ideja ostaje ista.";
+  for (const locale of ["en", "ru"] as const) {
+    const result = await inspect(await renderIdentityPdf(project, { ...options, locale }, assets, fonts));
+    assert.equal(result.pages.length, 8);
+    assert.equal(result.info.Title, `${project.name} — ${locale === "en" ? "Assessment 01" : "Коллоквиум 01"}`);
+    assert.ok(result.text.includes(project.description));
+    assert.ok(result.text.includes(locale === "en" ? "Target audience" : "Целевая аудитория"));
+    assert.ok(result.text.replace(/\s/g, "").includes(locale === "en" ? "DOCUMENTCONTENTS" : "СОДЕРЖАНИЕДОКУМЕНТА"));
+    for (const source of ["PRVI KOLOKVIJUM", "AUTOR / AUTORKA", "SADRŽAJ DOKUMENTA", "Odabrani logotip projekta", "Kontakt podaci nisu uneseni."]) assert.ok(!result.text.includes(source), source);
+    assert.ok(result.outline?.[0].title.includes(locale === "en" ? "Starting point" : "Отправная точка"));
+    assert.equal(result.outline?.length, 7);
+  }
+});

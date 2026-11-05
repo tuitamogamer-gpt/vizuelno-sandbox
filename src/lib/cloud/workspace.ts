@@ -1,4 +1,5 @@
 "use client";
+import { createTranslator, type Locale } from "../i18n/core";
 import { delMany, getMany, keys, setMany } from "idb-keyval";
 import { Project, projectSchema } from "../project";
 import { PlaygroundData, newGeneration, playgroundSchema } from "../generation";
@@ -93,9 +94,10 @@ export class Workspace {
   this.docs.set(id,document);this.meta.set(id,meta);await this.enqueue(()=>setMany([[this.dataKey(id),document],[this.metaKey(id),meta]]));this.emit();
  }
  async useRemote(id:string){try{await this.pull(id,this.meta.get(id)?.mutationId,true);}catch(error){if(error instanceof SyncError&&error.status===404){this.docs.delete(id);this.meta.delete(id);await this.enqueue(()=>delMany([this.dataKey(id),this.metaKey(id)]));}else throw error;}this.emit({phase:"saved",message:""});}
- async keepCopy(id:string){
+ async keepCopy(id:string,locale:Locale="sr"){
+  const suffix=createTranslator(locale)("lokalna kopija");
   const document=this.docs.get(id);if(!document)throw new Error("Nema lokalne kopije.");
-  if(document.kind==="project"){const project={...document.data,id:crypto.randomUUID(),name:`${document.data.name.slice(0,185)} — lokalna kopija`,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};await this.saveProject(project);await this.useRemote(id);}
+  if(document.kind==="project"){const project={...document.data,id:crypto.randomUUID(),name:`${document.data.name.slice(0,200-suffix.length-3)} — ${suffix}`,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};await this.saveProject(project);await this.useRemote(id);}
   else throw new Error("Preuzmi Playground arhivu prije preuzimanja verzije s naloga.");
   await this.sync();
  }

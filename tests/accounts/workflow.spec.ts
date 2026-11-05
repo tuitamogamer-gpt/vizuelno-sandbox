@@ -44,3 +44,43 @@ test("moving guest projects is an explicit selection and leaves the original loc
  await expect.poll(async()=>(await(await api(request,who,"/api/workspace/documents")).json()).documents.length).toBe(1);const docs=(await(await api(request,who,"/api/workspace/documents")).json()).documents;expect(docs[0].id).not.toBe(guestId);
  const original=await page.evaluate(async id=>{const db=await new Promise<IDBDatabase>(resolve=>{const r=indexedDB.open("keyval-store");r.onsuccess=()=>resolve(r.result);});return new Promise(resolve=>{const r=db.transaction("keyval").objectStore("keyval").get(`forma:project:${id}`);r.onsuccess=()=>resolve(r.result);});},guestId);expect(original).toBeTruthy();
 });
+
+test("Russian account, submission and teacher review screens keep original student content", async ({ page, context, browser, persona }) => {
+  const { createTranslator } = await import("../../src/lib/i18n/core");
+  const ru = createTranslator("ru"), en = createTranslator("en");
+  const student = await persona("Анна Студент"), teacher = await persona("Преподаватель", { teacher: true });
+  await signIn(context, student);
+  await context.addCookies([{ name: "forma_language", value: "ru", domain: "localhost", path: "/" }]);
+  await page.goto("/studio");
+  await page.getByRole("button", { name: new RegExp(ru("EDUKATIVNI PRIMJER")) }).click();
+  await page.locator(".step-nav button").nth(6).click();
+  await page.getByRole("button", { name: ru("Predaj nastavniku na pregled"), exact: true }).click();
+  await expect(page.getByRole("button", { name: ru("Ova verzija je već predata") })).toBeDisabled();
+  const staff = await browser.newContext();
+  try {
+    await signIn(staff, teacher);
+    await staff.addCookies([{ name: "forma_language", value: "ru", domain: "localhost", path: "/" }]);
+    const desk = await staff.newPage();
+    await desk.goto("/studio?view=teacher");
+    await expect(desk.getByRole("heading", { name: ru("Pregled studija") + "." })).toBeVisible();
+    await desk.locator(".teacher-submission").click();
+    await expect(desk.getByTitle(ru("Knjiga identiteta predate verzije"))).toBeVisible();
+    const preview = desk.frameLocator(".submission-preview");
+    await expect(preview.getByRole("heading", { name: "01 / Отправная точка" })).toBeVisible();
+    await expect(preview.getByRole("heading", { name: "Целевая аудитория" })).toBeVisible();
+    const comment = "Оригинальный отзыв преподавателя / Original feedback.";
+    await desk.getByLabel(ru("Komentar studentu")).fill(comment);
+    await desk.getByLabel(ru("Status rada")).selectOption("changes_requested");
+    await desk.getByRole("button", { name: ru("Sačuvaj pregled") }).click();
+    await expect(desk.getByRole("dialog")).not.toBeVisible();
+    await page.goto("/studio?view=submissions");
+    await expect(page.locator(".feedback-comment")).toHaveText(comment);
+    await page.locator(".language-selector select").selectOption("en");
+    await expect(page.locator(".feedback-comment")).toHaveText(comment);
+    await expect(page.locator(".feedback-card .submission-badge")).toHaveText(en("Potrebna dorada"));
+    await page.goto("/studio?view=account");
+    await expect(page.getByRole("heading", { name: en("Moj nalog") + "." })).toBeVisible();
+    await expect(page.getByLabel(en("Broj indeksa"), { exact: true })).toHaveValue("VK-2026");
+    await expect(page.locator(".verified-account strong")).toHaveText("Анна Студент");
+  } finally { await staff.close(); }
+});
