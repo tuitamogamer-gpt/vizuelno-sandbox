@@ -3,7 +3,7 @@ import { createTranslator, type Locale } from "../i18n/core";
 import { delMany, getMany, keys, setMany } from "idb-keyval";
 import { Project, projectSchema } from "../project";
 import { PlaygroundData, newGeneration, playgroundSchema } from "../generation";
-import { loadProjects, saveProject, removeProject } from "../storage";
+import { loadProjects, storeParsedProject, removeProject } from "../storage";
 import { DocumentIndex, RemoteDocument } from "./schema";
 import { LocalDocument, SyncError, cloudApi, packDocument, unpackDocument, uploadImages } from "./client";
 type Meta={revision:number|null;mutationId:string;dirty:boolean;deleted:boolean;conflict:boolean};
@@ -39,7 +39,7 @@ export class Workspace {
   await this.sync();return this.projects();
  }
  private async persist(id:string,document:LocalDocument){
-  if(!this.owner){this.docs.set(id,document);this.emit();await this.enqueue(()=>document.kind==="project"?saveProject(document.data):setMany([["forma:playground:v1",document.data]]));return;}
+  if(!this.owner){this.docs.set(id,document);this.emit();await this.enqueue(()=>document.kind==="project"?storeParsedProject(document.data):setMany([["forma:playground:v1",document.data]]));return;}
   const previous=this.meta.get(id),meta:Meta={revision:previous?.revision??null,mutationId:crypto.randomUUID(),dirty:true,deleted:false,conflict:previous?.conflict??false};
   this.docs.set(id,document);this.meta.set(id,meta);this.emit({phase:navigator.onLine?"syncing":"offline",message:""});
   try{await this.enqueue(()=>setMany([[this.dataKey(id),document],[this.metaKey(id),meta]]));this.failed.delete(id);this.schedule();}

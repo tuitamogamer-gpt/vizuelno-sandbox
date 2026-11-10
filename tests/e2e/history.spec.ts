@@ -95,3 +95,68 @@ for (const locale of ["sr", "en", "ru"] as const) {
     expect(errors).toEqual([]); expect(paid).toEqual([]);
   });
 }
+
+test("a student removes one history image after confirming, while the active logo stays protected", async ({ page, context }) => {
+  const errors: string[] = [], paid: string[] = [];
+  page.on("pageerror", error => errors.push(error.message));
+  await context.setExtraHTTPHeaders({ "x-vercel-forwarded-for": "203.0.113.31" });
+  await page.route("**/api/ai/status", route => route.fulfill({ json: { available: false } }));
+  await page.route("**/api/ai/{quote,generate,job,result}", route => { paid.push(route.request().url()); return route.abort(); });
+  await page.goto("/pristup");
+  await page.getByLabel("Pristupni kod", { exact: true }).fill(process.env.ACCESS_CODE!);
+  await page.getByRole("button", { name: "Uđi u studio", exact: true }).click();
+  await expect(page).toHaveURL(/\/studio$/);
+  const images = await page.evaluate(() => ["#cf5a35", "#274f40", "#654389", "#b29727"].map(colour => {
+    const canvas = document.createElement("canvas"); canvas.width = 48; canvas.height = 48;
+    const ctx = canvas.getContext("2d")!; ctx.fillStyle = colour; ctx.fillRect(0, 0, 48, 48);
+    return canvas.toDataURL("image/webp");
+  }));
+  const project = exampleProject();
+  let generation = newGeneration();
+  for (let n = 1; n <= 4; n++) {
+    const result: GenerationResult = { id: `remove-${n}`, image: images[n - 1], createdAt: `2026-11-0${n}T12:00:00Z`,
+      input: { model: "ideogram-4.5", aspect: "1:1", prompt: `Removal prompt number ${n}.` } };
+    generation = amendGeneration(generation, { result });
+  }
+  project.visuals.logo = generation; project.logoImage = images[3];
+  project.pdfVisualIds = ["logo-remove-1", "logo-remove-4"];
+  await page.getByLabel("Uvezi Forma projekat").setInputFiles({ name: "remove.forma.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify({ format: "forma-project", version: 1, project })) });
+  await expect(page.getByRole("heading", { name: "Bora", exact: true })).toBeVisible();
+  await page.locator(".step-nav button").nth(3).click();
+  const history = page.getByRole("region", { name: "Istorija generisanih slika" });
+  await expect(history.locator(".history-card")).toHaveCount(4);
+  await expect(history.locator(".history-card").first().locator(".history-badge")).toHaveText("Logotip projekta");
+  await expect(history.getByRole("button", { name: "Ukloni iz istorije: Slika 4", exact: true })).toHaveCount(0);
+  await history.getByRole("button", { name: "Ukloni iz istorije: Slika 1", exact: true }).click();
+  const dialog = page.getByRole("dialog", { name: "Ukloniti sliku iz istorije?" });
+  await expect(dialog.getByRole("link", { name: "Preuzmi sliku" })).toHaveAttribute("download", "forma-logo-remove-1.webp");
+  await dialog.getByRole("button", { name: "Zadrži", exact: true }).click();
+  await expect(dialog).toHaveCount(0);
+  await expect(history.locator(".history-card")).toHaveCount(4);
+  await history.getByRole("button", { name: "Ukloni iz istorije: Slika 1", exact: true }).click();
+  await dialog.getByRole("button", { name: "Ukloni sliku", exact: true }).click();
+  await expect(history.locator(".history-card")).toHaveCount(3);
+  await expect(history.getByRole("heading", { name: "Istorija generisanih slika" })).toBeFocused();
+  await expect(history).toContainText("Sačuvano: 3 · Za PDF: 1");
+  // Removing the selected variant makes the newest remaining image active, without a new request.
+  await history.locator(".history-restore").nth(2).click();
+  await expect(history.locator(".history-restore").nth(2)).toHaveAttribute("aria-pressed", "true");
+  await history.getByRole("button", { name: "Ukloni iz istorije: Slika 1", exact: true }).click();
+  await expect(dialog).toContainText("najnovija preostala slika postaće odabrana");
+  await dialog.getByRole("button", { name: "Ukloni sliku", exact: true }).click();
+  await expect(history.locator(".history-card")).toHaveCount(2);
+  await expect(history.locator(".history-restore").first()).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("status").filter({ hasText: "Lokalno sačuvano" })).toBeVisible();
+  await page.reload();
+  await expect(history.locator(".history-card")).toHaveCount(2);
+  await expect(history.locator("input:checked")).toHaveCount(1);
+  await page.getByRole("button", { name: "Izvezi", exact: true }).click();
+  const downloaded = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Projekat za nastavak (.json)" }).click();
+  const backup = JSON.parse(await readFile((await (await downloaded).path())!, "utf8"));
+  const ids = [backup.project.visuals.logo.result.id, ...backup.project.visuals.logo.alternatives.map((item: GenerationResult) => item.id)];
+  expect(ids.sort()).toEqual(["remove-3", "remove-4"]);
+  expect(backup.project.pdfVisualIds).toEqual(["logo-remove-4"]);
+  expect(backup.project.logoImage).toBe(images[3]);
+  expect(errors).toEqual([]); expect(paid).toEqual([]);
+});

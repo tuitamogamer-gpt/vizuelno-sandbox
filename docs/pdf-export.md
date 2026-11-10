@@ -4,7 +4,7 @@ Student otvara **Pregled i izvoz → PDF za prvi kolokvijum**, ili **Izvezi → 
 
 Dokument sadrži naslovnicu, podatke o autoru, broj indeksa i grupu (ako su uneseni), datum, sedam cjelina vizuelnog identiteta, paletu sa HEX/RGB vrijednostima i provjerom kontrasta, odabrani logotip, primjere izabranih fontova, raspored memoranduma, izvore i osvrt. Prazna polja ostaju označena. Preuzimanje ne šalje rad nastavniku.
 
-U svakom vizuelnom koraku postoji **Istorija generisanih slika**. Svaka slika ima pregled, model, opis i datum; vraćanje ranijeg rezultata ne troši AI kredit. Nove generacije ne uklanjaju starije slike. Istorija Playgrounda takođe zadržava ranije slike dok ih student sam ne ukloni.
+U svakom vizuelnom koraku postoji **Istorija generisanih slika**. Svaka slika ima pregled, model, opis i datum; vraćanje ranijeg rezultata ne troši AI kredit. Nove generacije ne uklanjaju starije slike. Student može sam ukloniti pojedinačnu sliku nakon potvrde; slika tada nestaje i iz izbora za PDF, dok već preuzeti dokumenti i predate verzije ostaju nepromijenjeni. Slika postavljena kao logotip projekta ne može se ukloniti dok se ne zamijeni. Istorija Playgrounda takođe zadržava ranije slike dok ih student sam ne ukloni.
 
 Student označava **Uključi u PDF** uz pojedinačnu sliku. U prozoru za izvoz može pregledati i promijeniti izbor, označiti sve ili poništiti izbor. Nove slike i ranije sačuvani projekti počinju bez označenih slika. Samo označene slike ulaze u PDF, uključujući logotip na naslovnici, u poglavlju o znaku i na memorandumu. Bez označenih slika izvoze se tekst, paleta i tipografski primjeri; geometrijski predložak ostaje dostupan u projektima bez rasterskog logotipa.
 

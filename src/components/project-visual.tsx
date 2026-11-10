@@ -3,7 +3,7 @@ import { useI18n } from "@/components/language-provider";
 
 import { RefreshCw } from "lucide-react";
 import { Project, ProjectPatch, visualBrief } from "@/lib/project";
-import { Generation, VisualTarget, isPending, models, newGeneration, targetInfo, amendGeneration } from "@/lib/generation";
+import { Generation, VisualTarget, isPending, models, newGeneration, targetInfo, amendGeneration, removeFromHistory, visualKey } from "@/lib/generation";
 import { slug } from "@/lib/storage";
 import AiGeneration from "./ai-generation";
 import ProjectHistory from "./project-history";
@@ -24,8 +24,15 @@ export default function ProjectVisual({ project, target, update }: { project: Pr
     {target === "palette" && <p className="small-muted">{t("Vizual služi za istraživanje odnosa boja. Tačne HEX vrijednosti i kontrast određuješ u paleti iznad.")}</p>}
     {target === "typography" && <p className="small-muted">{t("AI skica istražuje raspored. Stvarne fontove i čitljivost provjeri u tipografskoj probi iznad.")}</p>}
     {(target === "letterhead" || target === "social") && <p className="small-muted">{t("Model dobija tekstualni opis identiteta. Za precizan logotip i fontove koristi predložak ispod; AI skica je prijedlog kompozicije.")}</p>}
-    <ProjectHistory value={value} target={target} selected={project.pdfVisualIds}
+    <ProjectHistory value={value} target={target} selected={project.pdfVisualIds} logoImage={target === "logo" ? project.logoImage : undefined}
       onRestore={result => { void change({ ...result.input, result, job: null, request: null }); }}
-      onSelect={(id, checked) => { void update(current => ({ pdfVisualIds: checked ? [...new Set([...current.pdfVisualIds, id])] : current.pdfVisualIds.filter(key => key !== id) })); }} />
+      onSelect={(id, checked) => { void update(current => ({ pdfVisualIds: checked ? [...new Set([...current.pdfVisualIds, id])] : current.pdfVisualIds.filter(key => key !== id) })); }}
+      onRemove={result => { void update(current => {
+        const existing = current.visuals[target];
+        // Never race an in-flight request, and keep the image that is the active logo.
+        if (!existing || isPending(existing) || (target === "logo" && current.logoImage === result.image)) return {};
+        const key = visualKey(target, result.id);
+        return { visuals: { ...current.visuals, [target]: removeFromHistory(existing, result.id) }, pdfVisualIds: current.pdfVisualIds.filter(id => id !== key) };
+      }); }} />
   </div>;
 }

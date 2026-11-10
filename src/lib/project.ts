@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { createTranslator, formatLocales, type Locale } from "./i18n/core";
-import { imageData, visualsSchema, targetInfo, VisualTarget } from "./generation";
+import { createTranslator, formatLocales, locales, type Locale } from "./i18n/core";
+import { generationHistory, imageData, visualsSchema, visualTargets, targetInfo, VisualTarget } from "./generation";
 
 const short = z.string().max(200);
 const text = z.string().max(6000);
@@ -64,15 +64,58 @@ export function checklist(p: Project) {
   ];
 }
 export function progress(p: Project) { const list = checklist(p); return Math.round(list.filter(i => i.done).length / list.length * 100); }
+export function relativeLuminance(hex: string) {
+  const c = hex.replace("#", "").match(/.{2}/g)!.map(v => parseInt(v, 16) / 255).map(v => v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
+  return c[0] * 0.2126 + c[1] * 0.7152 + c[2] * 0.0722;
+}
 export function contrastRatio(a: string, b: string) {
-  function luminance(hex: string) {
-    const c = hex.replace("#", "").match(/.{2}/g)!.map(v => parseInt(v, 16) / 255).map(v => v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
-    return c[0] * 0.2126 + c[1] * 0.7152 + c[2] * 0.0722;
-  }
-  const l1 = luminance(a), l2 = luminance(b);
+  const l1 = relativeLuminance(a), l2 = relativeLuminance(b);
   return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 }
 export function inkOn(bg: string) { return contrastRatio(bg, "#FFFFFF") >= contrastRatio(bg, "#17241E") ? "#FFFFFF" : "#17241E"; }
+export type ContrastLevel = "AAA" | "AA" | "AA-large" | "low";
+/** WCAG 2.2 thresholds: 7:1 and 4.5:1 for normal text, 3:1 for large text. */
+export function contrastLevel(ratio: number): ContrastLevel { return ratio >= 7 ? "AAA" : ratio >= 4.5 ? "AA" : ratio >= 3 ? "AA-large" : "low"; }
+/** Every unordered colour pair, with the darker colour shown as text on the lighter one. */
+export function contrastPairs(colors: Project["colors"]) {
+  const pairs: { text: number; background: number; ratio: number }[] = [];
+  for (let a = 0; a < colors.length; a++) for (let b = a + 1; b < colors.length; b++) {
+    const [text, background] = relativeLuminance(colors[a].hex) <= relativeLuminance(colors[b].hex) ? [a, b] : [b, a];
+    pairs.push({ text, background, ratio: contrastRatio(colors[a].hex, colors[b].hex) });
+  }
+  return pairs;
+}
+function toHsl(hex: string): [number, number, number] {
+  const [r, g, b] = hex.replace("#", "").match(/.{2}/g)!.map(v => parseInt(v, 16) / 255);
+  const max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2, d = max - min;
+  if (!d) return [0, 0, l];
+  const s = d / (1 - Math.abs(2 * l - 1));
+  const h = max === r ? ((g - b) / d + 6) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return [h * 60, s, l];
+}
+function fromHsl(h: number, s: number, l: number) {
+  const c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = l - c / 2;
+  const [r, g, b] = h < 60 ? [c, x, 0] : h < 120 ? [x, c, 0] : h < 180 ? [0, c, x] : h < 240 ? [0, x, c] : h < 300 ? [x, 0, c] : [c, 0, x];
+  return `#${[r, g, b].map(v => Math.round((v + m) * 255).toString(16).padStart(2, "0")).join("").toUpperCase()}`;
+}
+/**
+ * Suggests the closest shade of a text colour (same hue and saturation, different
+ * lightness) that reaches the target contrast on the given background. Returns null
+ * when the pair already passes. Black or white always reaches 4.5:1, so a shade exists.
+ */
+export function accessibleShade(text: string, background: string, target = 4.5): { hex: string; ratio: number } | null {
+  if (contrastRatio(text, background) >= target) return null;
+  const [h, s, l] = toHsl(text);
+  let best: { hex: string; ratio: number; distance: number } | null = null;
+  for (const direction of [-1, 1]) {
+    for (let step = 1; ; step++) {
+      const raw = l + direction * step * 0.005, hex = fromHsl(h, s, Math.min(1, Math.max(0, raw))), ratio = contrastRatio(hex, background);
+      if (ratio >= target) { if (!best || step * 0.005 < best.distance) best = { hex, ratio, distance: step * 0.005 }; break; }
+      if (raw <= 0 || raw >= 1) break;
+    }
+  }
+  return best && { hex: best.hex, ratio: best.ratio };
+}
 export function dateLabel(date: string, locale: Locale = "sr") { return new Intl.DateTimeFormat(formatLocales[locale], { day: "numeric", month: "short" }).format(new Date(date)); }
 export function creativeBrief(p: Project, style: string, locale: Locale = "sr") {
   const t = createTranslator(locale);
@@ -82,4 +125,28 @@ export function creativeBrief(p: Project, style: string, locale: Locale = "sr") 
 export function visualBrief(p: Project, target: VisualTarget, locale: Locale = "sr") {
   const t = createTranslator(locale);
   return t("Vizuelni identitet: {0}\nIdeja: {1}\nPublika: {2}\nVizija: {3}\nMisija: {4}\nSlogan: {5}\nPaleta: {6}\nTipografija: {7} za naslove, {8} za tekst.\nKarakter znaka: {9}\nKontakt: {10}\n\n{11}\n\nOvo je skica za autorsku doradu. Vizuelni smjer: jasan, promišljen i dosljedan.", {0: p.name || t("[naziv]"), 1: p.description.slice(0, 700) || t("[opiši ideju]"), 2: p.audience.slice(0, 400) || t("[definiši publiku]"), 3: p.vision.slice(0, 400) || t("[napiši viziju]"), 4: p.mission.slice(0, 400) || t("[napiši misiju]"), 5: p.slogan || t("bez slogana"), 6: p.colors.map(c => `${c.name} ${c.hex}`).join(", "), 7: p.headingFont, 8: p.bodyFont, 9: p.logoReason.slice(0, 500) || t("jednostavan i prepoznatljiv"), 10: [p.contact, p.address, p.website].filter(Boolean).join(" · ") || t("bez kontakta"), 11: t(targetInfo[target].instruction)}).slice(0, 6000);
+}
+
+/** Bundled web fonts without Cyrillic glyphs; the browser would substitute another font. */
+export const fontsWithoutCyrillic: readonly Project["headingFont"][] = ["DM Sans", "Space Grotesk", "Libre Baskerville"];
+/** Approximate sentence count: a new sentence starts after .!?… and a capital letter, so "npr. sapun" stays one sentence. */
+export function sentenceCount(text: string) {
+  return text.trim().split(/[.!?…]+["“”»’)]*\s+(?=["„“«(]?[A-ZČĆĐŠŽА-ЯЁ])/).filter(part => /[A-Za-zČĆĐŠŽčćđšžА-яЁё]/.test(part)).length;
+}
+export type ReviewHint = { id: string; text: string; step: number };
+/** Gentle checks before submission. They never block export, change the checklist or grade the work. */
+export function reviewHints(p: Project, locale: Locale = "sr"): ReviewHint[] {
+  const t = createTranslator(locale), hints: ReviewHint[] = [];
+  const vision = sentenceCount(p.vision), mission = sentenceCount(p.mission);
+  if (vision > 2) hints.push({ id: "vision", step: 1, text: t("Broj rečenica u viziji: {0}. Smjernica s nastave je jedna do dvije rečenice.", { 0: vision }) });
+  if (mission > 2) hints.push({ id: "mission", step: 1, text: t("Broj rečenica u misiji: {0}. Smjernica s nastave je jedna do dvije rečenice.", { 0: mission }) });
+  if (!contrastPairs(p.colors).some(pair => pair.ratio >= 4.5)) hints.push({ id: "contrast", step: 2, text: t("Nijedan par boja nema kontrast od najmanje 4,5:1 za manji tekst. Provjeri parove u koraku Paleta boja.") });
+  const shown = [p.name, p.logoText, p.slogan, p.description, p.audience, p.vision, p.mission, p.strategy, ...p.goals, p.applicationNote, p.contact, p.address].join(" ");
+  if (/[Ѐ-ӿ]/.test(shown)) for (const font of new Set([p.headingFont, p.bodyFont])) if (fontsWithoutCyrillic.includes(font)) hints.push({ id: `cyrillic-${font}`, step: 4, text: t("Tekst projekta sadrži ćirilicu, a font {0} nema ćirilična slova. Izaberi Noto Sans ili drugi font s ćirilicom.", { 0: font }) });
+  if (!(p.contact.trim() || p.address.trim() || p.website.trim())) hints.push({ id: "contact", step: 5, text: t("Memorandum nema kontakt podataka. Za vježbu možeš unijeti izmišljen kontakt, adresu ili web stranicu.") });
+  const aiVisuals = !!p.aiImage || visualTargets.some(target => generationHistory(p.visuals[target]).length > 0);
+  if (aiVisuals && !p.aiDisclosure.trim()) hints.push({ id: "ai-empty", step: 6, text: t("Projekat sadrži AI vizuale, a opis upotrebe AI alata je prazan. Navedi alat, svrhu i svoje dorade.") });
+  // Generated visuals add a disclosure line with this placeholder, in the language used at the time.
+  if (locales.some(language => p.aiDisclosure.includes(createTranslator(language)("[opiši izmjene]")))) hints.push({ id: "ai-placeholder", step: 6, text: t("Opis upotrebe AI alata još sadrži mjesto za tvoje dorade u uglastim zagradama. Opiši šta si sam/a promijenio/la.") });
+  return hints;
 }

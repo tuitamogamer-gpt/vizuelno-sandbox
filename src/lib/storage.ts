@@ -9,7 +9,8 @@ export async function loadProjects(): Promise<Project[]> {
   if (parsed.some(p => !p.success)) throw new Error("Neki podaci nisu čitljivi. Sačuvani zapisi nisu obrisani; pokušaj ponovni uvoz rezervne kopije.");
   return parsed.flatMap(p => p.success ? [p.data] : []).sort((a,b) => b.updatedAt.localeCompare(a.updatedAt));
 }
-export async function saveProject(project: Project) { await set(prefix + project.id, projectSchema.parse(project)); }
+/** Stores a project that the caller has already parsed with projectSchema, avoiding a second pass over every image on each edit. */
+export async function storeParsedProject(project: Project) { await set(prefix + project.id, project); }
 export async function removeProject(id: string) { await del(prefix + id); }
 export async function importProject(file: File): Promise<Project> {
   if (file.size > 64_000_000) throw new Error("Datoteka je prevelika. Maksimalna veličina je 64 MB.");

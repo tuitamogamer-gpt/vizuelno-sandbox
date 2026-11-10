@@ -1,14 +1,12 @@
 import { createTranslator, htmlLanguages, browserLocale, type Locale } from "./i18n/core";
 import { strToU8, zip } from "fflate";
 import { Project, projectSchema } from "./project";
-import { models, targetInfo, visualTargets } from "./generation";
+import { imageExtension, models, targetInfo, visualTargets } from "./generation";
 import { escapeHtml, landingHtml, logoSvg } from "./export";
 import { downloadBlob, projectBackup, slug } from "./storage";
 
 function imageFile(data: string) {
-  const [type, base64] = data.split(",");
-  const extension = type.includes("image/png") ? "png" : type.includes("image/jpeg") ? "jpg" : "webp";
-  return { extension, bytes: Uint8Array.from(atob(base64), char => char.charCodeAt(0)) };
+  return { extension: imageExtension(data), bytes: Uint8Array.from(atob(data.split(",")[1]), char => char.charCodeAt(0)) };
 }
 export function identityBookHtml(project: Project, locale: Locale = "sr") {
   const t = createTranslator(locale), h = (value: string) => escapeHtml(t(value));

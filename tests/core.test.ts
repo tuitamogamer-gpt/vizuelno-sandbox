@@ -2,7 +2,8 @@ import test from "node:test";
 import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { randomBytes } from "node:crypto";
-import { newProject, exampleProject, projectSchema, contrastRatio, progress, backupSchema, visualBrief } from "../src/lib/project";
+import { newProject, exampleProject, projectSchema, contrastRatio, progress, backupSchema, visualBrief, accessibleShade, contrastLevel, contrastPairs, relativeLuminance, reviewHints, sentenceCount } from "../src/lib/project";
+import { createTranslator, locales } from "../src/lib/i18n/core";
 import { escapeHtml, landingHtml, logoSvg } from "../src/lib/export";
 import { createSession, validSession, verifyCode, signTicket, readTicket, sameOrigin } from "../src/lib/auth";
 import { allowAttempt } from "../src/lib/rate-limit";
@@ -23,6 +24,36 @@ test("contrast ratios follow WCAG luminance formula",()=>{
   assert.equal(contrastRatio("#000000","#FFFFFF"),21);
   assert.equal(contrastRatio("#123456","#123456"),1);
   assert.ok(contrastRatio("#FFFFFF","#FFFF00")<1.1);
+});
+test("palette overview rates every colour pair and suggests the nearest readable shade",()=>{
+  assert.deepEqual(contrastPairs(exampleProject().colors).map(pair=>[pair.text,pair.background,contrastLevel(pair.ratio)]),[[0,1,"AAA"],[0,2,"low"],[2,1,"low"]]);
+  assert.deepEqual([7,6.99,4.5,4.49,3,2.99].map(contrastLevel),["AAA","AA","AA","AA-large","AA-large","low"]);
+  assert.equal(accessibleShade("#244D3E","#F2E9D8"),null);
+  assert.deepEqual(accessibleShade("#777777","#FFFFFF"),{hex:"#767676",ratio:contrastRatio("#767676","#FFFFFF")});
+  const lighter=accessibleShade("#7A8C99","#1B2A33")!;assert.ok(relativeLuminance(lighter.hex)>relativeLuminance("#7A8C99"));assert.ok(lighter.ratio>=4.5);
+  let seed=2026;const random=()=>{seed=(seed*1103515245+12345)%2147483648;return `#${(seed%16777216).toString(16).padStart(6,"0").toUpperCase()}`;};
+  for(let i=0;i<3000;i++){
+    const text=random(),background=random(),shade=accessibleShade(text,background);
+    if(contrastRatio(text,background)>=4.5){assert.equal(shade,null);continue;}
+    assert.ok(shade&&/^#[0-9A-F]{6}$/.test(shade.hex),`${text} on ${background}`);
+    assert.ok(shade.ratio>=4.5&&contrastRatio(shade.hex,background)===shade.ratio,`${text} on ${background}`);
+  }
+});
+test("review hints follow class guidelines, stay localized and never grade the work",()=>{
+  for(const locale of locales)assert.deepEqual(reviewHints(exampleProject(locale),locale),[],locale);
+  assert.deepEqual(["","Jedna rečenica bez tačke","Prva. Druga! Treća?","Pravimo sapune, npr. od lavande. Prodajemo lokalno.","Мы растём. Мы учимся.","Ideja… Nastavak.","Kraj „citata.“ Novi dio."].map(sentenceCount),[0,1,3,2,2,2,2]);
+  const p={...exampleProject(),vision:"Prva. Druga. Treća.",mission:"Jedna. Dvije.",colors:[{hex:"#F2E9D8",name:"Krem"},{hex:"#FFFFFF",name:"Bijela"}],contact:"",address:"",website:"",aiDisclosure:""};
+  p.visuals.logo={...newGeneration(),result:{id:"ai",image:"data:image/png;base64,AA==",input:{model:"ideogram-4.5",aspect:"1:1",prompt:"A thoughtful logo concept"},createdAt:new Date().toISOString()}};
+  const hints=reviewHints(p);
+  assert.deepEqual(hints.map(hint=>[hint.id,hint.step]),[["vision",1],["contrast",2],["contact",5],["ai-empty",6]]);
+  assert.match(hints[0].text,/viziji: 3\./);assert.equal(progress(p),100);
+  const english=createTranslator("en")("{0}: {1}, preko Pika API Club. Autorske dorade: [opiši izmjene].",{0:"Logo",1:"Ideogram 4.5"});
+  const ru={...exampleProject("ru"),name:"Моя идея",headingFont:"Space Grotesk" as const,bodyFont:"Noto Sans" as const,aiDisclosure:english};
+  const russian=reviewHints(ru,"ru");
+  assert.deepEqual(russian.map(hint=>hint.id),["cyrillic-Space Grotesk","ai-placeholder"]);
+  for(const hint of russian)assert.match(hint.text,/[а-я]/);
+  assert.match(russian[0].text,/Space Grotesk/);
+  for(const locale of locales){const t=createTranslator(locale);for(const line of ["{0}: {1}, preko Pika API Club. Autorske dorade: [opiši izmjene].","{0}: {1}, preko Pika API Club (Playground). Autorske dorade: [opiši izmjene]."])assert.ok(t(line,{0:"A",1:"B"}).includes(t("[opiši izmjene]")),locale);}
 });
 test("HTML and SVG exports escape student-provided text",()=>{
   const p={...exampleProject(),name:'<script>alert("x")</script>',description:'</p><img src=x onerror=alert(1)>',logoText:'<x>'};

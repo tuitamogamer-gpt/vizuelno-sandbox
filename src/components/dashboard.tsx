@@ -2,7 +2,8 @@
 import { useI18n } from "@/components/language-provider";
 
 import { ArrowRight, ArrowUpRight, Plus, Upload, MoreHorizontal, BookOpen, Check, Search, Pencil, Download, Copy, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useEscapeKey } from "@/lib/browser-state";
 import { Project, dateLabel, progress, steps, checklist } from "@/lib/project";
 import { BrandSymbol, Logo } from "./brand";
 
@@ -10,9 +11,11 @@ export function ProjectCard({ project, open, duplicate, remove, backup }: { proj
   const { t, locale } = useI18n();
 
   const [menu, setMenu] = useState(false);
+  const toggle = useRef<HTMLButtonElement>(null);
+  useEscapeKey(menu, () => { setMenu(false); toggle.current?.focus(); });
   const done = progress(project);
   return <article className="project-card"><button className="project-art" onClick={open} style={{ background: project.colors[1].hex, color: project.colors[0].hex }} aria-label={t("Otvori projekat {0}", {0: project.name})}><span className="project-art-label">{project.kind === "redesign" ? t("REDIZAJN") : t("VIZUELNI IDENTITET")}</span><Logo project={project} /><span className="project-art-slogan">{project.slogan || t("Od ideje do identiteta.")}</span><ArrowUpRight className="project-art-arrow" size={20} /></button>
-    <div className="project-info"><div className="project-info-top"><button className="text-button project-name" onClick={open}>{project.name || t("Projekat bez naziva")}</button><div className="card-menu-wrap"><button className="icon-button" aria-label={t("Opcije projekta {0}", {0: project.name})} aria-expanded={menu} onClick={() => setMenu(!menu)}><MoreHorizontal size={20} /></button>{menu && <><button className="menu-dismiss" aria-label={t("Zatvori opcije")} onClick={() => setMenu(false)} /><div className="card-menu"><button onClick={() => { backup(); setMenu(false); }}><Download size={15} />{t("Preuzmi projekat")}</button><button onClick={() => { duplicate(); setMenu(false); }}><Copy size={15} />{t("Napravi kopiju")}</button><button className="danger-text" onClick={() => { remove(); setMenu(false); }}><Trash2 size={15} />{t("Obriši projekat")}</button></div></>}</div></div>
+    <div className="project-info"><div className="project-info-top"><button className="text-button project-name" onClick={open}>{project.name || t("Projekat bez naziva")}</button><div className="card-menu-wrap"><button ref={toggle} className="icon-button" aria-label={t("Opcije projekta {0}", {0: project.name})} aria-expanded={menu} onClick={() => setMenu(!menu)}><MoreHorizontal size={20} /></button>{menu && <><button className="menu-dismiss" aria-label={t("Zatvori opcije")} onClick={() => setMenu(false)} /><div className="card-menu"><button onClick={() => { backup(); setMenu(false); }}><Download size={15} />{t("Preuzmi projekat")}</button><button onClick={() => { duplicate(); setMenu(false); }}><Copy size={15} />{t("Napravi kopiju")}</button><button className="danger-text" onClick={() => { remove(); setMenu(false); }}><Trash2 size={15} />{t("Obriši projekat")}</button></div></>}</div></div>
       <p>{project.author || t("Autor nije unesen")} <span>· {dateLabel(project.updatedAt,locale)}</span></p><div className="project-progress"><div><i style={{ width: `${done}%` }} /></div><span>{done}%</span></div><div className="project-status">{done === 100 ? <><Check size={13} />{t(" Svi koraci popunjeni")}</> : <><Pencil size={12} />{t(" U razvoju")}</>}</div>
     </div></article>;
 }

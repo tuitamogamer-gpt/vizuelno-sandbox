@@ -186,3 +186,67 @@ test("a failed local save blocks the paid provider request",async({page})=>{
   await page.addInitScript(()=>{const original=IDBObjectStore.prototype.put;IDBObjectStore.prototype.put=function(value,...args){if(value?.generation?.request)throw new DOMException("Test storage is full","QuotaExceededError");return original.call(this,value,...args);};});
   const {submissions}=await mockImages(page);await login(page);await page.getByRole("button",{name:"Playground",exact:true}).click();await page.getByRole("button",{name:"Znak",exact:true}).click();await page.getByRole("button",{name:"Provjeri cijenu",exact:true}).click();await page.getByRole("button",{name:"Generiši vizual",exact:true}).click();await expect(page.locator(".playground-console").getByRole("alert")).toContainText("Zahtjev nije sačuvan");expect(submissions).toHaveLength(0);
 });
+
+test("palette overview rates every pair and applies a readable shade only when the student asks",async({page})=>{
+  const errors:string[]=[];page.on("pageerror",error=>errors.push(error.message));
+  await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();await page.getByRole("button",{name:/Paleta boja/}).click();
+  const tool=page.locator(".contrast-tool");
+  await expect(tool.locator(".contrast-pairs li")).toHaveCount(3);await expect(tool.locator(".contrast-suggestion")).toHaveCount(0);
+  await expect(tool.locator(".contrast-level")).toHaveText(["AAA","Nije za tekst","Nije za tekst"]);
+  await tool.getByRole("button",{name:/^Prikaži par: Primarna na Akcent/}).click();
+  await expect(tool.getByRole("button",{name:/^Prikaži par: Primarna na Akcent/})).toHaveAttribute("aria-pressed","true");
+  await expect(tool.locator(".contrast-preview b")).toContainText("2.78");await expect(tool.locator(".contrast-warning")).toBeVisible();
+  await expect(tool.locator(".contrast-suggestion")).toContainText("#12271F");
+  await tool.getByRole("button",{name:"Dodaj kao novu boju"}).click();
+  await expect(page.getByLabel("HEX boje 4")).toHaveValue("#12271F");await expect(page.getByLabel("Naziv boje 4")).toHaveValue("Primarna za tekst");
+  await expect(tool.locator(".contrast-good")).toBeVisible();await expect(tool.locator(".contrast-pairs li")).toHaveCount(6);
+  await tool.getByRole("button",{name:/^Prikaži par: Akcent na Sekundarna/}).click();await expect(tool.getByRole("button",{name:"Dodaj kao novu boju"})).toHaveCount(0);
+  await tool.getByRole("button",{name:"Zamijeni boju teksta"}).click();
+  await expect(page.getByLabel("HEX boje 3")).toHaveValue("#B74322");await expect(tool.locator(".contrast-suggestion")).toHaveCount(0);await expect(tool.locator(".contrast-good")).toBeVisible();
+  await expect(page.getByRole("status").filter({hasText:"Lokalno sačuvano"})).toBeVisible();
+  await page.reload();await expect(page.getByLabel("HEX boje 3")).toHaveValue("#B74322");await expect(page.getByLabel("HEX boje 4")).toHaveValue("#12271F");
+  await page.setViewportSize({width:390,height:844});await tool.scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
+});
+
+test("review hints react to the work and link back to the right step without blocking export",async({page})=>{
+  await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();await page.getByRole("button",{name:/Pregled i izvoz/}).click();
+  const hints=page.getByRole("region",{name:"Savjeti prije predaje"});
+  await expect(hints).toContainText("Nema dodatnih napomena.");
+  await page.getByLabel("Upotreba AI alata").fill("Logotip: Ideogram 4.5. Autorske dorade: [opiši izmjene].");
+  await expect(hints).toContainText("još sadrži mjesto za tvoje dorade");await expect(hints.getByRole("button")).toHaveCount(0);
+  await page.getByLabel("Upotreba AI alata").fill("Logotip: Ideogram 4.5. Pojednostavio sam oblik i promijenio boje.");
+  await expect(hints).toContainText("Nema dodatnih napomena.");
+  await page.getByRole("button",{name:/Strategija/}).first().click();await page.getByLabel("Vizija",{exact:true}).fill("Prva rečenica. Druga rečenica. Treća rečenica.");
+  await page.getByRole("button",{name:/Pregled i izvoz/}).click();await expect(hints).toContainText("Broj rečenica u viziji: 3.");
+  await expect(page.getByRole("button",{name:"PDF za prvi kolokvijum",exact:true})).toBeEnabled();
+  await hints.getByRole("button",{name:"Strategija"}).click();await expect(page).toHaveURL(/step=2$/);await expect(page.getByLabel("Vizija",{exact:true})).toBeVisible();
+});
+
+test("local storage dialog shows usage and asks for persistent storage only after a click",async({page})=>{
+  await page.addInitScript(()=>{const state=window as unknown as {persistCalls:number};state.persistCalls=0;StorageManager.prototype.persisted=async()=>false;StorageManager.prototype.persist=async()=>{state.persistCalls++;return true;};});
+  const calls=()=>page.evaluate(()=>(window as unknown as {persistCalls:number}).persistCalls);
+  await login(page);await page.getByRole("button",{name:/Sačuvano lokalno/}).click();
+  const panel=page.getByRole("dialog").getByRole("region",{name:"Prostor u pregledniku"});
+  await expect(panel).toContainText(/zauzima oko \d+,\d MB/);await expect(panel).toContainText("može obrisati lokalne podatke");expect(await calls()).toBe(0);
+  await panel.getByRole("button",{name:"Zatraži trajno čuvanje"}).click();
+  await expect(panel.getByRole("status")).toHaveText("Preglednik je odobrio trajno čuvanje.");await expect(panel).toContainText("Trajno čuvanje je uključeno");
+  await expect(panel.getByRole("button",{name:"Zatraži trajno čuvanje"})).toHaveCount(0);expect(await calls()).toBe(1);
+});
+
+test("tabs follow arrow keys and Escape closes project and export menus",async({page})=>{
+  await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();
+  await page.getByRole("button",{name:"Izvezi",exact:true}).click();await expect(page.getByRole("button",{name:"Kolokvijum 01 (.pdf)"})).toBeVisible();
+  await page.keyboard.press("Escape");await expect(page.getByRole("button",{name:"Kolokvijum 01 (.pdf)"})).toHaveCount(0);await expect(page.getByRole("button",{name:"Izvezi",exact:true})).toBeFocused();
+  await page.getByRole("button",{name:/Primjena/}).click();
+  const letter=page.getByRole("tab",{name:"Memorandum"}),social=page.getByRole("tab",{name:"Društvena objava"});
+  await expect(letter).toHaveAttribute("tabindex","0");await expect(social).toHaveAttribute("tabindex","-1");
+  const panel=page.locator(`#${await letter.getAttribute("aria-controls")}`);await expect(panel).toHaveAttribute("role","tabpanel");
+  await letter.focus();await page.keyboard.press("ArrowRight");
+  await expect(social).toBeFocused();await expect(social).toHaveAttribute("aria-selected","true");await expect(panel.getByLabel("Opis vizuala",{exact:false})).toHaveValue(/društvene objave/);
+  await page.keyboard.press("ArrowRight");await expect(letter).toBeFocused();await page.keyboard.press("End");await expect(social).toHaveAttribute("aria-selected","true");await page.keyboard.press("Home");await expect(letter).toHaveAttribute("aria-selected","true");
+  await expect(panel).toHaveAttribute("aria-labelledby",(await letter.getAttribute("id"))!);
+  await page.getByRole("button",{name:"Nazad na projekte"}).click();
+  const options=page.getByRole("button",{name:"Opcije projekta Bora"});await options.click();await expect(page.getByRole("button",{name:"Napravi kopiju"})).toBeVisible();
+  await page.keyboard.press("Escape");await expect(page.getByRole("button",{name:"Napravi kopiju"})).toHaveCount(0);await expect(options).toBeFocused();await expect(options).toHaveAttribute("aria-expanded","false");
+});

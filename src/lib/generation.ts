@@ -68,5 +68,18 @@ export function generationHistory(value: Generation | undefined): GenerationResu
   return mergeExperiments(value.alternatives, value.result ? [value.result] : [])
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id.localeCompare(a.id));
 }
+/**
+ * Removes one saved image only when the student asks for it. If it was the active
+ * result, the newest remaining image becomes active. A finished job that points to
+ * the removed image is dropped as well, so the result is never downloaded again.
+ */
+export function removeFromHistory(state: Generation, id: string): Generation {
+  const alternatives = state.alternatives.filter(item => item.id !== id);
+  const job = state.job?.id === id ? null : state.job;
+  if (state.result?.id !== id) return { ...state, alternatives, job };
+  const [next = null, ...rest] = generationHistory({ ...state, result: null, alternatives });
+  return { ...state, result: next, alternatives: rest, job };
+}
 export function visualKey(target: VisualTarget, id: string) { return `${target}-${id}`; }
+export function imageExtension(data: string) { return data.startsWith("data:image/png") ? "png" : data.startsWith("data:image/jpeg") ? "jpg" : "webp"; }
 export function cleanPlayground(data: PlaygroundData) { return { ...data, generation: withoutCapabilities(data.generation) }; }

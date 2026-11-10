@@ -4318,5 +4318,181 @@
   "vizuala · dodaje se u istoriju naloga": {
     "en": "images · added to your account history",
     "ru": "изображений · будут добавлены в историю аккаунта"
+  },
+  "Ukloni iz istorije": {
+    "en": "Remove from history",
+    "ru": "Удалить из истории"
+  },
+  "Ukloni iz istorije: {0}": {
+    "en": "Remove from history: {0}",
+    "ru": "Удалить из истории: {0}"
+  },
+  "Ukloniti sliku iz istorije?": {
+    "en": "Remove this image from the history?",
+    "ru": "Удалить изображение из истории?"
+  },
+  "Ukloni sliku": {
+    "en": "Remove image",
+    "ru": "Удалить изображение"
+  },
+  "Preuzmi sliku": {
+    "en": "Download image",
+    "ru": "Скачать изображение"
+  },
+  "Slika se uklanja iz ovog koraka i iz izbora za PDF. Već preuzeti dokumenti i predate verzije ostaju nepromijenjeni. Prije uklanjanja možeš preuzeti sliku.": {
+    "en": "The image is removed from this step and from the PDF selection. Documents you have already downloaded and submitted versions stay unchanged. You can download the image before removing it.",
+    "ru": "Изображение удаляется из этого шага и из выбора для PDF. Уже скачанные документы и сданные версии не меняются. Перед удалением изображение можно скачать."
+  },
+  "Ovo je odabrana varijanta; najnovija preostala slika postaće odabrana.": {
+    "en": "This is the selected variant; the newest remaining image will become the selected one.",
+    "ru": "Это выбранный вариант; выбранным станет самое новое из оставшихся изображений."
+  },
+  "AA · veliki tekst": {
+    "en": "AA · large text",
+    "ru": "AA · крупный текст"
+  },
+  "Nije za tekst": {
+    "en": "Not for text",
+    "ru": "Не для текста"
+  },
+  "Izaberi dvije različite boje za provjeru.": {
+    "en": "Choose two different colours to compare.",
+    "ru": "Выберите два разных цвета для проверки."
+  },
+  "Čitljivija nijansa: {0} daje {1}:1 uz istu pozadinu.": {
+    "en": "A more readable shade: {0} gives {1}:1 on the same background.",
+    "ru": "Более читаемый оттенок: {0} даёт {1}:1 на том же фоне."
+  },
+  "Prijedlog zadržava ton boje i mijenja samo svjetlinu.": {
+    "en": "The suggestion keeps the hue and changes only the lightness.",
+    "ru": "Предложение сохраняет тон цвета и меняет только светлоту."
+  },
+  "Zamijeni boju teksta": {
+    "en": "Replace text colour",
+    "ru": "Заменить цвет текста"
+  },
+  "Dodaj kao novu boju": {
+    "en": "Add as a new colour",
+    "ru": "Добавить как новый цвет"
+  },
+  "{0} za tekst": {
+    "en": "{0} for text",
+    "ru": "{0} для текста"
+  },
+  "SVI PAROVI BOJA": {
+    "en": "ALL COLOUR PAIRS",
+    "ru": "ВСЕ ПАРЫ ЦВЕТОВ"
+  },
+  "Izaberi par da ga prikažeš u provjeri.": {
+    "en": "Select a pair to show it in the checker.",
+    "ru": "Выберите пару, чтобы показать её в проверке."
+  },
+  "Prikaži par: {0} na {1}, kontrast {2}:1": {
+    "en": "Show pair: {0} on {1}, contrast {2}:1",
+    "ru": "Показать пару: {0} на {1}, контраст {2}:1"
+  },
+  "Savjeti prije predaje": {
+    "en": "Tips before submission",
+    "ru": "Советы перед сдачей"
+  },
+  "SAVJETI PRIJE PREDAJE": {
+    "en": "TIPS BEFORE SUBMISSION",
+    "ru": "СОВЕТЫ ПЕРЕД СДАЧЕЙ"
+  },
+  "Nema dodatnih napomena. Pregledaj PDF prije predaje.": {
+    "en": "No further notes. Review the PDF before you submit.",
+    "ru": "Дополнительных замечаний нет. Просмотрите PDF перед сдачей."
+  },
+  "Savjeti ne mijenjaju kontrolnu listu, ne blokiraju izvoz i nisu ocjena.": {
+    "en": "These tips do not change the checklist, do not block export and are not a grade.",
+    "ru": "Советы не меняют контрольный список, не блокируют экспорт и не являются оценкой."
+  },
+  "Broj rečenica u viziji: {0}. Smjernica s nastave je jedna do dvije rečenice.": {
+    "en": "Sentences in your vision: {0}. The class guideline is one or two sentences.",
+    "ru": "Предложений в видении: {0}. Рекомендация с занятий — одно-два предложения."
+  },
+  "Broj rečenica u misiji: {0}. Smjernica s nastave je jedna do dvije rečenice.": {
+    "en": "Sentences in your mission: {0}. The class guideline is one or two sentences.",
+    "ru": "Предложений в миссии: {0}. Рекомендация с занятий — одно-два предложения."
+  },
+  "Nijedan par boja nema kontrast od najmanje 4,5:1 za manji tekst. Provjeri parove u koraku Paleta boja.": {
+    "en": "No colour pair reaches a contrast of at least 4.5:1 for smaller text. Check the pairs in the Colour palette step.",
+    "ru": "Ни одна пара цветов не даёт контраст не менее 4,5:1 для мелкого текста. Проверьте пары на шаге «Цветовая палитра»."
+  },
+  "Tekst projekta sadrži ćirilicu, a font {0} nema ćirilična slova. Izaberi Noto Sans ili drugi font s ćirilicom.": {
+    "en": "Your project text contains Cyrillic, but {0} has no Cyrillic letters. Choose Noto Sans or another font with Cyrillic.",
+    "ru": "В тексте проекта есть кириллица, а в шрифте {0} нет кириллических букв. Выберите Noto Sans или другой шрифт с кириллицей."
+  },
+  "Memorandum nema kontakt podataka. Za vježbu možeš unijeti izmišljen kontakt, adresu ili web stranicu.": {
+    "en": "The letterhead has no contact details. For practice you can enter an invented contact, address or website.",
+    "ru": "На фирменном бланке нет контактных данных. Для упражнения можно указать вымышленный контакт, адрес или сайт."
+  },
+  "Projekat sadrži AI vizuale, a opis upotrebe AI alata je prazan. Navedi alat, svrhu i svoje dorade.": {
+    "en": "The project contains AI visuals, but the use of AI tools is not described. Name the tool, its purpose and your own edits.",
+    "ru": "В проекте есть ИИ-визуалы, но использование ИИ не описано. Укажите инструмент, цель и свои доработки."
+  },
+  "Opis upotrebe AI alata još sadrži mjesto za tvoje dorade u uglastim zagradama. Opiši šta si sam/a promijenio/la.": {
+    "en": "Your description of AI use still contains the placeholder for your edits in square brackets. Describe what you changed yourself.",
+    "ru": "В описании использования ИИ всё ещё есть заготовка в квадратных скобках. Опишите, что вы изменили сами."
+  },
+  "[opiši izmjene]": {
+    "en": "[describe your edits]",
+    "ru": "[опишите изменения]"
+  },
+  "Prostor u pregledniku": {
+    "en": "Browser storage",
+    "ru": "Хранилище браузера"
+  },
+  "PROSTOR U PREGLEDNIKU": {
+    "en": "BROWSER STORAGE",
+    "ru": "ХРАНИЛИЩЕ БРАУЗЕРА"
+  },
+  "Provjera prostora...": {
+    "en": "Checking storage...",
+    "ru": "Проверка хранилища..."
+  },
+  "Forma u ovom pregledniku zauzima oko {0} MB.": {
+    "en": "Forma uses about {0} MB in this browser.",
+    "ru": "Forma занимает в этом браузере около {0} МБ."
+  },
+  "Preglednik za ovu stranicu dozvoljava oko {0} GB.": {
+    "en": "The browser allows this site about {0} GB.",
+    "ru": "Браузер разрешает этому сайту около {0} ГБ."
+  },
+  "Trajno čuvanje je uključeno: preglednik neće sam obrisati ove podatke kada mu ponestane prostora.": {
+    "en": "Persistent storage is on: the browser will not delete this data on its own when space runs low.",
+    "ru": "Постоянное хранение включено: браузер не удалит эти данные сам при нехватке места."
+  },
+  "Bez trajnog čuvanja preglednik može obrisati lokalne podatke kada mu ponestane prostora.": {
+    "en": "Without persistent storage the browser may delete local data when space runs low.",
+    "ru": "Без постоянного хранения браузер может удалить локальные данные при нехватке места."
+  },
+  "Zatraži trajno čuvanje": {
+    "en": "Request persistent storage",
+    "ru": "Запросить постоянное хранение"
+  },
+  "Preglednik je odobrio trajno čuvanje.": {
+    "en": "The browser granted persistent storage.",
+    "ru": "Браузер разрешил постоянное хранение."
+  },
+  "Preglednik zasad nije odobrio trajno čuvanje. Redovno preuzimaj rezervnu kopiju.": {
+    "en": "The browser has not granted persistent storage for now. Download a backup regularly.",
+    "ru": "Браузер пока не разрешил постоянное хранение. Регулярно скачивайте резервную копию."
+  },
+  "Ovaj preglednik ne prikazuje podatke o prostoru. Redovno preuzimaj rezervnu kopiju.": {
+    "en": "This browser does not report storage details. Download a backup regularly.",
+    "ru": "Этот браузер не сообщает данные о хранилище. Регулярно скачивайте резервную копию."
+  },
+  "Zahtjev za trajno čuvanje nije dostupan. Redovno preuzimaj rezervnu kopiju.": {
+    "en": "Persistent storage cannot be requested here. Download a backup regularly.",
+    "ru": "Запросить постоянное хранение здесь нельзя. Регулярно скачивайте резервную копию."
+  },
+  "Nepotrebnu sliku možeš ukloniti iz istorije.": {
+    "en": "You can remove images you no longer need from the history.",
+    "ru": "Ненужное изображение можно удалить из истории."
+  },
+  "Aktivni logotip ostaje sačuvan dok ga ne zamijeniš.": {
+    "en": "The active logo stays saved until you replace it.",
+    "ru": "Активный логотип сохраняется, пока вы его не замените."
   }
 }
