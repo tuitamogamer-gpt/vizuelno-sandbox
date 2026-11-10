@@ -28,7 +28,7 @@ Nastavak dorade prije roka za prvi kolokvijum. Promjene pomažu studentu da sam 
 - **Savjeti prije predaje.** Korak „Pregled i izvoz“ upozorava na viziju ili misiju dužu od dvije rečenice (smjernica s nastave), paletu bez para za čitljiv tekst, memorandum bez kontakta, font bez ćirilice uz ćirilični tekst, te AI vizuale bez opisa upotrebe AI alata ili s ostavljenim mjestom „[opiši izmjene]“. Svaki savjet vodi na odgovarajući korak. Savjeti nisu ocjena i ne blokiraju izvoz ni predaju.
 - **Prostor u pregledniku.** U lokalnom režimu prozor „Sačuvano lokalno“ prikazuje zauzeti prostor i nudi zahtjev za trajno čuvanje. Zahtjev se šalje tek na klik studenta.
 - **Tastatura.** Kartice „Memorandum / Društvena objava“ i nastavničke kartice imaju pravilne panele i reaguju na strelice, Home i End. Meniji projekta i izvoza zatvaraju se tipkom Escape i vraćaju fokus na dugme.
-- **Brže čuvanje teksta.** Lokalno čuvanje više ne validira cijeli projekat dvaput pri svakoj izmjeni, što je primjetno kod projekata s mnogo sačuvanih slika.
+- **Manje posla pri čuvanju.** Lokalno čuvanje više ne validira cijeli projekat dvaput pri svakoj izmjeni; to smanjuje rad preglednika kod projekata s mnogo sačuvanih slika.
 
 ## Provjera
 
