@@ -61,6 +61,10 @@ export function LanguageSelector() {
     <label className="language-selector">
       <Globe2 size={16} aria-hidden="true" />
       <span className="visually-hidden">{t("Jezik interfejsa")}</span>
+      {/* Compact code for small screens; the native select stays on top for input. */}
+      <span className="language-code" aria-hidden="true">
+        {locale.toUpperCase()}
+      </span>
       <select
         value={locale}
         onChange={(event) => setLocale(normalizeLocale(event.target.value))}

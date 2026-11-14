@@ -37,3 +37,20 @@ Unit testovi pokrivaju uklanjanje slike (aktivna varijanta, završeni zadatak, p
 ## Granice
 
 Brojanje rečenica je približno: skraćenice poput „npr.“ ne prekidaju rečenicu, ali neke druge skraćenice mogu. Odluka o trajnom čuvanju pripada pregledniku; ako je odbije, rezervna JSON kopija ostaje preporuka. Prijedlog nijanse cilja 4,5:1 za standardni tekst i mijenja samo svjetlinu boje.
+
+# Dizajn i pristupačnost — 14. novembar 2026.
+
+Cilj je premium izgled bez promjene identiteta Forme: ista paleta (šumsko zelena, terakota, papir) i isti fontovi (Space Grotesk, DM Sans, Libre Baskerville), uz dosljedniji sistem i čitljiviji tekst.
+
+- **Vizuelni sistem.** Na kraju `src/app/globals.css` nalazi se jedan sloj tokena: boje, zaobljenja (8–22 px), četiri nivoa sjenki, prsten fokusa i kriva pokreta. Dugmad, polja, kartice, bočni meni, zaglavlje, prozori i obavještenja koriste te tokene. Primarna terakota je potamnjena na `#B8492A`, pa bijeli tekst na dugmetu ima kontrast 5,2:1.
+- **Čitljivost.** Ranija pravila koristila su tekst od 4–10 px i blijede sivo-zelene tonove. Skripta je u istim pravilima podigla veličine na najmanje 11 px i potamnila boje teksta zadržavajući ton, do kontrasta 4,6:1 na najtamnijoj svijetloj podlozi (3:1 za veliki tekst i ikone). Umanjene makete (ploča identiteta, memorandum, ilustracije na naslovnoj strani i prijavi) namjerno zadržavaju mjerilo.
+- **Ispravke.** Izbor jezika više ne prelazi preko zaglavlja i natpisa na prijavi; na telefonu prikazuje oznaku jezika (SR, EN, RU) iznad prirodnog izbornika. Bočni meni staje na ekran visine 900 px. Na telefonu se dugme „Novi projekat“ prostire cijelom širinom, a „Uvezi projekat“ se ne lomi. U uvodnoj kartici više se ne spajaju riječi („izvoz.Svi“). Uređivač na telefonu ne prikazuje odsječenu putanju. Polja naziva i HEX vrijednosti boje zadržavaju urednički stil.
+- **Fokus.** Zatvoren prozor vraća fokus na dugme koje ga je otvorilo; akcije iz menija projekta i izvoza vraćaju ga na dugme menija. Dugmad za uklanjanje boje i tekstualni linkovi imaju dovoljno veliku površinu za dodir.
+
+## Provjera
+
+Automatski pregled prolazi kroz prijavu, pregled, projekte, vodič, Playground, nalog, postavke, svih sedam koraka uređivača i prozore, na 1440 i 390 px, na srpskom, engleskom i ruskom. Prije dorade imao je 20–55 elemenata sa slabim kontrastom i 20–40 sa tekstom manjim od 11 px po ekranu. Poslije dorade nema slabog kontrasta, prelijevanja, preklapanja ni premalih dugmadi; mali tekst postoji samo u umanjenim maketama. Lint, TypeScript, unit testovi, produkcijski build, browser testovi i testovi naloga prolaze; browser test provjerava i vraćanje fokusa i kompaktan izbor jezika.
+
+## Granice
+
+Pregled kontrasta računa boje teksta i pozadine; ne ocjenjuje tekst preko slika i prelaza boja. Studentski izbori boja u pregledima identiteta ostaju studentski, pa njihov kontrast prikazuje alat u koraku „Paleta boja“.

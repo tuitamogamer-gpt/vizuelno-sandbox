@@ -234,10 +234,13 @@ test("local storage dialog shows usage and asks for persistent storage only afte
   await expect(panel.getByRole("button",{name:"Zatraži trajno čuvanje"})).toHaveCount(0);expect(await calls()).toBe(1);
 });
 
-test("tabs follow arrow keys and Escape closes project and export menus",async({page})=>{
+test("tabs follow arrow keys, Escape closes menus and dialogs return focus to their trigger",async({page})=>{
   await login(page);await page.getByRole("button",{name:/EDUKATIVNI PRIMJER/}).click();
   await page.getByRole("button",{name:"Izvezi",exact:true}).click();await expect(page.getByRole("button",{name:"Kolokvijum 01 (.pdf)"})).toBeVisible();
   await page.keyboard.press("Escape");await expect(page.getByRole("button",{name:"Kolokvijum 01 (.pdf)"})).toHaveCount(0);await expect(page.getByRole("button",{name:"Izvezi",exact:true})).toBeFocused();
+  await page.getByRole("button",{name:"Izvezi",exact:true}).click();await page.getByRole("button",{name:"Kolokvijum 01 (.pdf)"}).click();
+  await expect(page.getByRole("dialog",{name:"PDF za prvi kolokvijum"})).toBeVisible();await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toHaveCount(0);await expect(page.getByRole("button",{name:"Izvezi",exact:true})).toBeFocused();
   await page.getByRole("button",{name:/Primjena/}).click();
   const letter=page.getByRole("tab",{name:"Memorandum"}),social=page.getByRole("tab",{name:"Društvena objava"});
   await expect(letter).toHaveAttribute("tabindex","0");await expect(social).toHaveAttribute("tabindex","-1");
@@ -249,4 +252,9 @@ test("tabs follow arrow keys and Escape closes project and export menus",async({
   await page.getByRole("button",{name:"Nazad na projekte"}).click();
   const options=page.getByRole("button",{name:"Opcije projekta Bora"});await options.click();await expect(page.getByRole("button",{name:"Napravi kopiju"})).toBeVisible();
   await page.keyboard.press("Escape");await expect(page.getByRole("button",{name:"Napravi kopiju"})).toHaveCount(0);await expect(options).toBeFocused();await expect(options).toHaveAttribute("aria-expanded","false");
+  await options.click();await page.getByRole("button",{name:"Obriši projekat",exact:true}).click();
+  await page.getByRole("dialog").getByRole("button",{name:"Zadrži projekat"}).click();await expect(page.getByRole("dialog")).toHaveCount(0);await expect(options).toBeFocused();
+  await page.setViewportSize({width:390,height:844});const chooser=page.locator(".language-selector select");
+  await expect(page.locator(".language-code")).toHaveText("SR");await chooser.selectOption("en");await expect(page.locator(".language-code")).toHaveText("EN");
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await chooser.selectOption("sr");await expect(page.locator(".language-code")).toHaveText("SR");
 });
